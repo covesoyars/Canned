@@ -1,2 +1,41 @@
 1. As a manager, I want to access a list of foods below the threshold 
 level, so that I can see what needs to be restocked.
+
+2. As a manager, I want to search the name of a volunteer so that I can 
+remove a specific volunteer
+
+3. As a manager, I want to be able to search volunteers by name, so that 
+I can easily remove them.
+
+4. As a user, after logging in I want to be brought to a page that 
+displays the different actions that I can take
+so that I can easily access parts of the app required to fulfill my 
+responsibilities
+
+5. As a user, I want to be able to recover my username or password, so 
+that I can easily remember it if needed.
+
+6. As a manager or a volunteer, on my hub page, I want to be taken to a 
+page to edit my profile so that I can add a picture and update my 
+personal information
+
+7. as a  user, I want the app to remember my username and password so I 
+can login quickly
+
+8. As a manager, I want to be logged out after an hour of inactivity, so 
+that we can maintain security
+
+9.  As a manager, from my hub page, I want to click a button to be taken 
+to a list of volunteers
+
+10. As a manager, from the list of volunteers, I want to click on 
+individual users and be shown their contact information and a button to 
+remove them from the list
+
+11. so that I can easily contact volunteers and remove them if they are 
+no longer working
+
+12. As a manager, I want to be notified daily of items under the 
+threshold level, so that I can keep track of what needs to be done.
+
+
