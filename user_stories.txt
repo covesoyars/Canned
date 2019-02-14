@@ -12,8 +12,9 @@ displays the different actions that I can take
 so that I can easily access parts of the app required to fulfill my 
 responsibilities
 
-5. As a user, I want to be able to recover my username or password, so 
-that I can easily remember it if needed.
+5. As a user on the login page, I want to see an option to 
+recover my username or password, so that I can easily recover access to 
+my account.
 
 6. As a manager or a volunteer, on my hub page, I want to be taken to a 
 page to edit my profile so that I can add a picture and update my 
@@ -51,3 +52,12 @@ working in the warehouse
 16. As a volunteer, on my hub page, I want to see a button to launch the 
 part of the app that allows me to distribute  current inventory
 
+17. As a volunteer, when recording donations, I want to be able to 
+record what items were donated, how much, and the donor's information so 
+that the system can be updated with new items and donors
+
+18. As a volunteer on the record donations page, I want to be able to 
+record donations of multiple types of items, so that I only have to 
+record once per donor
+
+19. 
