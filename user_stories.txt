@@ -38,4 +38,16 @@ no longer working
 12. As a manager, I want to be notified daily of items under the 
 threshold level, so that I can keep track of what needs to be done.
 
+13. As a volunteer, on my hub page, I want to see options to launch a 
+page to search current inventory, so that I can see what's in stock
+
+14. As a volunteer or a manager, on my hub page, I want to see options 
+to launch a page to search current inventory, so that I can see what's 
+in stock
+
+15. as a user, I want a light theme so that I can see the app while 
+working in the warehouse
+
+16. As a volunteer, on my hub page, I want to see a button to launch the 
+part of the app that allows me to distribute  current inventory
 
