@@ -74,3 +74,11 @@ page so that I can log in to my new account
 22. As a manager, I want new users to be directed to a different hub 
 page, where they can only edit their profile, so that unverified users 
 cannot access functions
+
+23. As a manager, on the page that displays the list of volunteers, I 
+want a button that takes me to a list of unverified accounts so that I 
+can control which users have access to their privelages
+
+24. As a manager, on the page that displays the list of volunteers, I 
+want a button that takes me to a list of unverified accounts so that I 
+can control which users have access to their privelages
