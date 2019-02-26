@@ -1,12 +1,20 @@
+package edu.vcu.cmsc355.starter;
+
 /**
  * @Version: 0.1 of User class (parent of Manager and Volunteer)
  * has getters and setters for all instance variables
- * Needs implementation of forgot password framework
- * May need more features as build continues
+ * Needs:
+ *  implementation of forgot password framework
+ *
+ *
  *
  * @contributors: Cove Soyars,
  */
-import static org.apache.commons.lang3.RandomStringUtils.*;
+import java.io.File;
+import org.apache.commons.lang3.RandomStringUtils;
+
+
+
 public class User{
 
     private String password;
@@ -46,7 +54,7 @@ public class User{
         boolean useNumbers = true;
         String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
 
-        return generatedString;
+        return null;
     }
 
     public void forgotPassword(){
@@ -57,7 +65,8 @@ public class User{
          */
     }
 
-    public void setPassword(aPassword){
+    // getters and setters
+    public void setPassword(String aPassword){
         password = aPassword;
     }
     public String getPassword(){
@@ -96,7 +105,7 @@ public class User{
     public void setProfilePicture(File aPicture){
         profilePicture = aPicture;
     }
-    public void getProfilePicture(){
+    public File getProfilePicture(){
         return profilePicture;
     }
 
