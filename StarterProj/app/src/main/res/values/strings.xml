@@ -5,4 +5,6 @@
     <string name="EnterP">Enter Password</string>
     <string name="forgot_info">Forgot info?</string>
     <string name="login">Log in</string>
+    <string name="app_name"> app_name</string>
+    <string name="verifing">Verifying your account</string>
 </resources>
