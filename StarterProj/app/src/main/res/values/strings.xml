@@ -1,0 +1,8 @@
+<resources>
+    <string name="Canned">Canned</string>
+    <string name="Sign_up">Sign up</string>
+    <string name="EnterU">     Enter Username</string>
+    <string name="EnterP">Enter Password</string>
+    <string name="forgot_info">Forgot info?</string>
+    <string name="login">Log in</string>
+</resources>
