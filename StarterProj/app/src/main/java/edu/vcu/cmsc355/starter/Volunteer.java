@@ -12,6 +12,10 @@ public class Volunteer extends User {
 
     private boolean verified; // flag to determine if user is verified by manager
 
+    public Volunteer(){
+        super();
+        verified = false;
+    }
     public Volunteer(String aPassword, String aUserName, String aFirstName, String aLastName, int aDob,
                      String anEmail, File aPicture){
 

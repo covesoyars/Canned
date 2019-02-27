@@ -12,14 +12,17 @@ import java.io.File;
 
 public class Manager extends User {
 
-
+    public Manager(){ // default constructor
+        super();
+    }
+    //parameterized constructor:
     public Manager(String aPassword, String aUserName, String aFirstName, String aLastName, int aDob,
                      String anEmail, File aPicture){
 
         super(aPassword, aUserName, aFirstName, aLastName,aDob,anEmail, aPicture);
 
     }
-
+    // method to verify volenteer objects
     public void verifyVolunteer(Volunteer aVol){
         aVol.verify();
     }

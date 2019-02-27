@@ -25,6 +25,16 @@ public class User{
     private String emailAddress;
     private File profilePicture;
 
+
+    public User() {
+        setDob(12071941);
+        setFirstName("Jimbo");
+        setLastName("David");
+        setUserName("jimbo_dave");
+        setEmailAddress("soyarsc@vcu.edu"); // my email for testing
+        setPassword("password1");
+        setProfilePicture(null);
+    }
     /*
     Constructor to be called by sign up activity if the profile picture field in this activity is
     blank, the default profile picture will be passed to the constructor. If the username entered
