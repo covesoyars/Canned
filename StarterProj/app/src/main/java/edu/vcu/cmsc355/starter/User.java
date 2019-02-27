@@ -1,7 +1,7 @@
 package edu.vcu.cmsc355.starter;
 
 /**
- * @Version: 0.1 of User class (parent of Manager and Volunteer)
+ * @Version: 0.2 of User class (parent of Manager and Volunteer)
  * has getters and setters for all instance variables
  * Needs:
  *  implementation of forgot password framework
@@ -52,6 +52,18 @@ public class User{
         setLastName(aLastName);
         setProfilePicture(aPicture);
 
+    }
+    // parameterized constructor without photo parameter (user accepts default photo)
+    public User(String aPassword, String aUserName, String aFirstName, String aLastName, int aDob,
+                String anEmail){
+
+        setDob(aDob);
+        setEmailAddress(anEmail);
+        setPassword(aPassword);
+        setUserName(aUserName);
+        setFirstName(aFirstName);
+        setLastName(aLastName);
+        setProfilePicture(null);  // will be set to null until default picture file is obtained
     }
 
     /**

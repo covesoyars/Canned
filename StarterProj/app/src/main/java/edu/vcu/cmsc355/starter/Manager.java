@@ -1,5 +1,5 @@
 /**
- * @version 0.1 of Manager class
+ * @version 0.2 of Manager class
  * Has method to verify a volunteer object
  * Needs:
  *  method to add storage locations (depends on food database)
