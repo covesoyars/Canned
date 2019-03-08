@@ -70,6 +70,7 @@
         android:layout_marginTop="15dp"
         android:text="@string/Sign_up"
         android:textSize="18sp"
+        android:onClick="signUp"
         app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintHorizontal_bias="0.67"
         app:layout_constraintStart_toStartOf="parent"

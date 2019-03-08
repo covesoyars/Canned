@@ -7,4 +7,10 @@
     <string name="login">Log in</string>
     <string name="app_name"> app_name</string>
     <string name="verifing">Verifying your account</string>
+    <string name="ent_username">Enter a username</string>
+    <string name="ent_password">Enter a password</string>
+    <string name="ent_first">Enter first name</string>
+    <string name="ent_last">Enter last name</string>
+    <string name="ent_mail">Enter your email</string>
+    <string name="ent_birth">Enter birthdate, MMDDYY</string>
 </resources>
