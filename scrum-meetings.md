@@ -18,7 +18,7 @@ Question    |          Person                                             | 2/25
 | What insights have you made? | Javier Moreira | n/a | n/a | the back button is more complicated than expected |
 |            | Justin Nelson | n/a | n/a | n/a |
 |            | Samuel Portillo | n/a | n/a | traditional database options are not as straightforward as I expected |
-|            | Cove Soyars | n/a | figured out how to import external packages; refer to build.gradle file |
+|            | Cove Soyars | n/a | n/a | figured out how to import external packages; refer to build.gradle file |
 | Do any changes to the project need to be made as a result of your work? | Javier Moreira | No | No | No |
 |            | Justin Nelson | No | No | No |
 |            | Samuel Portillo | No | No | No |
