@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import java.io.File;
 
 public class Sign_Up_Page extends AppCompatActivity {
     private Volunteer newV;
@@ -15,6 +16,7 @@ public class Sign_Up_Page extends AppCompatActivity {
     private EditText last;
     private EditText email;
     private EditText date;
+    private File defaultPicture = new File("/StarterProj/app/src/main/res/drawable/default_profile_picture.jpg");
 
 
     @Override
