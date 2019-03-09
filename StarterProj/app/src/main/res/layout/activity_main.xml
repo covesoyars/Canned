@@ -83,7 +83,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="92dp"
         android:layout_marginRight="92dp"
-        android:text="@string/login"
+        android:text="@string/forgot_info"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2" />
@@ -97,7 +97,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="38dp"
-        android:text="@string/forgot_info"
+        android:text="@string/login"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
