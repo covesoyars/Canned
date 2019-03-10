@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class Sign_Up_Page extends AppCompatActivity {
@@ -45,7 +46,8 @@ public class Sign_Up_Page extends AppCompatActivity {
         //However that is done
 
         //Need to add to database data structure when available.
-        Intent mainActivity = new Intent(this, MainActivity.class);
-        startActivity(mainActivity);
+        Intent verifyPage = new Intent(Sign_Up_Page.this, verify_Page.class );
+       // Intent mainActivity = new Intent(this, MainActivity.class);       COMMENTED OUT BY JAVIER
+        startActivity(verifyPage);
     }
 }
