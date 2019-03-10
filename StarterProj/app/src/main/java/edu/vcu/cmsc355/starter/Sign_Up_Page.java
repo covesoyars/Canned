@@ -84,7 +84,7 @@ public class Sign_Up_Page extends AppCompatActivity {
             return false;
         }
         // test if email is a valid email address:
-        if(!EMAIL_ADDRESS_PATTERN.matcher(email.getText().toString()).matches()){
+        if(!EMAIL_ADDRESS_PATTERN.matcher(email.getText().toString().trim()).matches()){
             Toast.makeText(this, "Email address is not a valid email address", Toast.LENGTH_SHORT).show();
             return false;
         }
