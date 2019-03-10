@@ -20,8 +20,8 @@
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="235dp"
-        android:layout_height="112dp"
+        android:layout_width="265dp"
+        android:layout_height="75dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="30dp"
@@ -34,8 +34,8 @@
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="235dp"
-        android:layout_height="112dp"
+        android:layout_width="265dp"
+        android:layout_height="75dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="30dp"
@@ -48,8 +48,8 @@
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="235dp"
-        android:layout_height="112dp"
+        android:layout_width="265dp"
+        android:layout_height="75dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="150dp"
