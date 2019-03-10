@@ -24,16 +24,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void forgotInfo(View view){
-        Intent startforgotInfo = new Intent(this, Forgot_info.class);
-        startActivity(startforgotInfo);
+        Intent startForgotInfo = new Intent(this, Forgot_info.class);
+        startActivity(startForgotInfo);
     }
 
     public void login(View view){
         Intent login = new Intent(this, manager_hub_page.class);
         //Intent volLogin = new Intent(this, volunteer_hub_page.class);
 
-        if(user.equals("CoolKid123") && pass.equals("CoolPass")) {
+        if(user.getText().toString().equals("CoolKid123") && pass.getText().toString().equals("CoolPass")) {
             startActivity(login);
+        }
+        else{
+            //Tell user they are stupid
         }
     }
 }
