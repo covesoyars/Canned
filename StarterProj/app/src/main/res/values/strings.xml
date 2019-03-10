@@ -16,10 +16,12 @@
     <string name="ent_birth">Enter birthdate, MMDDYY</string>
     <string name="inventory">Inventory</string>
     <string name="manage_volunteers">Manage Volunteers</string>
-=======
+
     <string name="select_items">Select the items forgotten.</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
     <string name="send_email">Send email</string>
->>>>>>> be0ed50be0cf71e6e385e0417b75da925d5e6267
+    <string name="record_donation">Record donations</string>
+    <string name="record_distribution">Record Distribution</string>
+    <string name="manage_inventory" >Manage Inventory</string>
 </resources>

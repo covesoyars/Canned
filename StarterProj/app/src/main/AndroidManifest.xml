@@ -9,17 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-
+        <activity android:name=".Volenteer_hub_page"></activity>
         <activity android:name=".Sign_Up_Page" />
-        <activity android:name=".verify_Page"/>
-
-        <activity android:name=".Forgot_info"></activity>
-
-
-        <activity android:name=".manager_hub_page"/>
-
+        <activity android:name=".verify_Page" />
+        <activity android:name=".Forgot_info" />
+        <activity android:name=".manager_hub_page" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
