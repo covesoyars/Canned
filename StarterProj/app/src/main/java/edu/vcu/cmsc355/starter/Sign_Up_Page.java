@@ -44,11 +44,12 @@ public class Sign_Up_Page extends AppCompatActivity {
 
         if(verifyInputs()){ // if all fields are valid, create a volunteer with the information
 
-            Volunteer newVol = new Volunteer(pass.getText().toString(),
-                    user.getText().toString(),
-                    first.getText().toString(),last.getText().toString(),
+            Volunteer newVol = new Volunteer(pass.getText().toString().trim(),
+                    user.getText().toString().trim(),
+                    first.getText().toString().trim(),
+                    last.getText().toString().trim(),
                     Integer.parseInt(date.getText().toString()),
-                    email.getText().toString());
+                    email.getText().toString().trim());
 
             //Need to add to database data structure when available.
             Intent verifyPage = new Intent(Sign_Up_Page.this, verify_Page.class );
@@ -88,7 +89,7 @@ public class Sign_Up_Page extends AppCompatActivity {
             Toast.makeText(this, "Email address is not a valid email address", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(date.getText().toString().length() != 6){ // DOB is invalid if it's not of length 6
+        if(date.getText().toString().trim().length() != 6){ // DOB is invalid if it's not of length 6
             Toast.makeText(this, "DOB is not in correct format: MMDDYY", Toast.LENGTH_SHORT).show();
             return false;
         }
