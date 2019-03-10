@@ -40,6 +40,7 @@ public class Sign_Up_Page extends AppCompatActivity {
         newV.setFirstName(first.getText().toString());
         newV.setLastName(last.getText().toString());
         newV.setPassword(pass.getText().toString());
+
         //HOW
         //newV.setProfilePicture();
 

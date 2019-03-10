@@ -17,4 +17,9 @@ public class MainActivity extends AppCompatActivity {
     Intent startSignUp = new Intent(this, Sign_Up_Page.class);
     startActivity(startSignUp);
     }
+
+    public void forgotInfo(View view){
+        Intent startforgotInfo = new Intent(this, Forgot_info.class);
+        startActivity(startforgotInfo);
+    }
 }
