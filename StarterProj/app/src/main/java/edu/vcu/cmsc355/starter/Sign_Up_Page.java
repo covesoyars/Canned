@@ -4,9 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import java.io.File;
+import android.widget.Toast;
+import java.util.regex.Pattern;
+
 
 public class Sign_Up_Page extends AppCompatActivity {
     private Volunteer newV;
@@ -17,8 +18,14 @@ public class Sign_Up_Page extends AppCompatActivity {
     private EditText last;
     private EditText email;
     private EditText date;
-    private File defaultPicture = new File("/StarterProj/app/src/main/res/drawable/default_profile_picture.jpg");
-
+    private Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile( // regex pattern to validate email addresses
+            "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                    "\\@" +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                    "(" +
+                    "\\." +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                    ")+");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,26 +38,63 @@ public class Sign_Up_Page extends AppCompatActivity {
         last = (EditText) findViewById(R.id.editText6);
         email = (EditText) findViewById(R.id.editText7);
         date = (EditText) findViewById(R.id.editText8);
-        newV = new Volunteer();
     }
 
     public void addUser(View view){
-        newV.setUserName(user.getText().toString());
-        newV.setDob(Integer.parseInt(date.getText().toString()));
-        newV.setEmailAddress(email.getText().toString());
-        newV.setFirstName(first.getText().toString());
-        newV.setLastName(last.getText().toString());
-        newV.setPassword(pass.getText().toString());
 
-        //HOW
-        //newV.setProfilePicture();
+        if(verifyInputs()){ // if all fields are valid, create a volunteer with the information
 
-        //DATABASE.add(newV);
-        //However that is done
+            Volunteer newVol = new Volunteer(pass.getText().toString(),
+                    user.getText().toString(),
+                    first.getText().toString(),last.getText().toString(),
+                    Integer.parseInt(date.getText().toString()),
+                    email.getText().toString());
 
-        //Need to add to database data structure when available.
-        Intent verifyPage = new Intent(Sign_Up_Page.this, verify_Page.class );
-       // Intent mainActivity = new Intent(this, MainActivity.class);       COMMENTED OUT BY JAVIER
-        startActivity(verifyPage);
+            //Need to add to database data structure when available.
+            Intent verifyPage = new Intent(Sign_Up_Page.this, verify_Page.class );
+            // Intent mainActivity = new Intent(this, MainActivity.class);       COMMENTED OUT BY JAVIER
+            startActivity(verifyPage);
+        }
+
+        else{
+            // do nothing (removing this else block makes the app crash!)
+        }
+    }
+
+    /**
+     * Verifies fields in sign up form
+     * @return false if a field is invalid and displays a toast with the error
+     */
+    private boolean verifyInputs(){
+
+        if(pass.getText().toString().isEmpty()){
+            Toast.makeText(this, "Password field is empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(user.getText().toString().isEmpty()){ // WILL NEED TO VERIFY IF USERNAME IS ALREADY IN DB!
+            Toast.makeText(this, "Username field is empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(first.getText().toString().isEmpty()){
+            Toast.makeText(this, "First name field is empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(last.getText().toString().isEmpty()){
+            Toast.makeText(this, "Last name field is empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        // test if email is a valid email address:
+        if(!EMAIL_ADDRESS_PATTERN.matcher(email.getText().toString()).matches()){
+            Toast.makeText(this, "Email address is not a valid email address", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(date.getText().toString().length() != 6){ // DOB is invalid if it's not of length 6
+            Toast.makeText(this, "DOB is not in correct format: MMDDYY", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else{
+            return true;
+        }
+
     }
 }

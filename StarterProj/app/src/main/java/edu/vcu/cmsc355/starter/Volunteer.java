@@ -28,7 +28,7 @@ public class Volunteer extends User {
     // parameterized constructor without photo parameter (user accepts default photo)
     public Volunteer(String aPassword, String aUserName, String aFirstName, String aLastName, int aDob,
                 String anEmail){
-        super();
+        super(aPassword, aUserName, aFirstName, aLastName, aDob, anEmail);
     }
 
     // will be called by a method in Manager class to register new users

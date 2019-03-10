@@ -24,6 +24,8 @@ public class User{
     private int dob;
     private String emailAddress;
     private File profilePicture;
+    private File defaultPicture = new File("/StarterProj/app/src/main/res/drawable/default_profile_picture.jpg");
+
 
 
     public User() {
@@ -63,7 +65,7 @@ public class User{
         setUserName(aUserName);
         setFirstName(aFirstName);
         setLastName(aLastName);
-        setProfilePicture(null);  // will be set to null until default picture file is obtained
+        setProfilePicture(defaultPicture);
     }
 
     /**
