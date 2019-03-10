@@ -11,10 +11,15 @@
         android:theme="@style/AppTheme">
 
 
+
         <activity android:name=".Sign_Up_Page" />
         <activity android:name=".verify_Page"/>
 
         <activity android:name=".Forgot_info"></activity>
+
+
+        <activity android:name=".manager_hub_page"/>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
