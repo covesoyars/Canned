@@ -9,14 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-
         <activity android:name=".Sign_Up_Page" />
         <activity android:name=".verify_Page"/>
-=======
         <activity android:name=".Forgot_info"></activity>
-        <activity android:name=".Sign_Up_Page" />
->>>>>>> be0ed50be0cf71e6e385e0417b75da925d5e6267
+        <activity android:name=".manager_hub_page"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
