@@ -68,7 +68,7 @@
         android:layout_marginRight="99dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/ent_mail"
+        android:hint="@string/ent_mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
