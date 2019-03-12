@@ -23,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
     startActivity(startSignUp);
     }
 
+    public void goToTest(View view){
+        Intent picTest = new Intent(this, PicTest.class);
+        startActivity(picTest);
+    }
+
     public void forgotInfo(View view){
         Intent startForgotInfo = new Intent(this, Forgot_info.class);
         startActivity(startForgotInfo);
