@@ -39,6 +39,17 @@ public class Sign_Up_Page extends AppCompatActivity {
         email = (EditText) findViewById(R.id.editText7);
         date = (EditText) findViewById(R.id.editText8);
     }
+/*
+
+SETS UP BACK BUTTON TO LOGIN PAGE
+ */
+    public void back(View View)
+    {
+
+        Intent back = new Intent(this, MainActivity.class);
+
+        startActivity(back);
+    }
 
     public void addUser(View view){
 

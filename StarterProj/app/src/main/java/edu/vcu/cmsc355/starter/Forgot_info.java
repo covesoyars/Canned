@@ -40,6 +40,19 @@ public class Forgot_info extends AppCompatActivity {
 
     }
 
+
+    /*
+
+    SETS UP BACK BUTTON TO LOGIN PAGE
+     */
+    public void back(View View)
+    {
+
+        Intent back = new Intent(this, MainActivity.class);
+
+        startActivity(back);
+    }
+
     public void sendEmail(View view){
         String address = email.getText().toString();
         String subject = subject = "Forgot Canned information?"; // set subject
