@@ -21,7 +21,7 @@ public class PicTest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pic_test);
 
-        image = (ImageView) findViewById(R.id.imageView);
+        image = (ImageView) findViewById(R.id.testImageView);
         button = (Button) findViewById(R.id.button8);
 
         button.setOnClickListener(new View.OnClickListener(){
@@ -39,7 +39,7 @@ public class PicTest extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int resultCode, int requestCode, Intent data){
-        super.onActivityResult(resultCode, requestCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==RESULT_OK && requestCode==PICK_IMAGE){
             imageGrab = data.getData();
             image.setImageURI(imageGrab);
