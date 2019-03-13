@@ -9,11 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class PicTest extends AppCompatActivity {
+public class PicTest extends AppCompatActivity implements View.OnClickListener{
 
     private ImageView image;
-    private static final int PICK_IMAGE=100;
-    Uri imageGrab;
+    private static final int PICK_IMAGE=1;
     Button button;
 
     @Override
@@ -24,15 +23,11 @@ public class PicTest extends AppCompatActivity {
         image = (ImageView) findViewById(R.id.testImageView);
         button = (Button) findViewById(R.id.button8);
 
-        button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                getPic();
-            }
-        });
+        button.setOnClickListener(this);
     }
 
-    private void getPic(){
+    @Override
+    public void onClick(View v){
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
     }
@@ -40,8 +35,8 @@ public class PicTest extends AppCompatActivity {
     @Override
     protected void onActivityResult(int resultCode, int requestCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK && requestCode==PICK_IMAGE){
-            imageGrab = data.getData();
+        if(resultCode==RESULT_OK && requestCode==PICK_IMAGE && data != null){
+            Uri imageGrab = data.getData();
             image.setImageURI(imageGrab);
         }
     }
