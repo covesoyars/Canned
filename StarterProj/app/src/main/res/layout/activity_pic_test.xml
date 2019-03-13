@@ -17,7 +17,6 @@
         android:layout_marginRight="171dp"
         android:layout_marginBottom="233dp"
         android:text="Choose Pic"
-        android:onClick="getPic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
