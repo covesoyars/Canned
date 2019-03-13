@@ -33,7 +33,7 @@ public class PicTest extends AppCompatActivity implements View.OnClickListener{
     }
 
     @Override
-    protected void onActivityResult(int resultCode, int requestCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==RESULT_OK && requestCode==PICK_IMAGE && data != null){
             Uri imageGrab = data.getData();
