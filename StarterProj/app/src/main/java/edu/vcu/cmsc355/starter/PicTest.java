@@ -38,6 +38,7 @@ public class PicTest extends AppCompatActivity implements View.OnClickListener{
         if(resultCode==RESULT_OK && requestCode==PICK_IMAGE && data != null){
             Uri imageGrab = data.getData();
             image.setImageURI(imageGrab);
+            image.setRotation(90);
         }
     }
 }
