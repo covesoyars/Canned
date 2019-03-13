@@ -78,7 +78,7 @@ public class User{
         boolean useNumbers = true;
         String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
 
-        return null;
+        return generatedString;
     }
 
     public void forgotPassword(){
