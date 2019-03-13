@@ -18,12 +18,9 @@ public class Edit_profile extends AppCompatActivity {
     }
     public void back(View View)
     {
-        //if(user == manager)
-        Intent back = new Intent(this, manager_hub_page.class);
-        //else
-        //Intent back = new Intent(this, Edit_profile.class);
+        finish();
 
-        startActivity(back);
+
     }
 
 }
