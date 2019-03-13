@@ -23,7 +23,7 @@ public class PicTest extends AppCompatActivity implements View.OnClickListener{
         image = (ImageView) findViewById(R.id.testImageView);
         button = (Button) findViewById(R.id.button8);
 
-        button.setOnClickListener(this);
+        image.setOnClickListener(this);
     }
 
     @Override
