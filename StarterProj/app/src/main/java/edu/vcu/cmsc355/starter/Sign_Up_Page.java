@@ -46,9 +46,7 @@ SETS UP BACK BUTTON TO LOGIN PAGE
     public void back(View View)
     {
 
-        Intent back = new Intent(this, MainActivity.class);
-
-        startActivity(back);
+       finish();
     }
 
     public void addUser(View view){

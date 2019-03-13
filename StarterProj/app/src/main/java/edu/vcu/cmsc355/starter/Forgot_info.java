@@ -48,9 +48,7 @@ public class Forgot_info extends AppCompatActivity {
     public void back(View View)
     {
 
-        Intent back = new Intent(this, MainActivity.class);
-
-        startActivity(back);
+        finish();
     }
 
     public void sendEmail(View view){
