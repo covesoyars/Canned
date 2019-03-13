@@ -1,5 +1,6 @@
 package edu.vcu.cmsc355.starter;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,14 @@ public class Edit_profile extends AppCompatActivity {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
     }
+    public void back(View View)
+    {
+        //if(user == manager)
+        Intent back = new Intent(this, manager_hub_page.class);
+        //else
+        //Intent back = new Intent(this, Edit_profile.class);
 
+        startActivity(back);
+    }
 
 }
