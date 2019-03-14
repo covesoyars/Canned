@@ -8,7 +8,7 @@ package edu.vcu.cmsc355.starter;
  *
  *
  *
- * @contributors: Cove Soyars,
+ * @contributors: Cove Soyars, Doug Dimmadome
  */
 import java.io.File;
 import org.apache.commons.lang3.RandomStringUtils;
