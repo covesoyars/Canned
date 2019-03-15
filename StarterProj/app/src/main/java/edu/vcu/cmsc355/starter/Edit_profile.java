@@ -12,12 +12,16 @@ import android.widget.ImageView;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.widget.Toast;
+import java.io.File;
 
+
+import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Edit_profile extends AppCompatActivity implements View.OnClickListener{
 
+    private File newPicture;
     private EditText lastName;
     private EditText firstName;
     private EditText dob;
@@ -25,6 +29,15 @@ public class Edit_profile extends AppCompatActivity implements View.OnClickListe
     private EditText password;
     private CircleImageView profilePic;
     private static final int PICK_IMAGE=1;
+    private User loggedIn;
+    private Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile( // regex pattern to validate email addresses
+            "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                    "\\@" +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                    "(" +
+                    "\\." +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                    ")+");
 
 
     @Override
@@ -34,7 +47,8 @@ public class Edit_profile extends AppCompatActivity implements View.OnClickListe
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         // grab logged in user's information:
         UserLoggedIn appState = ((UserLoggedIn) getApplicationContext());
-        User loggedIn = appState.getLoggedIn();
+        loggedIn = appState.getLoggedIn();
+        newPicture = null;
         // declare buttons and set their text to the user's information
         lastName = (EditText) findViewById(R.id.editText16);
         lastName.setText(loggedIn.getLastName());
@@ -78,6 +92,7 @@ public class Edit_profile extends AppCompatActivity implements View.OnClickListe
             Uri imageGrab = data.getData();
             profilePic.setImageURI(imageGrab);
             profilePic.setRotation(90);
+            newPicture = new File(imageGrab.toString());
         }
     }
 
@@ -88,4 +103,49 @@ public class Edit_profile extends AppCompatActivity implements View.OnClickListe
 
     }
 
-}
+    public void save(View View){
+        if(verifyInputs(loggedIn)){
+            loggedIn.setEmailAddress(email.getText().toString());
+            loggedIn.setFirstName(firstName.getText().toString());
+            loggedIn.setLastName(lastName.getText().toString());
+            if(newPicture!=null) {
+                loggedIn.setProfilePicture(newPicture);
+            }
+        }
+        }
+    }
+
+    /**
+     * Verifies fields in sign up form
+     * @return false if a field is invalid and displays a toast with the error
+     */
+    private boolean verifyInputs(User loggedIn){
+
+        if(!password.getText().toString().equals(loggedIn.getPassword())){
+            Toast.makeText(this, "Incorrect Password", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(firstName.getText().toString().isEmpty()){
+            Toast.makeText(this, "First name field is empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(lastName.getText().toString().isEmpty()){
+            Toast.makeText(this, "Last name field is empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        // test if email is a valid email address:
+        if(!EMAIL_ADDRESS_PATTERN.matcher(email.getText().toString().trim()).matches()){
+            Toast.makeText(this, "Email address is not a valid email address", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(dob.getText().toString().trim().length() != 6){ // DOB is invalid if it's not of length 6
+            Toast.makeText(this, "DOB is not in correct format: MMDDYY", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else{
+            return true;
+        }
+
+
+    }
