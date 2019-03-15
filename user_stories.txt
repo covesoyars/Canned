@@ -1,0 +1,84 @@
+1. As a manager, I want to access a list of foods below the threshold 
+level, so that I can see what needs to be restocked.
+
+2. As a manager, I want to search the name of a volunteer so that I can 
+remove a specific volunteer
+
+3. As a manager, I want to be able to search volunteers by name, so that 
+I can easily remove them.
+
+4. As a user, after logging in I want to be brought to a page that 
+displays the different actions that I can take
+so that I can easily access parts of the app required to fulfill my 
+responsibilities
+
+5. As a user on the login page, I want to see an option to 
+recover my username or password, so that I can easily recover access to 
+my account.
+
+6. As a manager or a volunteer, on my hub page, I want to be taken to a 
+page to edit my profile so that I can add a picture and update my 
+personal information
+
+7. as a  user, I want the app to remember my username and password so I 
+can login quickly
+
+8. As a manager, I want to be logged out after an hour of inactivity, so 
+that we can maintain security
+
+9.  As a manager, from my hub page, I want to click a button to be taken 
+to a list of volunteers
+
+10. As a manager, from the list of volunteers, I want to click on 
+individual users and be shown their contact information and a button to 
+remove them from the list
+
+11. so that I can easily contact volunteers and remove them if they are 
+no longer working
+
+12. As a manager, I want to be notified daily of items under the 
+threshold level, so that I can keep track of what needs to be done.
+
+13. As a volunteer, on my hub page, I want to see options to launch a 
+page to search current inventory, so that I can see what's in stock
+
+14. As a volunteer or a manager, on my hub page, I want to see options 
+to launch a page to search current inventory, so that I can see what's 
+in stock
+
+15. as a user, I want a light theme so that I can see the app while 
+working in the warehouse
+
+16. As a volunteer, on my hub page, I want to see a button to launch the 
+part of the app that allows me to distribute  current inventory
+
+17. As a volunteer, when recording donations, I want to be able to 
+record what items were donated, how much, and the donor's information so 
+that the system can be updated with new items and donors
+
+18. As a volunteer on the record donations page, I want to be able to 
+record donations of multiple types of items, so that I only have to 
+record once per donor
+
+19. As a new user, on the login page, I want to be able to click a 
+button to take me to a page where I can enter my username, set a 
+password, and enter my personal information so that I can initiate my 
+new account
+
+20. as a manager, I want to be able to change the threshold level so 
+that I can monitor the storage effectively
+
+21. As a user, after signing up, I want to be taken back to the login 
+page so that I can log in to my new account
+
+22. As a manager, I want new users to be directed to a different hub 
+page, where they can only edit their profile, so that unverified users 
+cannot access functions
+
+23. As a manager, on the page that displays the list of volunteers, I 
+want a button that takes me to a list of unverified accounts so that I 
+can control which users have access to their privelages
+
+24. As a manager, on the page that displays the list of volunteers, I 
+want a button that takes me to a list of unverified accounts so that I 
+can control which users have access to their privelages
