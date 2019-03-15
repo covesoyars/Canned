@@ -62,14 +62,15 @@ public class Edit_profile extends AppCompatActivity implements View.OnClickListe
         password.setText(loggedIn.getPassword());
         profilePic = (CircleImageView) findViewById(R.id.circleImageView);
         Uri profileUri = loggedIn.getProfilePicture();
-        try {
+        profilePic.setImageURI(profileUri);
+        /*try {
             Bitmap imageMap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), profileUri);
             imageMap = Bitmap.createScaledBitmap(imageMap,  600 ,600, true);
             profilePic.setImageBitmap(imageMap);
         }catch (Exception e){
             Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
 
-        }
+        }*/
 
         profilePic.setOnClickListener(this);
 

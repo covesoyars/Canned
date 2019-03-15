@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view){
         Intent login = new Intent(this, manager_hub_page.class);
         //Intent volLogin = new Intent(this, volunteer_hub_page.class);
-        if(user.getText().toString().equals("CoolKid123") && pass.getText().toString().equals("CoolPass")) {
+        if(user.getText().toString().equals("") && pass.getText().toString().equals("")) {
 
             File profilePic = new File("/StarterProj/app/src/main/res/drawable/doug.png");
             User loggedInUser = new Volunteer("CoolPass", // create user object (will pull
