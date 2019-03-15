@@ -30,7 +30,7 @@ public class Edit_profile extends AppCompatActivity {
         firstName = (EditText) findViewById(R.id.editText15);
         firstName.setText(loggedIn.getFirstName());
         dob = (EditText) findViewById(R.id.editText10);
-        dob.setText(loggedIn.getDob());
+        dob.setText(Integer.toString(loggedIn.getDob()));
         email = (EditText) findViewById(R.id.editText12);
         email.setText(loggedIn.getEmailAddress());
         password = (EditText) findViewById(R.id.editText14);
