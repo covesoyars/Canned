@@ -1,5 +1,6 @@
 package edu.vcu.cmsc355.starter;
 
+
 /**
  * @Version: 0.2 of User class (parent of Manager and Volunteer)
  * has getters and setters for all instance variables
@@ -12,6 +13,7 @@ package edu.vcu.cmsc355.starter;
  */
 import java.io.File;
 import org.apache.commons.lang3.RandomStringUtils;
+import android.net.Uri;
 
 
 
@@ -129,8 +131,10 @@ public class User{
     public void setProfilePicture(File aPicture){
         profilePicture = aPicture;
     }
-    public File getProfilePicture(){
-        return profilePicture;
+    public Uri getProfilePicture(){
+        Uri profilePicConvert = android.net.Uri.parse(profilePicture.toURI().toString());
+
+        return profilePicConvert;
     }
 
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
     private EditText user;
@@ -38,13 +39,15 @@ public class MainActivity extends AppCompatActivity {
         //Intent volLogin = new Intent(this, volunteer_hub_page.class);
         if(user.getText().toString().equals("CoolKid123") && pass.getText().toString().equals("CoolPass")) {
 
+            File profilePic = new File("/StarterProj/app/src/main/res/drawable/doug.png");
             User loggedInUser = new Volunteer("CoolPass", // create user object (will pull
                     // user with matching pw and username when database is working
                     "CoolKid123",
                     "Doug",
                     "Dimmadome",
                     123456,
-                    "doug.dimmadome@dimmsdaledimmadome.com");
+                    "doug.dimmadome@dimmsdaledimmadome.com",
+                    profilePic);
             UserLoggedIn appState = ((UserLoggedIn) getApplicationContext());
             appState.setLoggedIn(loggedInUser);
             startActivity(login);
