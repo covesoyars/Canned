@@ -1,3 +1,3 @@
 Project B Group 2
 
-Members: Javier Moriera, Justin Nelson, Sam Portillo, Cove Soyars
+Members: Javier Moreira, Justin Nelson, Sam Portillo, Cove Soyars
