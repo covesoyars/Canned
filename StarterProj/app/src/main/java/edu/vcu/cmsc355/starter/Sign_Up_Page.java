@@ -9,9 +9,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -27,6 +31,7 @@ public class Sign_Up_Page extends AppCompatActivity {
     private static final String KEY_LAST = "last";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_DATE = "date";
+    private boolean fb = true;
 
     private Volunteer newV;
     private EditText user;
@@ -81,6 +86,39 @@ SETS UP BACK BUTTON TO LOGIN PAGE
                     Integer.parseInt(date.getText().toString()),
                     email.getText().toString().trim());
 
+            FirebaseApp.initializeApp(this);
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            String u = user.getText().toString().trim();
+            String p = pass.getText().toString().trim();
+            String f = first.getText().toString().trim();
+            String l = last.getText().toString().trim();
+            String d = date.getText().toString();
+            String e = email.getText().toString().trim();
+
+            Map<String, Object> note = new HashMap<>();
+            note.put(KEY_USER, u);
+            note.put(KEY_PASS, p);
+            note.put(KEY_FIRST, f);
+            note.put(KEY_LAST, l);
+            note.put(KEY_DATE, d);
+            note.put(KEY_EMAIL, e);
+
+            db.collection("Notebook").document(u).set(note)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(Sign_Up_Page.this, "User successfully created", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(Sign_Up_Page.this, "User could not be created", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, e.toString());
+                        }
+                    });
+
             //Need to add to database data structure when available.
             Intent verifyPage = new Intent(Sign_Up_Page.this, verify_Page.class );
             // Intent mainActivity = new Intent(this, MainActivity.class);       COMMENTED OUT BY JAVIER
@@ -91,38 +129,7 @@ SETS UP BACK BUTTON TO LOGIN PAGE
             // do nothing (removing this else block makes the app crash!)
         }
 
-        FirebaseApp.initializeApp(this);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        String u = user.getText().toString().trim();
-        String p = pass.getText().toString().trim();
-        String f = first.getText().toString().trim();
-        String l = last.getText().toString().trim();
-        String d = date.getText().toString();
-        String e = email.getText().toString().trim();
-
-        Map<String, Object> note = new HashMap<>();
-        note.put(KEY_USER, u);
-        note.put(KEY_PASS, p);
-        note.put(KEY_FIRST, f);
-        note.put(KEY_LAST, l);
-        note.put(KEY_DATE, d);
-        note.put(KEY_EMAIL, e);
-
-        db.collection("Notebook").document("Volunteer Info").set(note)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(Sign_Up_Page.this, "User successfully created", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Sign_Up_Page.this, "User could not be created", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, e.toString());
-                    }
-                });
     }
 
     /**
@@ -130,6 +137,36 @@ SETS UP BACK BUTTON TO LOGIN PAGE
      * @return false if a field is invalid and displays a toast with the error
      */
     private boolean verifyInputs(){
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("Notebook").document(user.getText().toString().trim());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>(){
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        fb = true;
+
+                    } else {
+                        Log.d(TAG, "No such document");
+                        fb = false;
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                    fb = false;
+                }
+            }
+        });
+
+        if(fb){
+            Toast.makeText(this, "Username is already taken", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else{
+            Toast.makeText(this, "Username isn't already taken", Toast.LENGTH_SHORT).show();
+        }
 
         if(pass.getText().toString().isEmpty()){
             Toast.makeText(this, "Password field is empty", Toast.LENGTH_SHORT).show();
@@ -156,9 +193,6 @@ SETS UP BACK BUTTON TO LOGIN PAGE
             Toast.makeText(this, "DOB is not in correct format: MMDDYY", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else{
-            return true;
-        }
-
+        return true;
     }
 }
