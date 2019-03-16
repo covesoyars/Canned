@@ -1,15 +1,33 @@
 package edu.vcu.cmsc355.starter;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 
 public class Sign_Up_Page extends AppCompatActivity {
+    private static final String TAG = "SignUpPage";
+    private static final String KEY_USER = "user";
+    private static final String KEY_PASS = "pass";
+    private static final String KEY_FIRST = "first";
+    private static final String KEY_LAST = "last";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_DATE = "date";
+
     private Volunteer newV;
     private EditText user;
     private EditText pass;
@@ -28,6 +46,7 @@ public class Sign_Up_Page extends AppCompatActivity {
                     ")+");
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +58,7 @@ public class Sign_Up_Page extends AppCompatActivity {
         last = (EditText) findViewById(R.id.editText6);
         email = (EditText) findViewById(R.id.editText7);
         date = (EditText) findViewById(R.id.editText8);
+        FirebaseApp.initializeApp(this);
     }
 /*
 
@@ -70,6 +90,39 @@ SETS UP BACK BUTTON TO LOGIN PAGE
         else{
             // do nothing (removing this else block makes the app crash!)
         }
+
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        String u = user.getText().toString().trim();
+        String p = pass.getText().toString().trim();
+        String f = first.getText().toString().trim();
+        String l = last.getText().toString().trim();
+        String d = date.getText().toString();
+        String e = email.getText().toString().trim();
+
+        Map<String, Object> note = new HashMap<>();
+        note.put(KEY_USER, u);
+        note.put(KEY_PASS, p);
+        note.put(KEY_FIRST, f);
+        note.put(KEY_LAST, l);
+        note.put(KEY_DATE, d);
+        note.put(KEY_EMAIL, e);
+
+        db.collection("Notebook").document("Volunteer Info").set(note)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(Sign_Up_Page.this, "User successfully created", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Sign_Up_Page.this, "User could not be created", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, e.toString());
+                    }
+                });
     }
 
     /**

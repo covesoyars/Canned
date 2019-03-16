@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "683765141625",
+    "firebase_url": "https://cmsc355-a19a9.firebaseio.com",
+    "project_id": "cmsc355-a19a9",
+    "storage_bucket": "cmsc355-a19a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683765141625:android:661020f08158c568",
+        "android_client_info": {
+          "package_name": "edu.vcu.cmsc355.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683765141625-3k74qiu5c6sgdj5qf7n5764tf6bdo35p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.vcu.cmsc355.starter",
+            "certificate_hash": "1962d92e35bde1dfbda6d7459d3f838ba00573d4"
+          }
+        },
+        {
+          "client_id": "683765141625-qvgvu576rkoprs1p8i38fva8psdvkesl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCilmqv4coDXbO79Z9aDr6qVOFSbbcrQJw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "683765141625-qvgvu576rkoprs1p8i38fva8psdvkesl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

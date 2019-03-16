@@ -3,9 +3,7 @@ The team is to meet for 10 days during the two-week sprint - 5 meetings per week
 
 Question    |          Person                                             | 2/25 | 2/26 | 3/8 | day | day | day | day |day | day | day |
 ------------|---------------------------------------------------------------------|-----|-----|-----|-----|-----|-----|-----|----|-----|-----|                                                              
-| What did you complete since the last meeting? | Javier Moreira | first meeting; n/a | made 
-the first rough draft of the logo | Made the awaiting verification page; 
-contacted the artist to design the logo for the app |   
+| What did you complete since the last meeting? | Javier Moreira | first meeting; n/a | made the first rough draft of the logo | Made the awaiting verification page; contacted the artist to design the logo for the app |   
 |            | Justin Nelson | first meeting; n/a | made the initial interface for the app | made the sign-up page; also takes the inputs from that page and puts them into an object |
 |            | Samuel Portillo | first meeting; n/a | updated the scrum | explored database options for the app |
 |            | Cove Soyars | first meeting; n/a | updated the trello | wrote user, volunteer, and manager classes |
