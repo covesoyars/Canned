@@ -27,6 +27,7 @@ public class Sign_Up_Page extends AppCompatActivity {
                     "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
                     ")+");
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
