@@ -2,10 +2,8 @@
 The team is to meet for 10 days during the two-week sprint - 5 meetings per week. You must decide on a time to record your answers to the questions and then a single commit of the day's responses is to be made into your project repository for that day.
 
 Question    |          Person                                             | 2/25 | 2/26 | 3/8 |
-------------|---------------------------------------------------------------------|-----|-----|                                                              
-| What did you complete since the last meeting? | Javier Moreira | first meeting; n/a | made 
-the first rough draft of the logo | Made the awaiting verification page; 
-contacted the artist to design the logo for the app |   
+------------|---------------------------------------------------------------------|-----|-----|                                            
+| What did you complete since the last meeting? | Javier Moreira | first meeting; n/a | made the first rough draft of the logo | Made the awaiting verification page; contacted the artist to design the logo for the app |   
 |            | Justin Nelson | first meeting; n/a | made the initial interface for the app | made the sign-up page; also takes the inputs from that page and puts them into an object |
 |            | Samuel Portillo | first meeting; n/a | updated the scrum | explored database options for the app |
 |            | Cove Soyars | first meeting; n/a | updated the trello | wrote user, volunteer, and manager classes |
