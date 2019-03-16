@@ -1,11 +1,11 @@
 Each member's contribution:
 
-	Javier Moreira: Made majority of UI xml pages, got artwork for logo, helped build activities, helped debug
+	Javier Moreira: Made majority of UI xml pages, got artwork for logo, helped build activities, helped debug, tested on phone
 
 	Justin Nelson: Figured out how to access the phone's gallery and implemented it, made UI xml pages, 
 	helped debug, helped build activities
 
-	Sam Portillo: Implemented Firebase, kept track of scrum meeting notes
+	Sam Portillo: Implemented Firebase, kept track of scrum meeting notes, tested on phone
 
 	Cove Soyars: Build sign up and forgot information activities, implemented global user variable, designed 
 	User classes, set up email domain and Mailgun 
@@ -40,7 +40,4 @@ Issues encounterd:
 
 	Lots of general Android subtleties that got in the way
 
-Goals that need to be modified for Sprint 2:
-
-	Database was planned to be integrated with volunteer data this sprint, but it will have to happen next sprint
-	
+Goals that need to be modified for Sprint 2: none	
