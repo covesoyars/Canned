@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "1079352436416",
-    "firebase_url": "https://firestoretest-5f42f.firebaseio.com",
-    "project_id": "firestoretest-5f42f",
-    "storage_bucket": "firestoretest-5f42f.appspot.com"
+    "project_number": "683765141625",
+    "firebase_url": "https://cmsc355-a19a9.firebaseio.com",
+    "project_id": "cmsc355-a19a9",
+    "storage_bucket": "cmsc355-a19a9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1079352436416:android:941ecdca0eff46a0",
+        "mobilesdk_app_id": "1:683765141625:android:661020f08158c568",
         "android_client_info": {
-          "package_name": "com.example.firestoretest"
+          "package_name": "edu.vcu.cmsc355.starter"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1079352436416-seoeoqauupmubs23rjvqbiioanjp3a0l.apps.googleusercontent.com",
+          "client_id": "683765141625-3k74qiu5c6sgdj5qf7n5764tf6bdo35p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.firestoretest",
+            "package_name": "edu.vcu.cmsc355.starter",
             "certificate_hash": "1962d92e35bde1dfbda6d7459d3f838ba00573d4"
           }
         },
         {
-          "client_id": "1079352436416-ipm0vd6o7a1abteis9i2ih1rukt79e5d.apps.googleusercontent.com",
+          "client_id": "683765141625-qvgvu576rkoprs1p8i38fva8psdvkesl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAjC59OVOJezSGzdtSG5RqYRyMUBDAnlzs"
+          "current_key": "AIzaSyCilmqv4coDXbO79Z9aDr6qVOFSbbcrQJw"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "1079352436416-ipm0vd6o7a1abteis9i2ih1rukt79e5d.apps.googleusercontent.com",
+              "client_id": "683765141625-qvgvu576rkoprs1p8i38fva8psdvkesl.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
