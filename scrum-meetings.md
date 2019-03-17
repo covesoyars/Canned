@@ -14,11 +14,11 @@ Question    |          Person                                             | 2/25
 | Do you have anything that's getting in the way of doing your work? | Javier Moreira | n/a | n/a | n/a | not having ways to acess pages because buttons are not set up |  not having the data base up yet prevents me from fully competing profile page | n/a | git being difficult | git problems | None | None |
 |            | Justin Nelson | n/a | n/a | don't know how to ask the user for the image | Only thing in my way is needing to know how to interact with the database, but we need it first | A lot of work involving accessing the database is unknown to me, I have a lot of commented code talking about what to do |  I cant test my test so I will need someone else too | Once again testing is hard because I need an actual phone | None | None | None |
 |            | Samuel Portillo | n/a | n/a | n/a | unfamiliar with firebase/json | None | None | firebase documentation | firebase documentation | cloud documentation | none |
-|            | Cove Soyars | n/a | n/a | unfamiliar with android | n/a | none | None |
-| What insights have you made? | Javier Moreira | n/a | n/a | the back button is more complicated than expected | android studio is very user friendly | none | back buttons are easier than i thought |
-|            | Justin Nelson | n/a | n/a | n/a | n/a | none | none |
-|            | Samuel Portillo | n/a | n/a | traditional database options are not as straightforward as I expected | n/a | Documentation for firebase is out of date | None |
-|            | Cove Soyars | n/a | n/a | figured out how to import external packages; refer to build.gradle file | n/a | none | none |
+|            | Cove Soyars | n/a | n/a | unfamiliar with android | n/a | none | None | git issues | none | none | none |
+| What insights have you made? | Javier Moreira | n/a | n/a | the back button is more complicated than expected | android studio is very user friendly | none | back buttons are easier than i thought | learned to make  clear buttons | none | none | none |
+|            | Justin Nelson | n/a | n/a | n/a | n/a | none | none | none | none | none | none |
+|            | Samuel Portillo | n/a | n/a | traditional database options are not as straightforward as I expected | n/a | Documentation for firebase is out of date | None | none | none | none | none |
+|            | Cove Soyars | n/a | n/a | figured out how to import external packages; refer to build.gradle file | n/a | none | none | none | gitignore issues | none | none |
 | Do any changes to the project need to be made as a result of your work? | Javier Moreira | No | No | No | order of whats being built to be test pages that are already made | No | No |
 |            | Justin Nelson | No | No | No | No | No | No |
 |            | Samuel Portillo | No | No | No | No | No | No |
