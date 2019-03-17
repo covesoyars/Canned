@@ -3,23 +3,23 @@ The team is to meet for 10 days during the two-week sprint - 5 meetings per week
 
 Question    |          Person                                             | 2/25 | 2/26 | 3/8 | 3/9 | 3/10 | 3/12 | 3/13 |3/14 | 3/15 |
 ------------|---------------------------------------------------------------------|-----|-----|-----|-----|-----|-----|-----|----|-----|                                                              
-| What did you complete since the last meeting? | Javier Moreira | first meeting; n/a | made the first rough draft of the logo | Made the awaiting verification page; contacted the artist to design the logo for the app | created the manager hub page and made small adjustments to current pages | i created the volenteer hub page as well as include out logo on the sign page | edited existing pages | helped fix git issues and pretended to be an emulator for justin | fought with git and changed the colors of app a bit |
-|            | Justin Nelson | first meeting; n/a | made the initial interface for the app | made the sign-up page; also takes the inputs from that page and puts them into an object |
-|            | Samuel Portillo | first meeting; n/a | updated the scrum | explored database options for the app |
-|            | Cove Soyars | first meeting; n/a | updated the trello | wrote user, volunteer, and manager classes |
-| What will you accomplish before the next meeting? | Javier Moreira | Design the logo | continue work on the logo | manager hub page and background |
-|            | Justin Nelson | Create the initial app interface | add to initial interface | create the forgot info button; explore entering image/opening the gallery options | 
-|            | Samuel Portillo | Update the scrum meeting markdown file | explore database options | explore more database options; create inventory page |
-|            | Cove Soyars | Update the trello board | add to initial interface | add support for profile pictures; add default profile picture |
-| Do you have anything that's getting in the way of doing your work? | Javier Moreira | n/a | n/a | n/a | 
-|            | Justin Nelson | n/a | n/a | don't know how to ask the user for the image |
-|            | Samuel Portillo | n/a | n/a | n/a |
-|            | Cove Soyars | n/a | n/a | unfamiliar with android |
-| What insights have you made? | Javier Moreira | n/a | n/a | the back button is more complicated than expected |
-|            | Justin Nelson | n/a | n/a | n/a |
-|            | Samuel Portillo | n/a | n/a | traditional database options are not as straightforward as I expected |
-|            | Cove Soyars | n/a | n/a | figured out how to import external packages; refer to build.gradle file |
-| Do any changes to the project need to be made as a result of your work? | Javier Moreira | No | No | No |
-|            | Justin Nelson | No | No | No |
-|            | Samuel Portillo | No | No | No |
-|            | Cove Soyars | No | No | No |
+| What did you complete since the last meeting? | Javier Moreira | first meeting; n/a | made the first rough draft of the logo | Made the awaiting verification page; contacted the artist to design the logo for the app | created the manager hub page and made small adjustments to current pages | i created the volenteer hub page as well as include out logo on the sign page | edited existing pages | helped fix git issues and pretended to be an emulator for justin | fought with git and changed the colors of app a bit | helped other teammates finish up sprint
+|            | Justin Nelson | first meeting; n/a | made the initial interface for the app | made the sign-up page; also takes the inputs from that page and puts them into an object | I added the forgot page and linked the button from the home page to it, I also added some starter code for the forgot info page for when we get the database running. | 
+|            | Samuel Portillo | first meeting; n/a | updated the scrum | explored database options for the app | Connected app to firebase |
+|            | Cove Soyars | first meeting; n/a | updated the trello | wrote user, volunteer, and manager classes | complete since last meeting: added default profile picture to resources and sign up activity |
+| What will you accomplish before the next meeting? | Javier Moreira | Design the logo | continue work on the logo | manager hub page and background | will work on volenteer page  and works on setup of manager page |
+|            | Justin Nelson | Create the initial app interface | add to initial interface | create the forgot info button; explore entering image/opening the gallery options | For next meeting I have things I need to make more presentable and finish, based on sign in and forgot info pages, login page as well | 
+|            | Samuel Portillo | Update the scrum meeting markdown file | explore database options | explore more database options; create inventory page | Continue exploring firebase |
+|            | Cove Soyars | Update the trello board | add to initial interface | add support for profile pictures; add default profile picture |  will accomplish: rewrite sign up activity to avoid throwing errors |
+| Do you have anything that's getting in the way of doing your work? | Javier Moreira | n/a | n/a | n/a | not having ways to acess pages because buttons are not set up |
+|            | Justin Nelson | n/a | n/a | don't know how to ask the user for the image | Only thing in my way is needing to know how to interact with the database, but we need it first | 
+|            | Samuel Portillo | n/a | n/a | n/a | unfamiliar with firebase/json |
+|            | Cove Soyars | n/a | n/a | unfamiliar with android | n/a | 
+| What insights have you made? | Javier Moreira | n/a | n/a | the back button is more complicated than expected | android studio is very user friendly |
+|            | Justin Nelson | n/a | n/a | n/a | n/a |
+|            | Samuel Portillo | n/a | n/a | traditional database options are not as straightforward as I expected | n/a |
+|            | Cove Soyars | n/a | n/a | figured out how to import external packages; refer to build.gradle file | n/a |
+| Do any changes to the project need to be made as a result of your work? | Javier Moreira | No | No | No | order of whats being built to be test pages that are already made |
+|            | Justin Nelson | No | No | No | No |
+|            | Samuel Portillo | No | No | No | No |
+|            | Cove Soyars | No | No | No | No |
