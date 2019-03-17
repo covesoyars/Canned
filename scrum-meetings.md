@@ -19,7 +19,7 @@ Question    |          Person                                             | 2/25
 |            | Justin Nelson | n/a | n/a | n/a | n/a | none | none | none | none | none | none |
 |            | Samuel Portillo | n/a | n/a | traditional database options are not as straightforward as I expected | n/a | Documentation for firebase is out of date | None | none | none | none | none |
 |            | Cove Soyars | n/a | n/a | figured out how to import external packages; refer to build.gradle file | n/a | none | none | none | gitignore issues | none | none |
-| Do any changes to the project need to be made as a result of your work? | Javier Moreira | No | No | No | order of whats being built to be test pages that are already made | No | No |
-|            | Justin Nelson | No | No | No | No | No | No |
-|            | Samuel Portillo | No | No | No | No | No | No |
-|            | Cove Soyars | No | No | No | No | No | No |
+| Do any changes to the project need to be made as a result of your work? | Javier Moreira | No | No | No | order of whats being built to be test pages that are already made | No | No | none | shifting out attention to what we do next cause we need to finish in a few days | none | none |
+|            | Justin Nelson | No | No | No | No | No | No | No | No | No | No | No |
+|            | Samuel Portillo | No | No | No | No | No | No | No | No | No | No |
+|            | Cove Soyars | No | No | No | No | No | No | No | No | No | No | No |
