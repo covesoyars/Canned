@@ -1,4 +1,4 @@
-Question | Person | 3/10 |
+| Question | Person | 3/10 |
 | What did you complete since the last meeting? | Javier Moreira | i created the volenteer hub page as well as include out logo on the sign page |
 | | Justin Nelson | I created a default manager and linked the manager hub page to the login button, the volunteer page is not linked |
 | | Samuel Portillo | No updates |
