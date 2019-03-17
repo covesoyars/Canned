@@ -1,0 +1,18 @@
+Sprint backlog for Sprint 1:
+
+1. User should receive an email with their new password after completeing forgot information form
+
+2. New users can hit a button (sign up) and enter their information to create an account
+
+3. Manager can log in with hard-coded password to view functionalities during demo (regular log ins will be supported after next sprint)
+
+4. Users can edit their profile when they click the settings button on the hub page
+
+5. Users are modeled by User, Volunteer, and Manager classes
+
+6. Database (firebase) is set up and ready for data
+
+7. email domain (postmaster@automail-canned.com) is ready to send emails automatically
+
+8. Users are taken to a hub page with buttons for their main responsibilities after they log in 
+
