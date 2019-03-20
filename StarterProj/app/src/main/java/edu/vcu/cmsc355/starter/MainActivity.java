@@ -29,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(picTest);
     }
 
+    public void testThanks(View view){
+        Donor donor = new Donor("Justin", "Nelson", "JDNelson109@gmail.com", "703-798-7424", "RoadWay LOL");
+        donor.sendEmail();
+    }
+
     public void forgotInfo(View view){
         Intent startForgotInfo = new Intent(this, Forgot_info.class);
         startActivity(startForgotInfo);

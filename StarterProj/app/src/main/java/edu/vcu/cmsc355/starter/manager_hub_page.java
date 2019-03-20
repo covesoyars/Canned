@@ -20,6 +20,17 @@ public class manager_hub_page extends AppCompatActivity {
         Intent settings = new Intent(this, Edit_profile.class);
         startActivity(settings);
     }
+    public void inventory(View View)
+    {
+        Intent inventory = new Intent(this, Inventory.class);
+        startActivity(inventory);
+    }
+
+    public void addCSV(View view){
+        Intent csvPage = new Intent(this, CSV_Page.class);
+        startActivity(csvPage);
+    }
+
     public void back(View View)
     {
        //TURN THIS INTO A LOGOUT METHOD THINGY -Javier

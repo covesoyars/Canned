@@ -1,25 +1,25 @@
 ## Scrum Meetings
 The team is to meet for 10 days during the two-week sprint - 5 meetings per week. You must decide on a time to record your answers to the questions and then a single commit of the day's responses is to be made into your project repository for that day.
 
-Question    |          Person                                             | 2/25 | 2/26 | 3/8 | 3/9 | 3/10 | 3/12 | 3/13 |3/14 | 3/15 |
-------------|---------------------------------------------------------------------|-----|-----|-----|-----|-----|-----|-----|----|-----|                                                              
-| What did you complete since the last meeting? | Javier Moreira | first meeting; n/a | made the first rough draft of the logo | Made the awaiting verification page; contacted the artist to design the logo for the app | created the manager hub page and made small adjustments to current pages | i created the volenteer hub page as well as include out logo on the sign page | edited existing pages | helped fix git issues and pretended to be an emulator for justin | fought with git and changed the colors of app a bit |
-|            | Justin Nelson | first meeting; n/a | made the initial interface for the app | made the sign-up page; also takes the inputs from that page and puts them into an object |
-|            | Samuel Portillo | first meeting; n/a | updated the scrum | explored database options for the app |
-|            | Cove Soyars | first meeting; n/a | updated the trello | wrote user, volunteer, and manager classes |
-| What will you accomplish before the next meeting? | Javier Moreira | Design the logo | continue work on the logo | manager hub page and background |
-|            | Justin Nelson | Create the initial app interface | add to initial interface | create the forgot info button; explore entering image/opening the gallery options | 
-|            | Samuel Portillo | Update the scrum meeting markdown file | explore database options | explore more database options; create inventory page |
-|            | Cove Soyars | Update the trello board | add to initial interface | add support for profile pictures; add default profile picture |
-| Do you have anything that's getting in the way of doing your work? | Javier Moreira | n/a | n/a | n/a | 
-|            | Justin Nelson | n/a | n/a | don't know how to ask the user for the image |
-|            | Samuel Portillo | n/a | n/a | n/a |
-|            | Cove Soyars | n/a | n/a | unfamiliar with android |
-| What insights have you made? | Javier Moreira | n/a | n/a | the back button is more complicated than expected |
-|            | Justin Nelson | n/a | n/a | n/a |
-|            | Samuel Portillo | n/a | n/a | traditional database options are not as straightforward as I expected |
-|            | Cove Soyars | n/a | n/a | figured out how to import external packages; refer to build.gradle file |
-| Do any changes to the project need to be made as a result of your work? | Javier Moreira | No | No | No |
-|            | Justin Nelson | No | No | No |
-|            | Samuel Portillo | No | No | No |
-|            | Cove Soyars | No | No | No |
+Question    |          Person                                             | 2/25 | 2/26 | 3/8 | 3/9 | 3/10 | 3/12 | 3/13 |3/14 | 3/15 | 3/16 |
+------------|---------------------------------------------------------------------|-----|-----|-----|-----|-----|-----|-----|----|-----|----|                                                              
+| What did you complete since the last meeting? | Javier Moreira | first meeting; n/a | made the first rough draft of the logo | Made the awaiting verification page; contacted the artist to design the logo for the app | created the manager hub page and made small adjustments to current pages | i created the volenteer hub page as well as include out logo on the sign page | edited existing pages | helped fix git issues and pretended to be an emulator for justin | fought with git and changed the colors of app a bit | helped other teammates finish up sprint | No updates | No updates |
+|            | Justin Nelson | first meeting; n/a | made the initial interface for the app | made the sign-up page; also takes the inputs from that page and puts them into an object | I added the forgot page and linked the button from the home page to it, I also added some starter code for the forgot info page for when we get the database running. | I created a default manager and linked the manager hub page to the login button, the volunteer page is not linked | I created a test for asking the user for an image, unsure if working | I was successful in accepting an image | I saved our team from Github by fixing our problem with the gitignore | No updates | No updates |
+|            | Samuel Portillo | first meeting; n/a | updated the scrum | explored database options for the app | Connected app to firebase | No updates | No updates | No updates | No updates | can send data to cloud firestore | users can't sign up with a taken username |
+|            | Cove Soyars | first meeting; n/a | updated the trello | wrote user, volunteer, and manager classes | complete since last meeting: added default profile picture to resources and sign up activity | completed since last meeting: updated sign up activity to avoid errors | No updates | No updates | started process to save logged in user | no updates | no updates |
+| What will you accomplish before the next meeting? | Javier Moreira | Design the logo | continue work on the logo | manager hub page and background | will work on volenteer page  and works on setup of manager page | will work on editing profile page | work on user stories | clean up areas in app | fought with git and changed the colors of app a bit | No updates | No updates | 
+|            | Justin Nelson | Create the initial app interface | add to initial interface | create the forgot info button; explore entering image/opening the gallery options | For next meeting I have things I need to make more presentable and finish, based on sign in and forgot info pages, login page as well | Look into asking user for picture, also add remember me button. | What to do for next meeting: Fix up picture process | For next meeting I need to now implement this in the settings page for users | Last meetings work will be done for next now instead | No updates | no updates |
+|            | Samuel Portillo | Update the scrum meeting markdown file | explore database options | explore more database options; create inventory page | Continue exploring firebase | Continue exploring firebase | No updates | Continue exploring database options | explore cloud firestore | implement more functionality with cloud firestore | no updates |
+|            | Cove Soyars | Update the trello board | add to initial interface | add support for profile pictures; add default profile picture |  will accomplish: rewrite sign up activity to avoid throwing errors | will accomplish: mailgun/forgot password email | No updates | investigate shared preferences (saving who's logged in) | fix error causing crash | No updates | no updates |
+| Do you have anything that's getting in the way of doing your work? | Javier Moreira | n/a | n/a | n/a | not having ways to acess pages because buttons are not set up |  not having the data base up yet prevents me from fully competing profile page | n/a | git being difficult | git problems | None | None |
+|            | Justin Nelson | n/a | n/a | don't know how to ask the user for the image | Only thing in my way is needing to know how to interact with the database, but we need it first | A lot of work involving accessing the database is unknown to me, I have a lot of commented code talking about what to do |  I cant test my test so I will need someone else too | Once again testing is hard because I need an actual phone | None | None | None |
+|            | Samuel Portillo | n/a | n/a | n/a | unfamiliar with firebase/json | None | None | firebase documentation | firebase documentation | cloud documentation | none |
+|            | Cove Soyars | n/a | n/a | unfamiliar with android | n/a | none | None | git issues | none | none | none |
+| What insights have you made? | Javier Moreira | n/a | n/a | the back button is more complicated than expected | android studio is very user friendly | none | back buttons are easier than i thought | learned to make  clear buttons | none | none | none |
+|            | Justin Nelson | n/a | n/a | n/a | n/a | none | none | none | none | none | none |
+|            | Samuel Portillo | n/a | n/a | traditional database options are not as straightforward as I expected | n/a | Documentation for firebase is out of date | None | none | none | none | none |
+|            | Cove Soyars | n/a | n/a | figured out how to import external packages; refer to build.gradle file | n/a | none | none | none | gitignore issues | none | none |
+| Do any changes to the project need to be made as a result of your work? | Javier Moreira | No | No | No | order of whats being built to be test pages that are already made | No | No | none | shifting out attention to what we do next cause we need to finish in a few days | none | none |
+|            | Justin Nelson | No | No | No | No | No | No | No | No | No | No | No |
+|            | Samuel Portillo | No | No | No | No | No | No | No | No | No | No |
+|            | Cove Soyars | No | No | No | No | No | No | No | No | No | No | No |
