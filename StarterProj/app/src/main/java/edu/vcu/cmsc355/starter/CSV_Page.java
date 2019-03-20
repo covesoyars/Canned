@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import java.util.Scanner;
 import java.io.InputStream;
 
 public class CSV_Page extends AppCompatActivity {
@@ -27,16 +27,38 @@ public class CSV_Page extends AppCompatActivity {
                 String file = fileName.getText().toString();
                 try{
                     InputStream stream = getAssets().open(file);
+                    Scanner scanny = new Scanner(stream);
+                    Scanner scanzor = new Scanner(stream);
+                    scanzor.useDelimiter(",");
+                    /*
+                     *Go through the file and add all the foodItems to the list.
+                     */
+                    while(scanny.hasNextLine()){
+                        scanzor = new Scanner(scanny.nextLine());
+                        FoodItem food = new FoodItem();
+                        food.setCategory(scanzor.next());
+                        food.setName(scanzor.next());
+                        food.setSize(scanzor.nextDouble());
+                        food.setDateRecieved(scanzor.next());
+                        food.setExprDate(scanzor.next());
+                        food.setQuantity(scanzor.nextInt());
+                        food.setThreshold(scanzor.nextInt());
+
+                        //Database.addFoodToFoodList()
+                        //When I learn how to
+                    }
+                    /*int size = stream.available();
+                    byte[] buffer = new byte[size];
+                    stream.read(buffer);
+                    stream.close();*/
+
                     //Not finished
                 }
                 catch(Exception e){
-
+                    e.printStackTrace();
                 }
+
             }
         });
-    }
-
-    public void addCSV(View view){
-
     }
 }
