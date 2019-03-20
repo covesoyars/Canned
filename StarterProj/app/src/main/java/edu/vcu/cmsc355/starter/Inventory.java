@@ -1,5 +1,6 @@
 package edu.vcu.cmsc355.starter;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Bundle;
@@ -11,6 +12,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+
 
 public class Inventory extends AppCompatActivity {
 
@@ -19,8 +24,32 @@ public class Inventory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
 
-        /*TEMPLATE OFF INTERNET SO LET ME FIGURE THIS SHIT OUT AND TWEAK IT SO IT WORKS LIKE WE NEED -Javier
-        final LinearLayout lm = (LinearLayout) findViewById(R.id.linearMain);
+        final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScroll);
+
+        // make a list of food items to test display
+        ArrayList<FoodItem> testFoods = new ArrayList<FoodItem>();
+        for(int i =0; i< 20; i++){
+            FoodItem item = new FoodItem();
+            if(i < 9){
+                item.setCategory("Fruit");
+                item.setName("apple");
+                item.setQuantity(1999);
+                item.setThreshold(100000);
+                item.setSize("69 g");
+            }
+            if(i == 10){
+                item.setThreshold(12);
+                item.setName("Dog Food lol");
+                item.setQuantity(11);
+            }
+            else{
+                item.setCategory("Soup");
+                item.setName("Tomato");
+                item.setQuantity(69);
+                item.setSize("12 oz");
+            }
+            testFoods.add(item);
+        }
 
         // create the layout params that will be used to define how your
         // button will be displayed
@@ -28,27 +57,43 @@ public class Inventory extends AppCompatActivity {
                 LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
         //Create four
-        for(int j=0;j<=4;j++)  //J is to equal the size of the Foodarray(or whatever it is)
+        for(int j=0;j<20;j++)  //J is to equal the size of the Foodarray(or whatever it is)
         {
             // Create LinearLayout
             LinearLayout ll = new LinearLayout(this);
             ll.setOrientation(LinearLayout.HORIZONTAL);
 
             // Create TextView
-            TextView product = new TextView(this);
-            product.setText(" Product"+j+"    ");
-            ll.addView(product);
+            TextView name = new TextView(this);
+            name.setText(testFoods.get(j).getName() + "     ");
+            ll.addView(name);
 
             // Create TextView
-            TextView price = new TextView(this);
-            price.setText("  $"+j+"     ");
-            ll.addView(price);
+            TextView quantity = new TextView(this);
+            quantity.setText(String.valueOf(testFoods.get(j).getQuantity()+ "    "));
+            if(testFoods.get(j).getQuantity() < testFoods.get(j).getThreshold()){
+                quantity.setTextColor(Color.RED);
+            }
+            ll.addView(quantity);
+
+            // Create TextView
+            TextView size = new TextView(this);
+            size.setText((testFoods.get(j).getSize() + "    "));
+            ll.addView(size);
+
+            // Create TextView
+            TextView thresh = new TextView(this);
+            thresh.setText((String.valueOf(testFoods.get(j).getThreshold()) + "    "));
+            ll.addView(thresh);
+
+
+
 
             // Create Button
             final Button btn = new Button(this);
             // Give button an ID
             btn.setId(j+1);
-            btn.setText("Add To Cart");
+            btn.setText("Edit Item");
             // set the layoutParams on the button
             btn.setLayoutParams(params);
 
@@ -72,6 +117,6 @@ public class Inventory extends AppCompatActivity {
             lm.addView(ll);
 
         }
-      */
+
     }
 }

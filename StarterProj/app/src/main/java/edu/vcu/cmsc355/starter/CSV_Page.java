@@ -53,7 +53,7 @@ public class CSV_Page extends AppCompatActivity {
                         FoodItem food = new FoodItem();
                         food.setCategory(scanzor.next());
                         food.setName(scanzor.next());
-                        food.setSize(scanzor.nextDouble());
+                        food.setSize(scanzor.next());
                         food.setDateRecieved(scanzor.next());
                         food.setExprDate(scanzor.next());
                         food.setQuantity(scanzor.nextInt());
