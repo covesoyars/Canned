@@ -116,4 +116,8 @@ public class FoodItem {
     public String getLocation() { return location; }
 
     public void setLocation(String location) { this.location = location; }
+
+    public boolean compareTo(FoodItem one, FoodItem two){
+        return (one.getCategory() == two.getCategory());
+    }
 }
