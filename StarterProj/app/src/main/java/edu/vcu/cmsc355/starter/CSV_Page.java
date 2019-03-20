@@ -24,6 +24,13 @@ public class CSV_Page extends AppCompatActivity {
         addFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /**
+                 * Here Sam, I need to pull the current list of fooditems
+                 * Then at the end I need to update the list with the new stuff.
+                 *
+                 * You can just place it in here and I will move it to where it needs to go,
+                 * just comment it.
+                 */
                 String file = fileName.getText().toString();
                 try{
                     InputStream stream = getAssets().open(file);
