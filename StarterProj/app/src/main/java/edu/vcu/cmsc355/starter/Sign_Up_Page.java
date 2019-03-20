@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -88,6 +89,7 @@ SETS UP BACK BUTTON TO LOGIN PAGE
 
             FirebaseApp.initializeApp(this);
             FirebaseFirestore db = FirebaseFirestore.getInstance();
+            CollectionReference users = db.collection("users");
 
             String u = user.getText().toString().trim();
             String p = pass.getText().toString().trim();
@@ -104,7 +106,7 @@ SETS UP BACK BUTTON TO LOGIN PAGE
             note.put(KEY_DATE, d);
             note.put(KEY_EMAIL, e);
 
-            db.collection("Notebook").document(u).set(note)
+            users.document(u).set(note)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -139,7 +141,7 @@ SETS UP BACK BUTTON TO LOGIN PAGE
     private boolean verifyInputs(){
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("Notebook").document(user.getText().toString().trim());
+        DocumentReference docRef = db.collection("users").document(user.getText().toString().trim());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>(){
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -148,7 +150,6 @@ SETS UP BACK BUTTON TO LOGIN PAGE
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         fb = true;
-
                     } else {
                         Log.d(TAG, "No such document");
                         fb = false;
