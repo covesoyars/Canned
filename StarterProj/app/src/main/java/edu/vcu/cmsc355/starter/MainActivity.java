@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void testThanks(View view){
-        Donor donor = new Donor("Justin", "Nelson", "JDNelson109@gmail.com", "703-798-7424", "RoadWay LOL");
+        Donor donor = new Donor("Justin", "Nelson", "soyarsc@mymail.vcu.edu", "703-798-7424", "RoadWay LOL");
         donor.sendEmail();
     }
 
