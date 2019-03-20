@@ -5,7 +5,7 @@
     <string name="EnterP">Enter Password</string>
     <string name="forgot_info">Forgot info?</string>
     <string name="login">Log in</string>
-    <string name="app_name"> app_name</string>
+    <string name="app_name"> Canned</string>
     <string name="verifing">Verifying your account</string>
     <string name="new_intructions">Return to login after being verified by the manager </string>
     <string name="ent_username">Enter a username</string>
@@ -18,7 +18,8 @@
     <string name="add_csv_file">Add a CSV file</string>
     <string name="csv_description">To add an initial file of food list items, please enter the file name.txt and then push the button below.</string>
     <string name="csv_name">Enter file name</string>
-
+    <string name="belowThresholdButton">Low Stock Items</string>
+    <string name="belowThresholdHeader">Low Stock Inventory</string>
 
     <string name="manage_volunteers">Manage Volunteers</string>
 

@@ -1,5 +1,13 @@
 package edu.vcu.cmsc355.starter;
 
+/***
+ * Class to hold information about food items
+ *
+ * Not finished
+ *
+ * contributors: Justin Nelson,
+ */
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +32,13 @@ public class CSV_Page extends AppCompatActivity {
         addFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /**
+                 * Here Sam, I need to pull the current list of fooditems
+                 * Then at the end I need to update the list with the new stuff.
+                 *
+                 * You can just place it in here and I will move it to where it needs to go,
+                 * just comment it.
+                 */
                 String file = fileName.getText().toString();
                 try{
                     InputStream stream = getAssets().open(file);
@@ -38,7 +53,7 @@ public class CSV_Page extends AppCompatActivity {
                         FoodItem food = new FoodItem();
                         food.setCategory(scanzor.next());
                         food.setName(scanzor.next());
-                        food.setSize(scanzor.nextDouble());
+                        food.setSize(scanzor.next());
                         food.setDateRecieved(scanzor.next());
                         food.setExprDate(scanzor.next());
                         food.setQuantity(scanzor.nextInt());

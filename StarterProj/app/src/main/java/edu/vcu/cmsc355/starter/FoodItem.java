@@ -11,11 +11,12 @@ public class FoodItem {
 
     private String category;
     private String name;
-    private double size;
+    private String size;
     private String dateRecieved;
     private String exprDate;
     private int quantity;
     private int threshold;
+    private String location;
 
 
     /**
@@ -23,12 +24,13 @@ public class FoodItem {
      */
     public FoodItem(){
         setCategory("");
-        setSize(0.0);
+        setSize("");
         setDateRecieved("");
         setExprDate("");
         setQuantity(0);
         setThreshold(0);
         setName("");
+
 
     }
 
@@ -42,7 +44,7 @@ public class FoodItem {
      * @param quantity
      * @param threshold
      */
-    public FoodItem(String category, String name, double size, String dateRecieved, String exprDate,
+    public FoodItem(String category, String name, String size, String dateRecieved, String exprDate,
                     int quantity, int threshold) {
         this.category = category;
         this.name = name;
@@ -63,11 +65,11 @@ public class FoodItem {
     public void setName(String name) {
         this.name = name;
     }
-    public double getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(double size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
@@ -110,4 +112,13 @@ public class FoodItem {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public String getLocation() { return location; }
+
+    public void setLocation(String location) { this.location = location; }
+
+    public int compareTo(FoodItem two){
+        return (this.getCategory().compareTo(two.getCategory()));
+    }
+
 }
