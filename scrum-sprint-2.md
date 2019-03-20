@@ -19,7 +19,7 @@ Question    |          Person                                             | 3/19
 |            | Justin | None  
 |            | Sam | Scrum can be done within github and easily viewed with the 'preview' tab | n/a | 
 |            | Cove | how to make app support multidex | none
-| Do any changes to the project need to be made as a result of your work? | Javier | n/a  
+| Do any changes to the project need to be made as a result of your work? | Javier | n/a | n/a 
 |            | Justin | None  
 |            | Sam | no | no |
 |            | Cove | n/a | low stock inventory will now be interactive
