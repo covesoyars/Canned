@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Inventory extends AppCompatActivity {
@@ -50,6 +51,7 @@ public class Inventory extends AppCompatActivity {
             }
             testFoods.add(item);
         }
+        selectionSort(testFoods);
 
         // create the layout params that will be used to define how your
         // button will be displayed
@@ -119,4 +121,24 @@ public class Inventory extends AppCompatActivity {
         }
 
     }
+
+    private void selectionSort( ArrayList<FoodItem> list)
+    {
+
+        // Find the string reference that should go in each cell of
+        // the array, from cell 0 to the end
+        for ( int j = 0; j < list.size();j++ )
+        {
+            // Find min: the index of the string reference that should go into cell j.
+            // Look through the unsorted strings (those at j or higher) for the one that is first in lexicographic order
+            int min = j;
+            for ( int k=j+1; k < list.size(); k++ )
+                if ( list.get(k).compareTo( list.get(min) ) < 0 ) min = k;
+
+            // Swap the reference at j with the reference at min
+            Collections.swap(list, j, min);
+        }
+
+    }
+
 }
