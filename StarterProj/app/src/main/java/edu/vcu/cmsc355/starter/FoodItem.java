@@ -16,6 +16,7 @@ public class FoodItem {
     private String exprDate;
     private int quantity;
     private int threshold;
+    private String location;
 
 
     /**
@@ -29,6 +30,7 @@ public class FoodItem {
         setQuantity(0);
         setThreshold(0);
         setName("");
+
 
     }
 
