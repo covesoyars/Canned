@@ -15,6 +15,9 @@
     <string name="ent_mail">Enter your email</string>
     <string name="ent_birth">Enter birthdate, MMDDYY</string>
     <string name="inventory">Inventory</string>
+    <string name="add_csv_file">Add a CSV file</string>
+    <string name="csv_description">To add an initial file of food list items, please enter the file name.txt and then push the button below.</string>
+    <string name="csv_name">Enter file name</string>
 
 
     <string name="manage_volunteers">Manage Volunteers</string>
@@ -34,7 +37,6 @@
     <string name="birthdate">Birthdate</string>
     <string name="firstname">First Name</string>
     <string name="lastname">Last Name</string>
-
 
 
     <!-- Strings related to Settings -->
