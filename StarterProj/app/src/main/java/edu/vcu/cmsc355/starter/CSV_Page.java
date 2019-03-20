@@ -1,5 +1,13 @@
 package edu.vcu.cmsc355.starter;
 
+/***
+ * Class to hold information about food items
+ *
+ * Not finished
+ *
+ * contributors: Justin Nelson,
+ */
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
