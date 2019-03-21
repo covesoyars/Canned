@@ -118,7 +118,12 @@ public class FoodItem {
     public void setLocation(String location) { this.location = location; }
 
     public int compareTo(FoodItem two){
-        return (this.getCategory().compareTo(two.getCategory()));
+        if(this.getCategory().compareTo(two.getCategory()) == 0){
+            return(this.getName().compareTo(two.getName()));
+        }
+        else{
+            return this.getCategory().compareTo(two.getCategory());
+        }
     }
 
 }
