@@ -23,17 +23,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="395dp"
+        android:layout_width="325dp"
         android:layout_height="600dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10">
 
         <LinearLayout
+            android:id="@+id/mainScroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/mainScroll"/>
+            android:orientation="vertical" />
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

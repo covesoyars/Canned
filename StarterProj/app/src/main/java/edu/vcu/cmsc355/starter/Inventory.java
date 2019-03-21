@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.ActionBar.LayoutParams;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -31,6 +32,7 @@ public class Inventory extends AppCompatActivity {
         ArrayList<FoodItem> testFoods = new ArrayList<FoodItem>();
         for(int i =0; i< 20; i++){
             FoodItem item = new FoodItem();
+
             if(i < 9){
                 item.setCategory("Fruit");
                 item.setName("apple");
@@ -38,9 +40,10 @@ public class Inventory extends AppCompatActivity {
                 item.setThreshold(100000);
                 item.setSize("69 g");
             }
-            if(i == 10){
+            else if(i == 10){
                 item.setThreshold(12);
                 item.setName("Dog Food lol");
+                item.setCategory("Dog");
                 item.setQuantity(11);
             }
             else{
@@ -57,35 +60,56 @@ public class Inventory extends AppCompatActivity {
         // button will be displayed
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-
+        String currentCatigory = "";
         //Create four
-        for(int j=0;j<20;j++)  //J is to equal the size of the Foodarray(or whatever it is)
+        for(int j=0;j<testFoods.size();j++)  //J is to equal the size of the Foodarray(or whatever it is)
         {
+            FoodItem food=testFoods.get(j);
+
             // Create LinearLayout
             LinearLayout ll = new LinearLayout(this);
             ll.setOrientation(LinearLayout.HORIZONTAL);
 
+
+          //  FoodItem food=testFoods.get(j);
+
+            //ad catigory soace
+            if(!food.getCategory().equals(currentCatigory))
+            {
+                currentCatigory=food.getCategory();
+                TextView catigory = new TextView(this);
+                catigory.setText( currentCatigory );
+                catigory.setGravity(Gravity.CENTER);
+                catigory.setTextSize(20);
+                catigory.setWidth(ll.getWidth());
+                catigory.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                catigory.setTextColor(Color.WHITE);
+                lm.addView(catigory);
+            }
+
+
+
             // Create TextView
             TextView name = new TextView(this);
-            name.setText(testFoods.get(j).getName() + "     ");
+            name.setText(food.getName() + "     ");
             ll.addView(name);
 
             // Create TextView
             TextView quantity = new TextView(this);
-            quantity.setText(String.valueOf(testFoods.get(j).getQuantity()+ "    "));
-            if(testFoods.get(j).getQuantity() < testFoods.get(j).getThreshold()){
+            quantity.setText(String.valueOf(food.getQuantity()+ "    "));
+            if(food.getQuantity() < food.getThreshold()){
                 quantity.setTextColor(Color.RED);
             }
             ll.addView(quantity);
 
             // Create TextView
             TextView size = new TextView(this);
-            size.setText((testFoods.get(j).getSize() + "    "));
+            size.setText((food.getSize() + "    "));
             ll.addView(size);
 
             // Create TextView
             TextView thresh = new TextView(this);
-            thresh.setText((String.valueOf(testFoods.get(j).getThreshold()) + "    "));
+            thresh.setText((String.valueOf(food.getThreshold()) + "    "));
             ll.addView(thresh);
 
 
