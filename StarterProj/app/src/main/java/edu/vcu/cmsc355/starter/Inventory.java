@@ -1,6 +1,8 @@
 package edu.vcu.cmsc355.starter;
 
 import android.graphics.Color;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.LinearLayout;
@@ -60,7 +63,10 @@ public class Inventory extends AppCompatActivity {
         // button will be displayed
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
+
         String currentCatigory = "";
+        int quantity=0;
         //Create four
         for(int j=0;j<testFoods.size();j++)  //J is to equal the size of the Foodarray(or whatever it is)
         {
@@ -87,6 +93,13 @@ public class Inventory extends AppCompatActivity {
                 lm.addView(catigory);
             }
 
+            while(j<testFoods.size()-1 && food.getName().equals(testFoods.get(j+1).getName()))
+            {
+                j++;
+                quantity=quantity+food.getQuantity();
+            }
+
+
 
 
             // Create TextView
@@ -95,12 +108,12 @@ public class Inventory extends AppCompatActivity {
             ll.addView(name);
 
             // Create TextView
-            TextView quantity = new TextView(this);
-            quantity.setText(String.valueOf(food.getQuantity()+ "    "));
+            TextView quantity2 = new TextView(this);
+            quantity2.setText(String.valueOf(quantity+food.getQuantity()) + "     ");
             if(food.getQuantity() < food.getThreshold()){
-                quantity.setTextColor(Color.RED);
+                quantity2.setTextColor(Color.RED);
             }
-            ll.addView(quantity);
+            ll.addView(quantity2);
 
             // Create TextView
             TextView size = new TextView(this);
@@ -114,7 +127,6 @@ public class Inventory extends AppCompatActivity {
 
 
 
-
             // Create Button
             final Button btn = new Button(this);
             // Give button an ID
@@ -122,6 +134,14 @@ public class Inventory extends AppCompatActivity {
             btn.setText("Edit Item");
             // set the layoutParams on the button
             btn.setLayoutParams(params);
+            //btn.setRight(0);
+            btn.setGravity(Gravity.RIGHT);
+           btn.setX(100);
+//            RelativeLayout.LayoutParams btnlocation = (RelativeLayout.LayoutParams) btn.getLayoutParams();
+//            btnlocation.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+//            btn.setLayoutParams(btnlocation);
+
+
 
             final int index = j;
             // Set click listener for button
@@ -141,7 +161,7 @@ public class Inventory extends AppCompatActivity {
             ll.addView(btn);
             //Add button to LinearLayout defined in XML
             lm.addView(ll);
-
+             quantity=0;
         }
 
     }
