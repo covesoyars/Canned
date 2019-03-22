@@ -70,7 +70,7 @@ public class CSV_Page extends AppCompatActivity {
                     //Not finished
                 }
                 catch(Exception e){
-                    e.printStackTrace();
+                    fileName.setText(e.getMessage());
                 }
 
             }
