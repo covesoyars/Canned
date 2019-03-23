@@ -10,7 +10,7 @@ Question    |          Person                                             | 3/19
 | What will you accomplish before the next meeting? | Javier |  work on food item page | work with cove to tweak inventory | work on creating the page the buttons on the invernotyr will go to |
 |            | Justin | Going to add the csv portion of managers hub page | Tell user they entered wrong login info (Cant really think of what to do) | continue woring on cvs file |
 |            | Sam | get the team access to the database by encapsulating methods to query it or write a readme | create access to fooditem database | reutrn a lists of items from the data base to inventory page |
-|            | Cove | framework to show manager items under threshold | inventory display |
+|            | Cove | framework to show manager items under threshold | inventory display | worked with javier to clean up inventory page |
 | Do you have anything that's getting in the way of doing your work? | Javier |  not having a way to access food items | n/a  | nothing atm|
 |            | Justin |  Need to know how to work with database. | no | struggling to figure out how to acess a file in android |
 |            | Sam | need to manage time more effectively | documentation is difficult to read |  scheduling |
