@@ -1,5 +1,7 @@
 package edu.vcu.cmsc355.starter;
 
+import java.io.Serializable;
+
 /***
  * Class to hold information about food items
  *
@@ -7,7 +9,7 @@ package edu.vcu.cmsc355.starter;
  *
  * contributors: Cove Soyars, Justin Nelson,
  */
-public class FoodItem {
+public class FoodItem implements Serializable {
 
     private String category;
     private String name;
