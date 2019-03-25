@@ -15,8 +15,8 @@ Question    |          Person                                             | 3/19
 |            | Justin |  Need to know how to work with database. | no | struggling to figure out how to acess a file in android | Hard to test is my problem |
 |            | Sam | need to manage time more effectively | documentation is difficult to read |  scheduling | none |
 |            | Cove | can't access database on my own yet | computer battery | not being able to move buton to right constraint | none |
-| What insights have you made? | Javier | we need to iron out the details of how this user interface will work | how the buttons page will work |  psudeo code helps code loook cleaner |
-|            | Justin | None | none | fileing a file is harder than expected | no | no |
+| What insights have you made? | Javier | we need to iron out the details of how this user interface will work | how the buttons page will work |  psudeo code helps code loook cleaner | no
+|            | Justin | None | none | fileing a file is harder than expected | no |
 |            | Sam | Scrum can be done within github and easily viewed with the 'preview' tab | n/a | n/a | n/a |
 |            | Cove | how to make app support multidex | none | none | none |
 | Do any changes to the project need to be made as a result of your work? | Javier | n/a | n/a  | n/a | page set up will be slightly difrent from the the story board drawing |
