@@ -25,7 +25,11 @@ public class manager_hub_page extends AppCompatActivity {
         Intent inventory = new Intent(this, Inventory.class);
         startActivity(inventory);
     }
-
+    public void manageVolunteers(View View)
+    {
+        Intent mv = new Intent(this, manageVolunteers.class);
+        startActivity(mv);
+    }
     public void addCSV(View view){
         Intent csvPage = new Intent(this, CSV_Page.class);
         startActivity(csvPage);
