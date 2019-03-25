@@ -12,12 +12,12 @@ public class Volunteer extends User {
 
     private boolean verified; // flag to determine if user is verified by manager
 
-    public Volunteer(){ // default constructor
+    public Volunteer() { // default constructor
         super();
         verified = false;
     }
 
-    // parameterized constructor
+    // parameterized constructor with image
     public Volunteer(String aPassword, String aUserName, String aFirstName, String aLastName, int aDob,
                      String anEmail, File aPicture){
 
