@@ -22,13 +22,16 @@ public class food_item_page extends AppCompatActivity {
         setContentView(R.layout.content_food_item_page);
 
         // unpack food from Inventory activity:
-        Bundle foodBundle = this.getIntent().getExtras();
+        Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
         food = (String) foodBundle.getString("foodName");
         topBanner = (TextView) findViewById(R.id.food_page_name);
-        if(food!= null){
-            topBanner.setText(food);
 
-        }
+        topBanner.setText(food);
+
+        //@SAM: We need you to pull all the fooditems that have
+        // the name stored in the string variable 'food'
+
+
 
 
 

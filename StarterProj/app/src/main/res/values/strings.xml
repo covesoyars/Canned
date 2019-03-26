@@ -38,7 +38,7 @@
     <string name="birthdate">Birthdate</string>
     <string name="firstname">First Name</string>
     <string name="lastname">Last Name</string>
-    <string name="categories">Name  \t \t Quantity   \t \t \t  Threshold</string>
+    <string name="categories">Name  \t \t\t\t\t \t\t Quantity \t\t\t Size  \t \t \t Threshold</string>
 
 
     <!-- Strings related to Settings -->

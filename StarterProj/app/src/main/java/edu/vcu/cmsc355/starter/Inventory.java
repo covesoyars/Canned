@@ -32,6 +32,9 @@ import android.content.Intent;
 
 public class Inventory extends AppCompatActivity {
 
+    final int NUM_SIZE = 200;
+    final int NAME_SIZE = 400;
+    final int BUTTON_SIZE = 200;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +115,8 @@ public class Inventory extends AppCompatActivity {
 
             // Create TextView
             TextView name = new TextView(this);
-            name.setText(food.getName() + "     ");
+            name.setText(food.getName());
+            name.setWidth(NAME_SIZE);
             ll.addView(name);
 
             // Create TextView
@@ -121,16 +125,19 @@ public class Inventory extends AppCompatActivity {
             if(food.getQuantity() < food.getThreshold()){
                 quantity2.setTextColor(Color.RED);
             }
+            quantity2.setWidth(NUM_SIZE);
             ll.addView(quantity2);
 
             // Create TextView
             TextView size = new TextView(this);
-            size.setText((food.getSize() + "    "));
+            size.setText((food.getSize()));
+            size.setWidth(NUM_SIZE);
             ll.addView(size);
 
             // Create TextView
             TextView thresh = new TextView(this);
-            thresh.setText((String.valueOf(food.getThreshold()) + "    "));
+            thresh.setText((String.valueOf(food.getThreshold())));
+            thresh.setWidth(NUM_SIZE);
             ll.addView(thresh);
 
 
@@ -143,8 +150,10 @@ public class Inventory extends AppCompatActivity {
             // set the layoutParams on the button
             btn.setLayoutParams(params);
             //btn.setRight(0);
-            btn.setGravity(Gravity.RIGHT);
-           btn.setX(100);
+
+           // btn.setWidth(BUTTON_SIZE);
+
+
 //            RelativeLayout.LayoutParams btnlocation = (RelativeLayout.LayoutParams) btn.getLayoutParams();
 //            btnlocation.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
 //            btn.setLayoutParams(btnlocation);
@@ -174,11 +183,11 @@ public class Inventory extends AppCompatActivity {
 
 
         // create and launch intent
-        final Intent launchFood = new Intent(this,food_item_page.class);
+        final Intent launchFood = new Intent(Inventory.this,food_item_page.class);
 
         Bundle bundle = new Bundle();
         bundle.putString("foodName", foodName);
-        launchFood.putExtra("foodName", bundle);
+        launchFood.putExtra("bundle", bundle);
         startActivity(launchFood);
     }
 
