@@ -12,12 +12,14 @@ package edu.vcu.cmsc355.starter;
  * @contributors: Cove Soyars, Doug Dimmadome
  */
 import java.io.File;
+import java.io.Serializable;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import android.net.Uri;
 
 
 
-public class User{
+public class User implements Serializable {
 
     private String password;
     private String userName;

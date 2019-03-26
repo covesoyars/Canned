@@ -1,5 +1,6 @@
 package edu.vcu.cmsc355.starter;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -18,9 +19,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.LinearLayout;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import android.content.Intent;
 
+/**
+ * TO-DO create list to hold array of foodNames for each button (should have corresponding indices)
+ * call the string in this list to send to activity when putton is pushed
+ */
 
 public class Inventory extends AppCompatActivity {
 
@@ -32,7 +40,7 @@ public class Inventory extends AppCompatActivity {
         final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScroll);
 
         // make a list of food items to test display
-        ArrayList<FoodItem> testFoods = new ArrayList<FoodItem>();
+        final ArrayList<FoodItem> testFoods = new ArrayList<FoodItem>();
         for(int i =0; i< 20; i++){
             FoodItem item = new FoodItem();
 
@@ -144,15 +152,11 @@ public class Inventory extends AppCompatActivity {
 
 
             final int index = j;
+            final FoodItem foodToSend = food;
             // Set click listener for button
             btn.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
-
-                    Log.i("TAG", "index :" + index);
-
-                    Toast.makeText(getApplicationContext(),
-                            "Clicked Button Index :" + index,
-                            Toast.LENGTH_LONG).show();
+                    launchFoodItemPage(v,testFoods,foodToSend.getName());
 
                 }
             });
@@ -161,9 +165,21 @@ public class Inventory extends AppCompatActivity {
             ll.addView(btn);
             //Add button to LinearLayout defined in XML
             lm.addView(ll);
-             quantity=0;
+            quantity=0;
         }
 
+    }
+
+    private void launchFoodItemPage(View view, ArrayList<FoodItem> foods, String foodName){
+
+
+        // create and launch intent
+        final Intent launchFood = new Intent(this,food_item_page.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("foodName", foodName);
+        launchFood.putExtra("foodName", bundle);
+        startActivity(launchFood);
     }
 
     private void selectionSort( ArrayList<FoodItem> list)

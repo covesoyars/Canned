@@ -14,6 +14,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.content.Context;
+import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.io.File;
 
@@ -41,14 +44,15 @@ public class CSV_Page extends AppCompatActivity {
                  * just comment it.
                  */
                 String file = fileName.getText().toString();
-                Context context = getApplicationContext();
                 try{
-                    String filer = context.getFilesDir().toString() + "/" + file;
-                    File filey = new File(filer);
-                    Scanner scanny = new Scanner(filey);
-                    Scanner scanzor = new Scanner(filey);
-                    scanzor.useDelimiter(",");
-                    fileName.setText(scanny.next());
+                    Context ctx = getApplicationContext();
+
+                    FileInputStream fileInputStream = ctx.openFileInput(file);
+
+                    InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+
+                    BufferedReader buff = new BufferedReader(inputStreamReader);
+                    fileName.setText(buff.read());
                     /*
                      *Go through the file and add all the foodItems to the list.
                      */
