@@ -45,16 +45,6 @@ public class MainActivity extends AppCompatActivity {
     startActivity(startSignUp);
     }
 
-    public void goToTest(View view){
-        Intent picTest = new Intent(this, PicTest.class);
-        startActivity(picTest);
-    }
-
-    public void testThanks(View view){
-        Donor donor = new Donor("Justin", "Nelson", "soyarsc@mymail.vcu.edu", "703-798-7424", "RoadWay LOL");
-        donor.sendEmail();
-    }
-
     public void forgotInfo(View view){
         Intent startForgotInfo = new Intent(this, Forgot_info.class);
         startActivity(startForgotInfo);
