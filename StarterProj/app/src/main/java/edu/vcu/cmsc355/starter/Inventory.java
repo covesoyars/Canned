@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.DisplayMetrics;
 import android.app.ActionBar.LayoutParams;
 import android.util.Log;
 import android.view.Gravity;
@@ -32,15 +33,23 @@ import android.content.Intent;
 
 public class Inventory extends AppCompatActivity {
 
-    final int NUM_SIZE = 200;
-    final int NAME_SIZE = 400;
+    final int NUM_SIZE = 400;
+    final int NAME_SIZE = 750;
     final int BUTTON_SIZE = 200;
+    float density;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
 
         final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScroll);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        density = metrics.density;
+
+        int relativeNameSize = (int) Math.ceil(NAME_SIZE /density);
+        int relativeNumSize = (int) Math.ceil(NUM_SIZE /density);
 
         // make a list of food items to test display
         final ArrayList<FoodItem> testFoods = new ArrayList<FoodItem>();
@@ -116,7 +125,7 @@ public class Inventory extends AppCompatActivity {
             // Create TextView
             TextView name = new TextView(this);
             name.setText(food.getName());
-            name.setWidth(NAME_SIZE);
+            name.setWidth(relativeNameSize);
             ll.addView(name);
 
             // Create TextView
@@ -125,19 +134,19 @@ public class Inventory extends AppCompatActivity {
             if(food.getQuantity() < food.getThreshold()){
                 quantity2.setTextColor(Color.RED);
             }
-            quantity2.setWidth(NUM_SIZE);
+            quantity2.setWidth(relativeNumSize);
             ll.addView(quantity2);
 
             // Create TextView
             TextView size = new TextView(this);
             size.setText((food.getSize()));
-            size.setWidth(NUM_SIZE);
+            size.setWidth(relativeNumSize);
             ll.addView(size);
 
             // Create TextView
             TextView thresh = new TextView(this);
             thresh.setText((String.valueOf(food.getThreshold())));
-            thresh.setWidth(NUM_SIZE);
+            thresh.setWidth(relativeNumSize);
             ll.addView(thresh);
 
 
