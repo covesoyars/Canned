@@ -14,23 +14,36 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ManagerEditVolunteer"></activity>
-        <activity android:name=".recordDonations" />
-        <activity android:name=".manageVolunteers" />
-        <activity android:name=".CSV_Page" />
-        <activity android:name=".Inventory" />
-        <activity android:name=".Edit_profile" />
-        <activity android:name=".Volenteer_hub_page" />
-        <activity android:name=".Sign_Up_Page" />
-        <activity android:name=".verify_Page" />
-        <activity android:name=".Forgot_info" />
-        <activity android:name=".manager_hub_page" />
-        <activity android:name=".food_item_page" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".recordDonations"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".manageVolunteers"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CSV_Page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Inventory"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Edit_profile"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Volenteer_hub_page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Sign_Up_Page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".verify_Page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Forgot_info"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".manager_hub_page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".food_item_page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
