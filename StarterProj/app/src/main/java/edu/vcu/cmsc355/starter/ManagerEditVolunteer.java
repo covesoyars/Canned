@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class ManagerEditVolunteer extends AppCompatActivity {
 
@@ -25,13 +27,18 @@ public class ManagerEditVolunteer extends AppCompatActivity {
     private TextView userName;
     private TextView birthDate;
     private ImageView pfp;
+    private Volunteer thisGuy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_edit_volunteer);
 
-        Volunteer thisGuy = new Volunteer(); //Volunteer for this page
+        // unpack food from Inventory activity:
+        Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
+        thisGuy = (Volunteer) foodBundle.getSerializable("thisGuy");
+        
+
 
 
         //Call to database for the list of volunteers

@@ -1,6 +1,7 @@
 package edu.vcu.cmsc355.starter;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -104,7 +105,7 @@ public class manageVolunteers extends AppCompatActivity {
 
         for(int j=0;j<vols.size();j++)  //J is to equal the size of the Foodarray(or whatever it is)
         {
-            Volunteer c =vols.get(j);
+            final Volunteer c =vols.get(j);
 
 
 
@@ -152,13 +153,7 @@ public class manageVolunteers extends AppCompatActivity {
             // Set click listener for button
             btn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-
-                    Log.i("TAG", "index :" + index);
-
-                    Toast.makeText(getApplicationContext(),
-                            "Clicked Button Index :" + index,
-                            Toast.LENGTH_LONG).show();
-
+                    launchEditVolPage(v,c);
                 }
             });
 
@@ -167,5 +162,16 @@ public class manageVolunteers extends AppCompatActivity {
             //Add button to LinearLayout defined in XML
             lm.addView(ll);
         }
+    }
+    private void launchEditVolPage(View view, Volunteer thisGuy){
+
+
+        // create and launch intent
+        final Intent launchEdit = new Intent(manageVolunteers.this,ManagerEditVolunteer.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("thisGuy", thisGuy);
+        launchEdit.putExtra("bundle", bundle);
+        startActivity(launchEdit);
     }
 }
