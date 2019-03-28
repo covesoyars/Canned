@@ -32,10 +32,29 @@ public class manageVolunteers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_volunteers2);
 
-
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference usersRef = db.collection("users");
+
+        // make header:
+        LinearLayout header = findViewById(R.id.volunteerHeader);
+        // screen size universal sizes for fields:
+        int nameWidth = getResources().getDimensionPixelSize(R.dimen._65sdp);
+
+        TextView name = new TextView(this);
+        name.setText("Username");
+        name.setWidth(nameWidth);
+        header.addView(name);
+
+        TextView quantity2 = new TextView(this);
+        quantity2.setText("First Name");
+        quantity2.setWidth(nameWidth);
+        header.addView(quantity2);
+
+        TextView size = new TextView(this);
+        size.setText("Last Name");
+        size.setWidth(nameWidth);
+        header.addView(size);
 
         usersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -93,21 +112,28 @@ public class manageVolunteers extends AppCompatActivity {
             LinearLayout ll = new LinearLayout(this);
             ll.setOrientation(LinearLayout.HORIZONTAL);
 
+            // screen size universal sizes for fields:
+            int numWidth = getResources().getDimensionPixelSize(R.dimen._50sdp);
+            int nameWidth = getResources().getDimensionPixelSize(R.dimen._65sdp);
+
 
             // Create TextView
             TextView name = new TextView(this);
             String n = c.getUserName();
-            name.setText(n + "     ");
+            name.setText(n);
+            name.setWidth(nameWidth);
             ll.addView(name);
 
             // Create TextView
             TextView quantity2 = new TextView(this);
-            quantity2.setText(c.getFirstName() + "     ");
+            quantity2.setText(c.getFirstName());
+            quantity2.setWidth(nameWidth);
             ll.addView(quantity2);
 
             // Create TextView
             TextView size = new TextView(this);
-            size.setText(c.getLastName() + "    ");
+            size.setText(c.getLastName());
+            size.setWidth(nameWidth);
             ll.addView(size);
 
 
@@ -115,17 +141,12 @@ public class manageVolunteers extends AppCompatActivity {
             final Button btn = new Button(this);
             // Give button an ID
             btn.setId(j+1);
-            btn.setText("Edit Item");
+            btn.setText("View Info");
             // set the layoutParams on the button
             btn.setLayoutParams(params);
             //btn.setRight(0);
             btn.setGravity(Gravity.RIGHT);
             btn.setX(100);
-//            RelativeLayout.LayoutParams btnlocation = (RelativeLayout.LayoutParams) btn.getLayoutParams();
-//            btnlocation.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-//            btn.setLayoutParams(btnlocation);
-
-
 
             final int index = j;
             // Set click listener for button
