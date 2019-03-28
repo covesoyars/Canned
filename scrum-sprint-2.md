@@ -17,7 +17,7 @@ Question    |          Person                                             | 3/19
 |            | Cove | can't access database on my own yet | computer battery | not being able to move buton to right constraint | none | arraylist shows up as null in fooditem page | android is annoying on a much more subtle level than previously thought | no |
 | What insights have you made? | Javier | we need to iron out the details of how this user interface will work | how the buttons page will work |  psudeo code helps code loook cleaner | no | no | might have to rethink how the food item page will actually work | none |
 |            | Justin | None | none | fileing a file is harder than expected | no | no | We might have to change the csv file and not implement it | None |
-|            | Sam | Scrum can be done within github and easily viewed with the 'preview' tab | n/a | n/a | n/a | n/a | n/a n/a |
+|            | Sam | Scrum can be done within github and easily viewed with the 'preview' tab | n/a | n/a | n/a | n/a | n/a | n/a |
 |            | Cove | how to make app support multidex | none | none | none | none | none | none | 
 | Do any changes to the project need to be made as a result of your work? | Javier | n/a | n/a  | n/a | page set up will be slightly difrent from the the story board drawing | no | No | no |
 |            | Justin | None | none | if the csv file cant be found we will have to make a work around | no | No | no | no
