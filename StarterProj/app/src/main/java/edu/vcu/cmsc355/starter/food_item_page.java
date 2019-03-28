@@ -22,10 +22,6 @@ public class food_item_page extends AppCompatActivity {
     String food;
     TextView topBanner;
     ArrayList<FoodItem> toBeRemoved;
-    final int NUM_SIZE = 400;
-    final int NAME_SIZE = 750;
-    final int BUTTON_SIZE = 200;
-    float density;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +29,17 @@ public class food_item_page extends AppCompatActivity {
         setContentView(R.layout.content_food_item_page);
         final LinearLayout lm = (LinearLayout) findViewById(R.id.food_ll);
 
+        //set screen universal text view sizes:
+        int numWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
+        int nameWidth = getResources().getDimensionPixelSize(R.dimen._115sdp);
+
+
+
         // unpack food from Inventory activity:
         Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
         food = (String) foodBundle.getString("foodName");
         topBanner = (TextView) findViewById(R.id.food_page_name);
         toBeRemoved = new ArrayList<FoodItem>();
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        density = metrics.density;
-
-        int relativeNameSize = (int) Math.ceil(NAME_SIZE /density);
-        int relativeNumSize = (int) Math.ceil(NUM_SIZE /density);
-
 
         topBanner.setText(food);
 
@@ -65,9 +59,10 @@ public class food_item_page extends AppCompatActivity {
             }
             else if(i == 10){
                 item.setThreshold(12);
-                item.setName("Dog Food lol");
+                item.setName("Dog Food");
                 item.setCategory("Dog");
                 item.setQuantity(11);
+                item.setSize("12 lbs");
                 item.setLocation("A4");
                 item.setExprDate("12/07/1941");
             }
@@ -91,6 +86,22 @@ public class food_item_page extends AppCompatActivity {
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        // make header:
+        LinearLayout header = findViewById(R.id.foodItemHeader);
+        TextView quantityHead = new TextView(this);
+        quantityHead.setText("Quantity");
+        quantityHead.setWidth(numWidth);
+        header.addView(quantityHead);
+
+        TextView ExprdateHead = new TextView(this);
+        ExprdateHead.setText("Expr. Date");
+        ExprdateHead.setWidth(nameWidth-115);
+        header.addView(ExprdateHead);
+
+        TextView locHead = new TextView(this);
+        locHead.setText("Location");
+        locHead.setWidth(numWidth);
+        header.addView(locHead);
 
         for(int j = 0; j<selectedFood.size(); j++){
 
@@ -103,18 +114,22 @@ public class food_item_page extends AppCompatActivity {
             // display quantity, expiration date, and location:
             TextView quantity = new TextView(this);
             quantity.setText(String.valueOf(currentFood.getQuantity()));
-            quantity.setWidth(relativeNumSize);
+            quantity.setWidth(numWidth);
             ll.addView(quantity);
 
             TextView exprDate = new TextView(this);
             exprDate.setText(currentFood.getExprDate());
-            exprDate.setWidth(relativeNumSize);
+            exprDate.setWidth(nameWidth);
             ll.addView(exprDate);
 
             TextView loc = new TextView(this);
             loc.setText(currentFood.getLocation());
-            exprDate.setWidth(relativeNumSize);
+            exprDate.setWidth(numWidth);
             ll.addView(loc);
+
+            TextView spacer = new TextView(this);
+            spacer.setWidth(numWidth);
+            ll.addView(spacer);
 
 
 

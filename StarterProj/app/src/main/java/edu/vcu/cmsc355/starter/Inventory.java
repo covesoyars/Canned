@@ -35,10 +35,6 @@ import android.content.Intent;
 
 public class Inventory extends AppCompatActivity {
 
-
-
-
-    float density;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,13 +43,6 @@ public class Inventory extends AppCompatActivity {
         final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScroll);
         int numWidth = getResources().getDimensionPixelSize(R.dimen._50sdp);
         int nameWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        density = metrics.density;
-
-        //int relativeNameSize = (int) Math.ceil(NAME_SIZE /density);
-        //int relativeNumSize = (int) Math.ceil(NUM_SIZE /density);
 
         // make a list of food items to test display
         final ArrayList<FoodItem> testFoods = new ArrayList<FoodItem>();
@@ -69,8 +58,9 @@ public class Inventory extends AppCompatActivity {
             }
             else if(i == 10){
                 item.setThreshold(12);
-                item.setName("Dog Food lol");
+                item.setName("Dog Food");
                 item.setCategory("Dog");
+                item.setSize("12 lbs");
                 item.setQuantity(11);
             }
             else{
