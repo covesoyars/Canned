@@ -20,6 +20,6 @@ Question    |          Person                                             | 3/19
 |            | Sam | Scrum can be done within github and easily viewed with the 'preview' tab | n/a | n/a | n/a | n/a | n/a n/a |
 |            | Cove | how to make app support multidex | none | none | none | none | none | none | 
 | Do any changes to the project need to be made as a result of your work? | Javier | n/a | n/a  | n/a | page set up will be slightly difrent from the the story board drawing | no | No | no |
-|            | Justin | None | none | if the csv file cant be found we will have to make a work around | no | No
-|            | Sam | no | no | no | no | no | no | no | no | no |
+|            | Justin | None | none | if the csv file cant be found we will have to make a work around | no | No | no | no
+|            | Sam | no | no | no | no | no | no | no |
 |            | Cove | n/a | low stock inventory will now be interactive | n\a | n/a | n/a | none | none |
