@@ -14,10 +14,10 @@ package edu.vcu.cmsc355.starter;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 
 public class ManagerEditVolunteer extends AppCompatActivity {
@@ -25,9 +25,10 @@ public class ManagerEditVolunteer extends AppCompatActivity {
     private TextView name;
     private TextView email;
     private TextView userName;
-    private TextView birthDate;
+    private TextView startDate;
     private ImageView pfp;
     private Volunteer thisGuy;
+    private CheckBox verified;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,26 +38,24 @@ public class ManagerEditVolunteer extends AppCompatActivity {
         // unpack food from Inventory activity:
         Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
         thisGuy = (Volunteer) foodBundle.getSerializable("thisGuy");
-        
 
-
-
-        //Call to database for the list of volunteers
-        //Fill in line below or make a new line for it, thanks Sam.
-        //ArrayList<Volunteer> list = database.get();
-        /*
-        for(Volunteer item: list){
-        if(name == item.getUsername()){
-        thisGuy = item;
-        break;
-        }
-        }
-
-         */
+        verified = (CheckBox) findViewById(R.id.checkBox2);
         name = (TextView) findViewById(R.id.textView17);
         name.setText(thisGuy.getFirstName() + " " + thisGuy.getLastName());
+        email = (TextView)findViewById(R.id.textView19);
+        email.setText(thisGuy.getEmailAddress());
+        userName = (TextView) findViewById(R.id.textView18);
         pfp = (ImageView) findViewById(R.id.pfp);
         Uri newPic = thisGuy.getProfilePicture();
         pfp.setImageURI(newPic);
+
+        if(thisGuy.isVerified()){
+            verified.setChecked(true);
+        }
+        verified.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+               thisGuy.setVerification(!thisGuy.isVerified());
+            }
+        });
     }
 }
