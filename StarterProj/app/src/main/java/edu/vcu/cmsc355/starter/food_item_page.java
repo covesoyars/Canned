@@ -127,8 +127,9 @@ public class food_item_page extends AppCompatActivity {
             exprDate.setWidth(numWidth);
             ll.addView(loc);
 
-            TextView spacer = new TextView(this);
-            spacer.setWidth(numWidth);
+            TextView spacer = new TextView(this);       //  so i was playing with stuff and i  think playing with the constraints was a better way to do it
+                                                           // lemme know what you think
+            spacer.setWidth(numWidth/2);
             ll.addView(spacer);
 
 
