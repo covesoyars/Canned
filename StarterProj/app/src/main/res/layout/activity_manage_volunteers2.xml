@@ -29,11 +29,11 @@
 
         <ScrollView
             android:id="@+id/scrollView3"
-            android:layout_width="389dp"
+            android:layout_width="350dp"
             android:layout_height="604dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="28dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.727"
+            app:layout_constraintHorizontal_bias="0.442"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10">
 
@@ -45,9 +45,9 @@
         </ScrollView>
 
         <LinearLayout
-            android:layout_width="381dp"
             android:id="@+id/volunteerHeader"
-            android:layout_height="24dp"
+            android:layout_width="343dp"
+            android:layout_height="20dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"

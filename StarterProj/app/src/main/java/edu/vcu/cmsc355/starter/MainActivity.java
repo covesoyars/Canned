@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText pass;
     private static final String TAG = "MainPage";
     private boolean fb = false;
+    private Volunteer v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view){
-        Intent login = new Intent(this, manager_hub_page.class);
+        final Intent login = new Intent(this, manager_hub_page.class);
         final Intent volunteerLogin = new Intent(this, Volenteer_hub_page.class);
 
         //Intent volLogin = new Intent(this, volunteer_hub_page.class);
@@ -88,6 +89,19 @@ public class MainActivity extends AppCompatActivity {
                             fb = true;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
+                                String p = document.getData().get("pass").toString();
+                                String u = document.getData().get("user").toString();
+                                String f = document.getData().get("first").toString();
+                                String l = document.getData().get("last").toString();
+                                int dob = Integer.parseInt(document.getData().get("date").toString());
+                                String e = document.getData().get("email").toString();
+
+                                v = new Volunteer(p,u,f,l,dob,e);
+                                UserLoggedIn appState = ((UserLoggedIn) getApplicationContext());
+                                appState.setLoggedIn(v);
+                                startActivity(login);
+
+
                             }
                             startActivity(volunteerLogin);
                         }

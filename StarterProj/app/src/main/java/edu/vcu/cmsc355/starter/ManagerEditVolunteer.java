@@ -37,7 +37,7 @@ public class ManagerEditVolunteer extends AppCompatActivity {
         // unpack food from Inventory activity:
         Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
         thisGuy = (Volunteer) foodBundle.getSerializable("thisGuy");
-        
+
 
 
 

@@ -165,9 +165,6 @@ SETS UP BACK BUTTON TO LOGIN PAGE
             Toast.makeText(this, "Username is already taken", Toast.LENGTH_SHORT).show();
             return false;
         }
-        else{
-            Toast.makeText(this, "Username isn't already taken", Toast.LENGTH_SHORT).show();
-        }
 
         if(pass.getText().toString().isEmpty()){
             Toast.makeText(this, "Password field is empty", Toast.LENGTH_SHORT).show();
