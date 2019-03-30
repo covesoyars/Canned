@@ -29,16 +29,26 @@
 
         <ScrollView
             android:id="@+id/scrollView3"
+<<<<<<< HEAD
             android:layout_width="350dp"
             android:layout_height="604dp"
             android:layout_marginTop="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.442"
+=======
+            android:layout_width="352dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+>>>>>>> 625e66db3c4e0c04cfe8bbdcc14d89b9b503c83c
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10">
+            app:layout_constraintTop_toBottomOf="@+id/textView10"
+            app:layout_constraintVertical_bias="0.544">
 
             <LinearLayout
-                android:id="@+id/mainScroll"
+                android:id="@+id/mainScrollVolenteer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
@@ -46,17 +56,25 @@
 
         <LinearLayout
             android:id="@+id/volunteerHeader"
+<<<<<<< HEAD
             android:layout_width="343dp"
             android:layout_height="20dp"
+=======
+            android:layout_width="350dp"
+            android:layout_height="24dp"
+>>>>>>> 625e66db3c4e0c04cfe8bbdcc14d89b9b503c83c
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/scrollView3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"></LinearLayout>
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10"></LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

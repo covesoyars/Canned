@@ -35,6 +35,8 @@ public class Volunteer extends User {
     public void verify(){
         verified = true;
     }
+    // Used by manager to remove a volunteers verification
+    public void setVerification(boolean verify) { verified = verify; }
     // will be used to display appropriate hub page and sort into verified/unverified volunteers
     public boolean isVerified(){
         return verified;

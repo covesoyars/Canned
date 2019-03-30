@@ -62,6 +62,13 @@ public class manageVolunteers extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     QuerySnapshot q = task.getResult();
+                    /*
+                    at some point we need to sort this query so that all unverified users get put in first
+                    then everything should be sorted alphabeically
+                    -Javier
+                     */
+
+
                     if(!q.isEmpty()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             String p = document.getData().get("pass").toString();
@@ -91,7 +98,7 @@ public class manageVolunteers extends AppCompatActivity {
     }
     public void createButtons(){
 
-        final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScroll);
+        final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScrollVolenteer);
 
         //start playing around with the volunteer arraylist here
         // create the layout params that will be used to define how your
