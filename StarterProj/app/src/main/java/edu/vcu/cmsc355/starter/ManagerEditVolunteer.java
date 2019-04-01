@@ -5,7 +5,7 @@
  *
  * Created by: Justin Nelson
  *
- * Edited by: Justin Nelson,
+ * Edited by: Justin Nelson, Cove Soyars
  */
 
 
@@ -18,6 +18,9 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 
 public class ManagerEditVolunteer extends AppCompatActivity {
@@ -25,7 +28,7 @@ public class ManagerEditVolunteer extends AppCompatActivity {
     private TextView name;
     private TextView email;
     private TextView userName;
-    private TextView startDate;
+    private TextView dob;
     private ImageView pfp;
     private Volunteer thisGuy;
     private CheckBox verified;
@@ -42,9 +45,14 @@ public class ManagerEditVolunteer extends AppCompatActivity {
         verified = (CheckBox) findViewById(R.id.checkBox2);
         name = (TextView) findViewById(R.id.textView17);
         name.setText(thisGuy.getFirstName() + " " + thisGuy.getLastName());
-        email = (TextView) findViewById(R.id.textView19);
+        email = (TextView) findViewById(R.id.textView24);
         email.setText(thisGuy.getEmailAddress());
-        userName = (TextView) findViewById(R.id.textView18);
+        userName = (TextView) findViewById(R.id.textView19);
+        userName.setText(thisGuy.getUserName());
+
+        dob = (TextView) findViewById(R.id.textView26);
+        dob.setText(String.valueOf(thisGuy.getDob()));
+
         pfp = (ImageView) findViewById(R.id.pfp);
         Uri newPic = thisGuy.getProfilePicture();
         pfp.setImageURI(newPic);
@@ -57,5 +65,14 @@ public class ManagerEditVolunteer extends AppCompatActivity {
                 thisGuy.setVerification(!thisGuy.isVerified());
             }
         });
+    }
+
+    // on click for remove button
+    public void remove(View v){
+        removeVolunteer(thisGuy);
+    }
+    // removes volunteer from the database
+    private void removeVolunteer(Volunteer thisGuy){
+        // remove volunteer from database with information that matches thisGuy
     }
 }
