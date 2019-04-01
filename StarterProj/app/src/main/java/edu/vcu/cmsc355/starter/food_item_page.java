@@ -2,7 +2,7 @@ package edu.vcu.cmsc355.starter;
 
 import android.app.ActionBar;
 import android.os.Bundle;
-
+import android.widget.Switch;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -135,10 +135,11 @@ public class food_item_page extends AppCompatActivity {
 
 
 
-            final Button btn = new Button(this);
+            final Switch btn = new Switch(this);
             // Give button an ID
             btn.setId(j+1);
-            btn.setText("Remove Item");
+            btn.setText("Remove");
+
             // set the layoutParams on the button
             btn.setLayoutParams(params);
 
@@ -146,7 +147,15 @@ public class food_item_page extends AppCompatActivity {
             final FoodItem foodToSend = currentFood;
             btn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    toBeRemoved.add(currentFood);
+                    if(btn.isChecked()){
+                        toBeRemoved.add(currentFood);
+                        Toast.makeText(food_item_page.this,"added remove list", Toast.LENGTH_LONG).show();
+
+                    }
+                    else{
+                        toBeRemoved.remove(currentFood);
+                        Toast.makeText(food_item_page.this,"removed from remove list", Toast.LENGTH_LONG).show();
+                    }
 
                 }
             });
