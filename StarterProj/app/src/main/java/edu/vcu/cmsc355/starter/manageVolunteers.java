@@ -45,16 +45,19 @@ public class manageVolunteers extends AppCompatActivity {
         TextView name = new TextView(this);
         name.setText("Username");
         name.setWidth(nameWidth);
+        name.setTextColor(Color.WHITE);
         header.addView(name);
 
         TextView quantity2 = new TextView(this);
         quantity2.setText("First Name");
         quantity2.setWidth(nameWidth);
+        quantity2.setTextColor(Color.WHITE);
         header.addView(quantity2);
 
         TextView size = new TextView(this);
         size.setText("Last Name");
         size.setWidth(nameWidth);
+        size.setTextColor(Color.WHITE);
         header.addView(size);
 
         usersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
