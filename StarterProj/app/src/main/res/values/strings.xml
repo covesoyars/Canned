@@ -21,6 +21,7 @@
     <string name="belowThresholdButton">Low Stock Items</string>
     <string name="belowThresholdHeader">Low Stock Inventory</string>
     <string name="verified">Verified</string>
+    <string name="conPass">Confirm Password</string>
 
     <string name="manage_volunteers">Manage Volunteers</string>
 

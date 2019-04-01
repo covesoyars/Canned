@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -101,16 +102,17 @@ public class MainActivity extends AppCompatActivity {
                                 appState.setLoggedIn(v);
                                 startActivity(login);
 
-
                             }
                             startActivity(volunteerLogin);
                         }
                         else{
-                            Log.d(TAG, "User not found");
+                            //Log.d(TAG, "User not found");
+                            Toast.makeText(getApplicationContext(),"User information is incorrect",Toast.LENGTH_SHORT).show();
                         }
                     }
                     else{
-                        Log.d(TAG, "something went wrong");
+                        //Log.d(TAG, "something went wrong");
+                        Toast.makeText(getApplicationContext(),"User information is incorrect",Toast.LENGTH_SHORT).show();
                     }
                 }
             });
