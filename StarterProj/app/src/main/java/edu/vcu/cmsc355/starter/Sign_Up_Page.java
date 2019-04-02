@@ -34,10 +34,9 @@ public class Sign_Up_Page extends AppCompatActivity {
     private static final String KEY_DATE = "date";
     private boolean fb = true;
 
-    private Volunteer newV;
     private EditText user;
     private EditText pass;
-    //private EditText passConfirm;
+    private EditText passConfirm;
     private EditText first;
     private EditText last;
     private EditText email;
@@ -59,10 +58,10 @@ public class Sign_Up_Page extends AppCompatActivity {
         setContentView(R.layout.activity_sign__up__page);
         user = (EditText) findViewById(R.id.editText3);
         pass = (EditText) findViewById(R.id.editText4);
-        //passConfirm = (EditText) findViewById(R.id.editText3);
-        first = (EditText) findViewById(R.id.editText5);
-        last = (EditText) findViewById(R.id.editText6);
-        email = (EditText) findViewById(R.id.editText7);
+        passConfirm = (EditText) findViewById(R.id.editText5);
+        first = (EditText) findViewById(R.id.editText6);
+        last = (EditText) findViewById(R.id.editText7);
+        email = (EditText) findViewById(R.id.editText24);
         date = (EditText) findViewById(R.id.editText8);
         FirebaseApp.initializeApp(this);
     }
@@ -72,14 +71,15 @@ SETS UP BACK BUTTON TO LOGIN PAGE
  */
     public void back(View View)
     {
-
        finish();
     }
 
     public void addUser(View view){
 
         if(verifyInputs()){ // if all fields are valid, create a volunteer with the information
+            if(pass.getText().toString().equals(passConfirm.getText().toString())){
 
+            }
             Volunteer newVol = new Volunteer(pass.getText().toString().trim(),
                     user.getText().toString().trim(),
                     first.getText().toString().trim(),
@@ -164,9 +164,6 @@ SETS UP BACK BUTTON TO LOGIN PAGE
         if(fb){
             Toast.makeText(this, "Username is already taken", Toast.LENGTH_SHORT).show();
             return false;
-        }
-        else{
-            Toast.makeText(this, "Username isn't already taken", Toast.LENGTH_SHORT).show();
         }
 
         if(pass.getText().toString().isEmpty()){

@@ -1,43 +1,57 @@
-Each member's contribution:
+Each mEach member's contribution:
 
-	Javier Moreira: Made majority of UI xml pages, got artwork for logo, helped build activities, helped debug, tested on phone
+    Javier Moreira: (1) Made majority of UI xml pages, got artwork for logo, helped build activities, helped debug, tested on phone (2) worked on setting up the layout of the inventory/volunteer page. 
 
-	Justin Nelson: Figured out how to access the phone's gallery and implemented it, made UI xml pages, 
-	helped debug, helped build activities
+ Justin Nelson: (1)Figured out how to access the phone's gallery and implemented it, made UI xml pages, helped debug, helped build activities(2) worked on donor and food item class as well as attempted to make the app receive csv file. Created the personal volunteer 
+page
 
-	Sam Portillo: Implemented Firebase, kept track of scrum meeting notes, tested on phone
+    Sam Portillo: (1) Implemented Firebase, kept track of scrum meeting notes, tested on phone (2) Finish sign up page, created manage volunteers activity, created volunteer database, started fooditem database, pulled various pieces of data from volunteer database in different activities
 
-	Cove Soyars: Build sign up and forgot information activities, implemented global user variable, designed 
-	User classes, set up email domain and Mailgun 
+    Cove Soyars: (1) Build sign up and forgot information activities, implemented global user variable, designed User classes, set up email domain and Mailgun. (2) Saved user that’s logged in, helped create inventory page and its child pages, helped send data between activities, 
 
 What was accomplished:
-	
-	xml and activity code built: main activity, sign up, forgot information, edit profile
 
-	xml written for hub pages (includes back button and edit profile functions)
-	
-	email domain and mailgun account functional
+Sprint 1:
 
-	firebase implemented (mostly)
+xml and activity code built: main activity, sign up, forgot information, edit profile
+xml written for hub pages (includes back button and edit profile functions)  
+email domain and mailgun account functional
+firebase implemented (mostly)
+User and its subclasses Volunteer and Manager
+logo chosen and deployed
 
-	User and its subclasses Volunteer and Manager
+Sprint 2:
 
-	logo chosen and deployed
+Manage volunteers, inventory and add a csv file (in progress) activities built, sign up page competed, foodItem and Donor classes created, 
 
 What worked during this sprint:
 
-	Pair programming and debugging
+Sprint 1:
 
-	Team members having coding goals that built off of each others'
+Pair programming and debugging
+Team members having coding goals that build off of each others'
+High communication between members
 
-	High communication between members
+Sprint 2:
 
+Same as sprint 1, but add time management skills
 Issues encounterd:
 
-	.gitignore mishap
-	
-	Android studio overheats my computer (Cove)
 
-	Lots of general Android subtleties that got in the way
+Sprint 1:
 
-Goals that need to be modified for Sprint 2: none	
+ .gitignore mishap
+ Android studio overheats my computer (Cove)
+ Lots of general Android subtleties that got in the way
+
+
+Sprint 2:
+
+Accessing csv file 
+Passing image URIs
+General UI manipulation 
+
+Goals that need to be modified for Sprint 2: none
+
+Sprint 3: none 
+

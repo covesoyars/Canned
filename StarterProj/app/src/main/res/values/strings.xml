@@ -20,6 +20,8 @@
     <string name="csv_name">Enter file name</string>
     <string name="belowThresholdButton">Low Stock Items</string>
     <string name="belowThresholdHeader">Low Stock Inventory</string>
+    <string name="verified">Verified</string>
+    <string name="conPass">Confirm Password</string>
 
     <string name="manage_volunteers">Manage Volunteers</string>
 
@@ -38,7 +40,7 @@
     <string name="birthdate">Birthdate</string>
     <string name="firstname">First Name</string>
     <string name="lastname">Last Name</string>
-    <string name="categories">Name  \t \t\t\t\t \t\t Quantity \t\t\t Size  \t \t \t Threshold</string>
+    <string name="categories">\t  Name  \t\t\t\t\t\t\t Quantity \t\t\t\t Size  \t \t \t Threshold</string>
 
 
     <!-- Strings related to Settings -->

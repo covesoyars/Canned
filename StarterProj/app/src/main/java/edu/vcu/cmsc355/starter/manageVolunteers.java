@@ -1,6 +1,7 @@
 package edu.vcu.cmsc355.starter;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class manageVolunteers extends AppCompatActivity {
     private static final String TAG = "manageVolunteers";
@@ -32,16 +34,45 @@ public class manageVolunteers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_volunteers2);
 
-
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference usersRef = db.collection("users");
+
+        // make header:
+        LinearLayout header = findViewById(R.id.volunteerHeader);
+        // screen size universal sizes for fields:
+        int nameWidth = getResources().getDimensionPixelSize(R.dimen._65sdp);
+
+        TextView name = new TextView(this);
+        name.setText("Username");
+        name.setWidth(nameWidth);
+        name.setTextColor(Color.WHITE);
+        header.addView(name);
+
+        TextView quantity2 = new TextView(this);
+        quantity2.setText("First Name");
+        quantity2.setWidth(nameWidth);
+        quantity2.setTextColor(Color.WHITE);
+        header.addView(quantity2);
+
+        TextView size = new TextView(this);
+        size.setText("Last Name");
+        size.setWidth(nameWidth);
+        size.setTextColor(Color.WHITE);
+        header.addView(size);
 
         usersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     QuerySnapshot q = task.getResult();
+                    /*
+                    at some point we need to sort this query so that all unverified users get put in first
+                    then everything should be sorted alphabeically
+                    -Javier
+                     */
+
+
                     if(!q.isEmpty()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             String p = document.getData().get("pass").toString();
@@ -71,7 +102,7 @@ public class manageVolunteers extends AppCompatActivity {
     }
     public void createButtons(){
 
-        final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScroll);
+        final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScrollVolenteer);
 
         //start playing around with the volunteer arraylist here
         // create the layout params that will be used to define how your
@@ -85,7 +116,7 @@ public class manageVolunteers extends AppCompatActivity {
 
         for(int j=0;j<vols.size();j++)  //J is to equal the size of the Foodarray(or whatever it is)
         {
-            Volunteer c =vols.get(j);
+            final Volunteer c =vols.get(j);
 
 
 
@@ -93,21 +124,28 @@ public class manageVolunteers extends AppCompatActivity {
             LinearLayout ll = new LinearLayout(this);
             ll.setOrientation(LinearLayout.HORIZONTAL);
 
+            // screen size universal sizes for fields:
+            int numWidth = getResources().getDimensionPixelSize(R.dimen._50sdp);
+            int nameWidth = getResources().getDimensionPixelSize(R.dimen._65sdp);
+
 
             // Create TextView
             TextView name = new TextView(this);
             String n = c.getUserName();
-            name.setText(n + "     ");
+            name.setText(n);
+            name.setWidth(nameWidth);
             ll.addView(name);
 
             // Create TextView
             TextView quantity2 = new TextView(this);
-            quantity2.setText(c.getFirstName() + "     ");
+            quantity2.setText(c.getFirstName());
+            quantity2.setWidth(nameWidth);
             ll.addView(quantity2);
 
             // Create TextView
             TextView size = new TextView(this);
-            size.setText(c.getLastName() + "    ");
+            size.setText(c.getLastName());
+            size.setWidth(nameWidth);
             ll.addView(size);
 
 
@@ -115,29 +153,18 @@ public class manageVolunteers extends AppCompatActivity {
             final Button btn = new Button(this);
             // Give button an ID
             btn.setId(j+1);
-            btn.setText("Edit Item");
+            btn.setText("View Info");
             // set the layoutParams on the button
             btn.setLayoutParams(params);
             //btn.setRight(0);
             btn.setGravity(Gravity.RIGHT);
             btn.setX(100);
-//            RelativeLayout.LayoutParams btnlocation = (RelativeLayout.LayoutParams) btn.getLayoutParams();
-//            btnlocation.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-//            btn.setLayoutParams(btnlocation);
-
-
 
             final int index = j;
             // Set click listener for button
             btn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-
-                    Log.i("TAG", "index :" + index);
-
-                    Toast.makeText(getApplicationContext(),
-                            "Clicked Button Index :" + index,
-                            Toast.LENGTH_LONG).show();
-
+                    launchEditVolPage(v,c);
                 }
             });
 
@@ -146,5 +173,36 @@ public class manageVolunteers extends AppCompatActivity {
             //Add button to LinearLayout defined in XML
             lm.addView(ll);
         }
+    }
+    private void launchEditVolPage(View view, Volunteer thisGuy){
+
+
+        // create and launch intent
+        final Intent launchEdit = new Intent(manageVolunteers.this,ManagerEditVolunteer.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("thisGuy", thisGuy);
+        launchEdit.putExtra("bundle", bundle);
+        startActivity(launchEdit);
+    }
+
+    // method to sort a list of volunteers by their verification status
+    private static void sortByVerified( ArrayList<Volunteer> list)
+    {
+
+        // Find the string reference that should go in each cell of
+        // the array, from cell 0 to the end
+        for ( int j = 0; j < list.size();j++ )
+        {
+            // Find min: the index of the string reference that should go into cell j.
+            // Look through the unsorted strings (those at j or higher) for the one that is first in lexicographic order
+            int min = j;
+            for ( int k=j+1; k < list.size(); k++ )
+                if ( list.get(k).compareTo( list.get(min) ) > 0 ) min = k;
+
+            // Swap the reference at j with the reference at min
+            Collections.swap(list, j, min);
+        }
+
     }
 }

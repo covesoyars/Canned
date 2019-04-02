@@ -20,6 +20,7 @@
 
     <ImageButton
         android:id="@+id/settingsButton"
+        android:onClick="settings"
         android:layout_width="80dp"
         android:layout_height="70dp"
         android:layout_marginTop="16dp"
@@ -39,6 +40,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:onClick="inventory"
         android:text="@string/inventory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

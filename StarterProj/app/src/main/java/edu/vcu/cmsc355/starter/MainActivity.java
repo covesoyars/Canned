@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText pass;
     private static final String TAG = "MainPage";
     private boolean fb = false;
+    private Volunteer v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,23 +47,13 @@ public class MainActivity extends AppCompatActivity {
     startActivity(startSignUp);
     }
 
-    public void goToTest(View view){
-        Intent picTest = new Intent(this, PicTest.class);
-        startActivity(picTest);
-    }
-
-    public void testThanks(View view){
-        Donor donor = new Donor("Justin", "Nelson", "soyarsc@mymail.vcu.edu", "703-798-7424", "RoadWay LOL");
-        donor.sendEmail();
-    }
-
     public void forgotInfo(View view){
         Intent startForgotInfo = new Intent(this, Forgot_info.class);
         startActivity(startForgotInfo);
     }
 
     public void login(View view){
-        Intent login = new Intent(this, manager_hub_page.class);
+        final Intent login = new Intent(this, manager_hub_page.class);
         final Intent volunteerLogin = new Intent(this, Volenteer_hub_page.class);
 
         //Intent volLogin = new Intent(this, volunteer_hub_page.class);
@@ -98,15 +90,29 @@ public class MainActivity extends AppCompatActivity {
                             fb = true;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
+                                String p = document.getData().get("pass").toString();
+                                String u = document.getData().get("user").toString();
+                                String f = document.getData().get("first").toString();
+                                String l = document.getData().get("last").toString();
+                                int dob = Integer.parseInt(document.getData().get("date").toString());
+                                String e = document.getData().get("email").toString();
+
+                                v = new Volunteer(p,u,f,l,dob,e);
+                                UserLoggedIn appState = ((UserLoggedIn) getApplicationContext());
+                                appState.setLoggedIn(v);
+                                startActivity(login);
+
                             }
                             startActivity(volunteerLogin);
                         }
                         else{
-                            Log.d(TAG, "User not found");
+                            //Log.d(TAG, "User not found");
+                            Toast.makeText(getApplicationContext(),"User information is incorrect",Toast.LENGTH_SHORT).show();
                         }
                     }
                     else{
-                        Log.d(TAG, "something went wrong");
+                        //Log.d(TAG, "something went wrong");
+                        Toast.makeText(getApplicationContext(),"User information is incorrect",Toast.LENGTH_SHORT).show();
                     }
                 }
             });
