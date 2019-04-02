@@ -15,7 +15,7 @@ public class Volenteer_hub_page extends AppCompatActivity {
 
     public void recordDonations(View View)
     {
-        Intent rec = new Intent(this, recordDonations.class);
+        Intent rec = new Intent(this, chooseDonor.class);
         startActivity(rec);
     }
 }
