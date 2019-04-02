@@ -18,8 +18,12 @@ public class BelowThreshReciever extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         //addNotification(context);
         // send me an email to test if it works:
-       EmailSender sender = new EmailSender("test","soyarsc@vcu.edu","postmaster@automail-canned.com","test");
-       sender.send();
+       //EmailSender sender = new EmailSender("test","soyarsc@vcu.edu","postmaster@automail-canned.com","test");
+       //sender.send();
+    }
+
+    public void pull(){
+        //SAM i need you to pull all the fooditems from the db (i can separate out the ones below threshold)
     }
 
     /*private void addNotification(Context context) {
