@@ -13,6 +13,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -150,7 +151,6 @@ public class food_item_page extends AppCompatActivity {
                     if(btn.isChecked()){
                         toBeRemoved.add(currentFood);
                         Toast.makeText(food_item_page.this,"added remove list", Toast.LENGTH_LONG).show();
-
                     }
                     else{
                         toBeRemoved.remove(currentFood);

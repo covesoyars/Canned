@@ -23,6 +23,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class manageVolunteers extends AppCompatActivity {
     private static final String TAG = "manageVolunteers";
@@ -183,5 +184,25 @@ public class manageVolunteers extends AppCompatActivity {
         bundle.putSerializable("thisGuy", thisGuy);
         launchEdit.putExtra("bundle", bundle);
         startActivity(launchEdit);
+    }
+
+    // method to sort a list of volunteers by their verification status
+    private static void sortByVerified( ArrayList<Volunteer> list)
+    {
+
+        // Find the string reference that should go in each cell of
+        // the array, from cell 0 to the end
+        for ( int j = 0; j < list.size();j++ )
+        {
+            // Find min: the index of the string reference that should go into cell j.
+            // Look through the unsorted strings (those at j or higher) for the one that is first in lexicographic order
+            int min = j;
+            for ( int k=j+1; k < list.size(); k++ )
+                if ( list.get(k).compareTo( list.get(min) ) > 0 ) min = k;
+
+            // Swap the reference at j with the reference at min
+            Collections.swap(list, j, min);
+        }
+
     }
 }
