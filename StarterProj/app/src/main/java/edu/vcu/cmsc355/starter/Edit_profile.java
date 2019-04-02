@@ -61,9 +61,9 @@ public class Edit_profile extends AppCompatActivity implements View.OnClickListe
         newPassword = (EditText) findViewById(R.id.editText11);
         confirmNewPassword = (EditText) findViewById(R.id.editText13);
 
-        profilePic = (CircleImageView) findViewById(R.id.circleImageView);
-        Uri profileUri = loggedIn.getProfilePicture();
-        profilePic.setImageURI(profileUri);
+      //  profilePic = (CircleImageView) findViewById(R.id.circleImageView);
+       // Uri profileUri = loggedIn.getProfilePicture();
+       // profilePic.setImageURI(profileUri);
         /*try {
             Bitmap imageMap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), profileUri);
             imageMap = Bitmap.createScaledBitmap(imageMap,  600 ,600, true);
@@ -73,7 +73,7 @@ public class Edit_profile extends AppCompatActivity implements View.OnClickListe
 
         }*/
 
-        profilePic.setOnClickListener(this);
+       // profilePic.setOnClickListener(this);
 
 
     }
@@ -110,7 +110,7 @@ public class Edit_profile extends AppCompatActivity implements View.OnClickListe
                 loggedIn.setProfilePicture(newPicture);
             }
             verifyNewPassword(loggedIn);
-
+        finish();
         }
 
     }
