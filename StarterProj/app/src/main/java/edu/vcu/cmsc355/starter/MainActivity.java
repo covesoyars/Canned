@@ -8,6 +8,9 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,12 +37,22 @@ public class MainActivity extends AppCompatActivity {
     private boolean fb = false;
     private Volunteer v;
 
+    // for below threshold notifications:
+    private PendingIntent pendingIntent;
+    private AlarmManager manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         user = (EditText) findViewById(R.id.editText);
         pass = (EditText) findViewById(R.id.editText2);
+
+        // Retrieve a PendingIntent that will perform a broadcast
+        Intent alarmIntent = new Intent(this, BelowThreshReciever.class);
+        pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
+
+        startAlarm();
     }
 
     public void signUp(View view){
@@ -117,5 +130,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    public void startAlarm() {
+        manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        int interval = 86400000; // one day in milliseconds
+
+        manager.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), interval, pendingIntent);
+        Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
     }
 }
