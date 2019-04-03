@@ -53,13 +53,9 @@ public class Below_Threshold_Page extends AppCompatActivity{
         usersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
+                    if (task.isSuccessful()) {
                     QuerySnapshot q = task.getResult();
-                    /*
-                    at some point we need to sort this query so that all unverified users get put in first
-                    then everything should be sorted alphabeically
-                    -Javier
-                     */
+
 
 
                     if(!q.isEmpty()) {
@@ -75,10 +71,12 @@ public class Below_Threshold_Page extends AppCompatActivity{
 
                             FoodItem f = new FoodItem(cat, name, size, dateR, expDate,quantity, thresh);
                             foods.add(f);
+                            foods.add(f);
 
 
                         }
                     }
+
                 }
             }
         });
