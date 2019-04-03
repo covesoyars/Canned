@@ -13,7 +13,6 @@ public class recordDonations extends AppCompatActivity {
     }
 
     //ADD A RESET BUTTON
-
     public void record(View view){
 
     }

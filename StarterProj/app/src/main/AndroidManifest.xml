@@ -31,6 +31,12 @@
             android:name=".Edit_profile"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".DonorList"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".createDonor"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Volenteer_hub_page"
             android:screenOrientation="portrait" />
         <activity

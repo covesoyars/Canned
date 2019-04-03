@@ -23,6 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class Below_Threshold_Page extends AppCompatActivity{
+    private static final String TAG = "below_threspage";
 
     LinearLayout list;
     ArrayList<FoodItem> foods;
@@ -76,7 +77,7 @@ public class Below_Threshold_Page extends AppCompatActivity{
                             FoodItem f = new FoodItem(cat, name, size, dateR, expDate,quantity, thresh);
                             foods.add(f);
 
-
+                            Log.d(TAG, "DocumentSnapshot food data: " + document.getData());
                         }
                     }
                 }
@@ -90,6 +91,7 @@ public class Below_Threshold_Page extends AppCompatActivity{
             if(item.getQuantity() <= item.getThreshold()){
                 lowStockFood.add(item);
             }
+            Log.d(TAG, "here's ya data: "+ item.toString());
         }
 
         Toast.makeText(this,String.valueOf(lowStockFood.size()),Toast.LENGTH_LONG).show();

@@ -35,6 +35,7 @@ public class DonorList extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     QuerySnapshot q = task.getResult();
+
                     /*
                     at some point we need to sort this query so that all unverified users get put in first
                     then everything should be sorted alphabeically
@@ -56,6 +57,7 @@ public class DonorList extends AppCompatActivity {
                             Log.d(TAG, document.getId() + " => " + document.getData());
                             Log.d(TAG, "user is " + (d.getFirstName() + " " + d.getLastName()));
                         }
+                        //JAVI: USE YOUR MAGIC TO UNLOCK THIS METHOD
                         //createButtons();
                     }
                     else{
@@ -72,5 +74,9 @@ public class DonorList extends AppCompatActivity {
     public void createDonor(View view){
         Intent rec = new Intent(this, createDonor.class);
         startActivity(rec);
+    }
+
+    public void createButtons(){
+
     }
 }
