@@ -59,9 +59,9 @@ public class Below_Threshold_Page extends AppCompatActivity{
 
 
                     if(!q.isEmpty()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
+                        for (QueryDocumentSnapshot document : q) {
                             String cat = document.getData().get("category").toString();
-                            String dateR = document.getData().get("dateRecieved").toString();
+                            String dateR = document.getData().get("dateReceived").toString();
                             String expDate = document.getData().get("exprDate").toString();
                             String loc = document.getData().get("location").toString();
                             String name = document.getData().get("name").toString();
