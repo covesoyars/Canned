@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <application
         android:name=".UserLoggedIn"
         android:allowBackup="true"
@@ -12,53 +13,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".createDonor"></activity>
-        <activity android:name=".DonorList" />
-        <activity android:name=".ManagerEditVolunteer" />
-        <activity
-            android:name=".recordDonations"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".manageVolunteers"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".CSV_Page"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Inventory"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Edit_profile"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Volenteer_hub_page"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Sign_Up_Page"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".verify_Page"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Forgot_info"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".manager_hub_page"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".food_item_page"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".ManagerEditVolunteer"></activity>
+        <activity android:name=".recordDonations"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".manageVolunteers"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CSV_Page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Inventory"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Edit_profile"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Volenteer_hub_page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Sign_Up_Page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".verify_Page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Forgot_info"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".manager_hub_page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".food_item_page"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
-        <receiver android:name=".BelowThreshReciever" />
+        </activity>
+        <receiver android:name=".BelowThreshReciever"></receiver>
     </application>
 
 </manifest>
