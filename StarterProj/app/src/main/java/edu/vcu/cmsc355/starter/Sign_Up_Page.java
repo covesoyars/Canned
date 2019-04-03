@@ -32,6 +32,7 @@ public class Sign_Up_Page extends AppCompatActivity {
     private static final String KEY_LAST = "last";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_DATE = "date";
+    private static final String KEY_VERIFY = "verify";
     private boolean fb = true;
 
     private EditText user;
@@ -89,7 +90,7 @@ SETS UP BACK BUTTON TO LOGIN PAGE
 
             FirebaseApp.initializeApp(this);
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            CollectionReference users = db.collection("users");
+            CollectionReference users = db.collection("users2");
 
             String u = user.getText().toString().trim();
             String p = pass.getText().toString().trim();
@@ -105,6 +106,7 @@ SETS UP BACK BUTTON TO LOGIN PAGE
             note.put(KEY_LAST, l);
             note.put(KEY_DATE, d);
             note.put(KEY_EMAIL, e);
+            note.put(KEY_VERIFY, false);
 
             users.document(u).set(note)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -141,7 +143,7 @@ SETS UP BACK BUTTON TO LOGIN PAGE
     private boolean verifyInputs(){
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("users").document(user.getText().toString().trim());
+        DocumentReference docRef = db.collection("users2").document(user.getText().toString().trim());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>(){
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

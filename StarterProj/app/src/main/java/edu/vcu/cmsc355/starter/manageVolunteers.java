@@ -253,7 +253,6 @@ public class manageVolunteers extends AppCompatActivity {
     // method to sort a list of volunteers by their verification status
     private static void sortByVerified( ArrayList<Volunteer> list)
     {
-
         // Find the string reference that should go in each cell of
         // the array, from cell 0 to the end
         for ( int j = 0; j < list.size();j++ )

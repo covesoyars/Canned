@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                                 v = new Volunteer(p,u,f,l,dob,e);
                                 UserLoggedIn appState = ((UserLoggedIn) getApplicationContext());
                                 appState.setLoggedIn(v);
-                                startActivity(login);
+                                // startActivity(login);
 
                             }
                             startActivity(volunteerLogin);

@@ -2,7 +2,6 @@ package edu.vcu.cmsc355.starter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.view.View;
 import android.widget.EditText;
 
@@ -18,22 +17,14 @@ public class createDonor extends AppCompatActivity {
     private EditText first;
     private EditText last;
     private EditText email;
-=======
-
-public class createDonor extends AppCompatActivity {
->>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_donor);
     }
-<<<<<<< HEAD
 
-    public void addDonor(View view){
+    public void addDonor(View view) {
         int i = 1;
     }
 }
-=======
-}
->>>>>>> origin/master
