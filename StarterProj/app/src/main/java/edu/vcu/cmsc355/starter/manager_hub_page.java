@@ -35,9 +35,9 @@ public class manager_hub_page extends AppCompatActivity {
         startActivity(csvPage);
     }
 
-    public void belowThreshold(View view){
-        Intent belowThresholdPage = new Intent(this, Below_Threshold_Page.class);
-        startActivity(belowThresholdPage);
+    public void manageInventory(View view){
+        Intent manInventory = new Intent(this, ManagerInventory.class);
+        startActivity(manInventory);
     }
 
     public void back(View View)

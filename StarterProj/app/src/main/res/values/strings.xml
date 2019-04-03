@@ -41,6 +41,8 @@
     <string name="firstname">First Name</string>
     <string name="lastname">Last Name</string>
     <string name="categories">\t  Name  \t\t\t\t\t\t\t Quantity \t\t\t\t Size  \t \t \t Threshold</string>
+    <string name="low_stock_button">Low Stock Inventory</string>
+    <string name="add_location_button">Add/remove Storage Locations</string>
 
 
     <!-- Strings related to Settings -->

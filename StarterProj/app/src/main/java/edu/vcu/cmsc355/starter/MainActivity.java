@@ -133,10 +133,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void startAlarm() {
         manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        int interval = 86400000; // one day in milliseconds
-        //int interval = 120000; // two minutes for testing
+        //int interval = 86400000; // one day in milliseconds
+        int interval = 3000; // 30 seconds for testing
 
         manager.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), interval, pendingIntent);
-        Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
     }
 }
