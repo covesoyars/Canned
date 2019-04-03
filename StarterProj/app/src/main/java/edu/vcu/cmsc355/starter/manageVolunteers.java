@@ -38,7 +38,7 @@ public class manageVolunteers extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference usersRef = db.collection("users");
+        CollectionReference usersRef = db.collection("users2");
 
         // make header:
         LinearLayout header = findViewById(R.id.volunteerHeader);
@@ -199,12 +199,19 @@ public class manageVolunteers extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference usersRef = db.collection("users");
 
-        usersRef.whereArrayContains("user", s).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        // call to this object when making queries
+        CollectionReference usersRef = db.collection("users2");
+
+        // use this to write the query
+        // this is where sam's searching error is
+        usersRef.whereEqualTo("user", s).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                // if it didn't crash connecting to firebase
                 if (task.isSuccessful()) {
+
+                    // result of the search
                     QuerySnapshot q = task.getResult();
                     /*
                     at some point we need to sort this query so that all unverified users get put in first
@@ -212,9 +219,11 @@ public class manageVolunteers extends AppCompatActivity {
                     -Javier
                      */
 
-
+                    // if the result of the search is empty
                     if(!q.isEmpty()) {
+
                         for (QueryDocumentSnapshot document : task.getResult()) {
+                            // cast data fields to strings
                             String p = document.getData().get("pass").toString();
                             String u = document.getData().get("user").toString();
                             String f = document.getData().get("first").toString();
