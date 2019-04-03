@@ -1,13 +1,23 @@
 package edu.vcu.cmsc355.starter;
 import android.app.ActionBar;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -31,6 +41,43 @@ public class Below_Threshold_Page extends AppCompatActivity{
         int nameWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
         int numWidth = getResources().getDimensionPixelSize(R.dimen._50sdp);
 
+        //Justin started here
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference usersRef = db.collection("foodItems");
+
+        usersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot q = task.getResult();
+                    /*
+                    at some point we need to sort this query so that all unverified users get put in first
+                    then everything should be sorted alphabeically
+                    -Javier
+                     */
+
+
+                    if(!q.isEmpty()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String cat = document.getData().get("category").toString();
+                            String dateR = document.getData().get("dateRecieved").toString();
+                            String expDate = document.getData().get("exprDate").toString();
+                            String loc = document.getData().get("location").toString();
+                            String name = document.getData().get("name").toString();
+                            int quantity = Integer.parseInt(document.getData().get("quantity").toString());
+                            String size = document.getData().get("size").toString();
+                            int thresh = Integer.parseInt(document.getData().get("threshold").toString());
+
+                            FoodItem f = new FoodItem(cat, name, size, dateR, expDate,quantity, thresh);
+                            foods.add(f);
+
+
+                        }
+                    }
+                }
+            }
+        });
 
         // add header here
 
