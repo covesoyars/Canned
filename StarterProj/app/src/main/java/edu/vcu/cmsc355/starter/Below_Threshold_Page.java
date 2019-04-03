@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,6 +41,9 @@ public class Below_Threshold_Page extends AppCompatActivity{
         // set text view sizes (universal for all screens)
         int nameWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
         int numWidth = getResources().getDimensionPixelSize(R.dimen._50sdp);
+
+        foods = new ArrayList<FoodItem>();
+        lowStockFood = new ArrayList<FoodItem>();
 
         //Justin started here
         FirebaseApp.initializeApp(this);
@@ -79,6 +83,18 @@ public class Below_Threshold_Page extends AppCompatActivity{
             }
         });
 
+        // add items with low inventory to list that will be displayed
+        Toast.makeText(this,String.valueOf(foods.size()),Toast.LENGTH_LONG).show();
+
+        for(FoodItem item : foods){
+            if(item.getQuantity() <= item.getThreshold()){
+                lowStockFood.add(item);
+            }
+        }
+
+        Toast.makeText(this,String.valueOf(lowStockFood.size()),Toast.LENGTH_LONG).show();
+
+
         // add header here
 
         // set variables for inside loop:
@@ -94,7 +110,6 @@ public class Below_Threshold_Page extends AppCompatActivity{
             ll.setOrientation(LinearLayout.HORIZONTAL);
 
             // if we're passing a new category, print a header:
-            //ad catigory soace
             if(!currentFood.getCategory().equals(currentCategory))
             {
                 currentCategory=currentFood.getCategory();
@@ -147,7 +162,6 @@ public class Below_Threshold_Page extends AppCompatActivity{
         }
 
 
-        // SAM : pull all items from the food database that have quantities below their threshold level:
 
 
     }

@@ -49,6 +49,9 @@
             android:name=".food_item_page"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Below_Threshold_Page"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
