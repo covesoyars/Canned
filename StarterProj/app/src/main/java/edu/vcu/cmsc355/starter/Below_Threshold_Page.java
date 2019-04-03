@@ -54,19 +54,15 @@ public class Below_Threshold_Page extends AppCompatActivity{
         usersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
+                    if (task.isSuccessful()) {
                     QuerySnapshot q = task.getResult();
-                    /*
-                    at some point we need to sort this query so that all unverified users get put in first
-                    then everything should be sorted alphabeically
-                    -Javier
-                     */
+
 
 
                     if(!q.isEmpty()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
+                        for (QueryDocumentSnapshot document : q) {
                             String cat = document.getData().get("category").toString();
-                            String dateR = document.getData().get("dateRecieved").toString();
+                            String dateR = document.getData().get("dateReceived").toString();
                             String expDate = document.getData().get("exprDate").toString();
                             String loc = document.getData().get("location").toString();
                             String name = document.getData().get("name").toString();
@@ -80,6 +76,7 @@ public class Below_Threshold_Page extends AppCompatActivity{
                             Log.d(TAG, "DocumentSnapshot food data: " + document.getData());
                         }
                     }
+
                 }
             }
         });
