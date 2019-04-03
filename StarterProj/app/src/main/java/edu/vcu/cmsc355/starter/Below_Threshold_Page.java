@@ -58,7 +58,7 @@ public class Below_Threshold_Page extends AppCompatActivity{
 
 
 
-                   // if(!q.isEmpty()) {
+                    if(!q.isEmpty()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             String cat = document.getData().get("category").toString();
                             String dateR = document.getData().get("dateRecieved").toString();
@@ -73,7 +73,7 @@ public class Below_Threshold_Page extends AppCompatActivity{
                             foods.add(f);
 
 
-                     //   }
+                        }
                     }
 
                 }
