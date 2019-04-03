@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             fb = false;
             FirebaseApp.initializeApp(this);
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            CollectionReference usersRef = db.collection("users");
+            CollectionReference usersRef = db.collection("users2");
             String u = user.getText().toString().trim();
             String p = pass.getText().toString().trim();
 
@@ -109,14 +109,20 @@ public class MainActivity extends AppCompatActivity {
                                 String l = document.getData().get("last").toString();
                                 int dob = Integer.parseInt(document.getData().get("date").toString());
                                 String e = document.getData().get("email").toString();
+                                boolean ver = Boolean.parseBoolean(document.getData().get("verify").toString());
 
                                 v = new Volunteer(p,u,f,l,dob,e);
+                                if(ver)
+                                    v.verify();
                                 UserLoggedIn appState = ((UserLoggedIn) getApplicationContext());
                                 appState.setLoggedIn(v);
                                 // startActivity(login);
 
                             }
-                            startActivity(volunteerLogin);
+                            if(v.isVerified()){ startActivity(volunteerLogin); }
+                            else{
+                                Toast.makeText(getApplicationContext(),"User is not verified",Toast.LENGTH_SHORT).show();
+                            }
                         }
                         else{
                             Log.d(TAG, "User not found");
