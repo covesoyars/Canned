@@ -27,6 +27,7 @@ public class UserLoggedIn extends Application {
      * used to verifiy if user is a manager (will be important for launching correct hub page)
      * @return true if user is manager
      */
+
     public boolean isManager(){
         if(loggedIn instanceof Manager){
             return true;

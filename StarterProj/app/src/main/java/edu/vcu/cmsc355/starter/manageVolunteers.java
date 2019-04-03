@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import java.util.Collections;
 public class manageVolunteers extends AppCompatActivity {
     private static final String TAG = "manageVolunteers";
     private ArrayList<Volunteer> vols = new ArrayList<Volunteer>();
+    private EditText search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +105,9 @@ public class manageVolunteers extends AppCompatActivity {
     public void createButtons(){
 
         final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScrollVolenteer);
+
+        if(((LinearLayout) lm).getChildCount() > 0)
+            ((LinearLayout) lm).removeAllViews();
 
         //start playing around with the volunteer arraylist here
         // create the layout params that will be used to define how your
@@ -184,6 +189,56 @@ public class manageVolunteers extends AppCompatActivity {
         bundle.putSerializable("thisGuy", thisGuy);
         launchEdit.putExtra("bundle", bundle);
         startActivity(launchEdit);
+    }
+
+    public void searchVolunteers(View view){
+        search = (EditText) findViewById(R.id.editText25);
+        String s = search.getText().toString();
+        vols = new ArrayList<Volunteer>();
+
+
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference usersRef = db.collection("users");
+
+        usersRef.whereArrayContains("user", s).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot q = task.getResult();
+                    /*
+                    at some point we need to sort this query so that all unverified users get put in first
+                    then everything should be sorted alphabeically
+                    -Javier
+                     */
+
+
+                    if(!q.isEmpty()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String p = document.getData().get("pass").toString();
+                            String u = document.getData().get("user").toString();
+                            String f = document.getData().get("first").toString();
+                            String l = document.getData().get("last").toString();
+                            int dob = Integer.parseInt(document.getData().get("date").toString());
+                            String e = document.getData().get("email").toString();
+
+                            Volunteer v = new Volunteer(p,u,f,l,dob,e);
+                            vols.add(v);
+
+                            Log.d(TAG, document.getId() + " => " + document.getData());
+                            Log.d(TAG, "user is " + v.getUserName());
+                        }
+                        createButtons();
+                    }
+                    else{
+                        Log.d(TAG, "User not found");
+                    }
+                }
+                else{
+                    Log.d(TAG, "something went wrong");
+                }
+            }
+        });
     }
 
     // method to sort a list of volunteers by their verification status

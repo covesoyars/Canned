@@ -36,9 +36,10 @@
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/volunteerHeader">
+            app:layout_constraintTop_toBottomOf="@+id/volunteerHeader"
+            app:layout_constraintVertical_bias="0.485">
 
             <LinearLayout
                 android:id="@+id/mainScrollVolenteer"
@@ -50,10 +51,10 @@
         <LinearLayout
             android:id="@+id/volunteerHeader"
 
-            android:layout_width="0dp"
+            android:layout_width="411dp"
             android:layout_height="23dp"
 
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="40dp"
             android:background="@color/colorPrimary"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +62,39 @@
             app:layout_constraintTop_toBottomOf="@+id/textView10">
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/button16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Search"
+            android:onClick="searchVolunteers"
+            app:layout_constraintBottom_toTopOf="@+id/volunteerHeader"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/editText25"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <EditText
+            android:id="@+id/editText25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:hint="Enter name"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/volunteerHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
