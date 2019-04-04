@@ -25,6 +25,7 @@ public class createDonor extends AppCompatActivity {
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PHONE = "phone";
     private static final String KEY_ADDRESS = "address";
+    private static final String KEY_DONATES = "donated";
     private boolean fb = true;
 
     private EditText first;
@@ -51,6 +52,7 @@ public class createDonor extends AppCompatActivity {
         String e = email.getText().toString().trim();
         String p = phone.getText().toString().trim();
         String a = address.getText().toString().trim();
+        String d[] = new String[0];
 
         //Donor d = new Donor()
 
@@ -64,6 +66,8 @@ public class createDonor extends AppCompatActivity {
         note.put(KEY_EMAIL, e);
         note.put(KEY_PHONE, p);
         note.put(KEY_ADDRESS, a);
+        note.put(KEY_ADDRESS, d);
+
 
 
         users.document(e).set(note)
