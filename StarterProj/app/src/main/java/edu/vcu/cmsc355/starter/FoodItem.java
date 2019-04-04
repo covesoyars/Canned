@@ -27,7 +27,6 @@ public class FoodItem implements Serializable {
     public FoodItem(){
         setCategory("");
         setSize("");
-        setDateRecieved("");
         setExprDate("");
         setQuantity(0);
         setThreshold(0);
@@ -41,17 +40,15 @@ public class FoodItem implements Serializable {
      * @param category
      * @param name
      * @param size
-     * @param dateRecieved
      * @param exprDate
      * @param quantity
      * @param threshold
      */
-    public FoodItem(String category, String name, String size, String dateRecieved, String exprDate,
+    public FoodItem(String category, String name, String size, String exprDate,
                     int quantity, int threshold) {
         this.category = category;
         this.name = name;
         this.size = size;
-        this.dateRecieved = dateRecieved;
         this.exprDate = exprDate;
         this.quantity = quantity;
         this.threshold = threshold;
@@ -75,13 +72,7 @@ public class FoodItem implements Serializable {
         this.size = size;
     }
 
-    public String getDateRecieved() {
-        return dateRecieved;
-    }
 
-    public void setDateRecieved(String dateRecieved) {
-        this.dateRecieved = dateRecieved;
-    }
 
     public String getExprDate() {
         return exprDate;
