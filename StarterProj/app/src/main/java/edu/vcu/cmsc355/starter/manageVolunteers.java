@@ -1,6 +1,8 @@
 package edu.vcu.cmsc355.starter;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -117,7 +119,10 @@ public class manageVolunteers extends AppCompatActivity {
 
         for(int j = 0; j<vols.size();j++){
             Log.d(TAG, "CHECK USER " + vols.get(j).getUserName());
+            Log.d(TAG,"IS VERIFIED? " + vols.get(j).isVerified());
         }
+
+        sortByVerified(vols);
 
         for(int j=0;j<vols.size();j++)  //J is to equal the size of the Foodarray(or whatever it is)
         {
@@ -268,4 +273,6 @@ public class manageVolunteers extends AppCompatActivity {
         }
 
     }
+
+
 }

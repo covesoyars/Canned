@@ -13,6 +13,10 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
+
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -172,6 +176,25 @@ public class food_item_page extends AppCompatActivity {
 
 
 
+    }
+
+    public void finalize(View v){
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Finalize Changes?")
+                .setMessage("Are you sure you want to remove these items?")
+                .setPositiveButton("Finish", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // push changes to database (items removed)
+
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
 }
