@@ -11,6 +11,8 @@
 
 package edu.vcu.cmsc355.starter;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -69,9 +71,26 @@ public class ManagerEditVolunteer extends AppCompatActivity {
 
     // on click for remove button
     public void remove(View v){
-        removeVolunteer(thisGuy);
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Remove volunteer?")
+                .setMessage("Are you sure you want to remove this volunteer?")
+                .setPositiveButton("Finish", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // remove jimbo from volunteer database
+                        removeVolunteer(thisGuy);
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
-    // removes volunteer from the database
+
+
+
     private void removeVolunteer(Volunteer thisGuy){
         // remove volunteer from database with information that matches thisGuy
     }
