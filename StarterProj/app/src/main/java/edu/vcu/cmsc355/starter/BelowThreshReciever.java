@@ -98,7 +98,7 @@ public class BelowThreshReciever extends BroadcastReceiver {
                         message = message + "\n";
 
                         message = message + "Thanks,\nThe Canned Team";
-                        EmailSender sender = new EmailSender(message,"soyarsc@vcu.edu","postmaster@automail-canned.com","Expring/Low Stock foods");
+                        EmailSender sender = new EmailSender(message,"no@email.com","postmaster@automail-canned.com","Expring/Low Stock foods");
                         sender.send();
 
 
