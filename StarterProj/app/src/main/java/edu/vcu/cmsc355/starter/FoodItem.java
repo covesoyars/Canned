@@ -1,6 +1,10 @@
 package edu.vcu.cmsc355.starter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 /***
  * Class to hold information about food items
@@ -117,6 +121,32 @@ public class FoodItem implements Serializable {
         else{
             return this.getCategory().compareTo(two.getCategory());
         }
+    }
+
+    // determines if item is expired
+    public boolean isExpired(){
+
+        int nowDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        int nowMonth = Calendar.getInstance().get(Calendar.MONTH) + 1; // months start at 0 lol
+        int nowYear = Calendar.getInstance().get(Calendar.YEAR);
+
+        int itemMonth = Integer.parseInt(exprDate.substring(0,2));
+        int itemDay = Integer.parseInt(exprDate.substring(2,4));
+        int itemYear = Integer.parseInt(exprDate.substring(4));
+
+        if(nowMonth > itemMonth || nowYear > itemYear){ // if the item's month/year is passed the current month/year
+            return true; //expired
+        }
+
+        else if(nowDay -2  <= itemDay && nowMonth  == itemMonth){  // if the item has the same month, but the day is
+            // more than 2 days greater,
+            return true; // expired
+        }
+
+        else{
+            return false;
+        }
+
     }
 
 }

@@ -4,54 +4,103 @@ import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.app.PendingIntent;
 import android.app.NotificationManager;
 import android.app.NotificationChannel;
 import android.os.Build;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import java.util.ArrayList;
 
 // reciever of alarm in main activity that sends manager an email and notification with the food that
 // is below the threshold level
 // main activity will need to only call startAlarm() if the person logging in is a manager
 public class BelowThreshReciever extends BroadcastReceiver {
 
+    ArrayList<FoodItem> foods;
+    ArrayList<FoodItem> exprFoods;
+    ArrayList<FoodItem> lowStockFoods;
+    String message;
+
+
+    private static final String TAG = "below_threspage";
+
     @Override
     public void onReceive(Context context, Intent intent) {
-        addNotification(context);
-        // send me an email to test if it works:
-       //EmailSender sender = new EmailSender("test","soyarsc@vcu.edu","postmaster@automail-canned.com","test");
-       //sender.send();
+       message = "Hello,\n\nThe following foods are expiring soon:\n\n";
+
+        FirebaseApp.initializeApp(context);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference usersRef = db.collection("foodItems");
+
+        usersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot q = task.getResult();
+
+
+
+                    if(!q.isEmpty()) {
+                        for (QueryDocumentSnapshot document : q) {
+                            String cat = document.getData().get("category").toString();
+                            String expDate = document.getData().get("exprDate").toString();
+                            String loc = document.getData().get("location").toString();
+                            String name = document.getData().get("name").toString();
+                            int quantity = Integer.parseInt(document.getData().get("quantity").toString());
+                            String size = document.getData().get("size").toString();
+                            int thresh = Integer.parseInt(document.getData().get("threshold").toString());
+
+                            FoodItem f = new FoodItem(cat, name, size, expDate,quantity, thresh);
+                            foods.add(f);
+
+
+                        }
+                        // grab foods that are expired or below threshold level
+                        for(FoodItem item :foods){
+                            if(item.isExpired()){
+                                exprFoods.add(item);
+                            }
+
+                            if(item.getThreshold() > item.getQuantity()){
+                                lowStockFoods.add(item);
+                            }
+                        }
+                        for(FoodItem item :exprFoods){ // add expired foods to message
+                            message = message + item.getName() + " " + item.getSize() + " " + item.getLocation() + "\n";
+                        }
+
+                        message = message + "\n\n";
+                        message = message + "The following foods are below their threshold level:\n\n";
+
+                        for(FoodItem item :lowStockFoods){ // add expired foods to message
+                            message = message + item.getName() + " " + item.getSize() + " Quantity: " + item.getQuantity()
+                                    + "Threshold: "+ item.getThreshold() + "\n";
+                        }
+
+                        EmailSender sender = new EmailSender(message,"soyarsc@vcu.edu","postmaster@automail-canned.com","Expring/Low Stock foods");
+                        sender.send();
+
+
+
+                    }
+
+                }
+            }
+        });
     }
 
-    public void pull(){
-        //SAM i need you to pull all the fooditems from the db (i can separate out the ones below threshold)
-    }
 
-    private void addNotification(Context context) {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            String CHANNEL_ID = "channel_0";
-            CharSequence name = "Inventory";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID,name, NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationCompat.Builder builder =
-                    new NotificationCompat.Builder(context);
-            builder.setSmallIcon(R.drawable.default_profile_picture)
-                    .setContentTitle("Low stock items")
-                    .setContentText("Check your email for a list of items below their threshold" +
-                            "level.");
-
-            Intent notificationIntent = new Intent(context, MainActivity.class);
-            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
-            builder.setContentIntent(contentIntent);
-
-            // Add as notification
-            NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            manager.createNotificationChannel(mChannel);
-
-            manager.notify(0, builder.build());
-        }
-    }
 }

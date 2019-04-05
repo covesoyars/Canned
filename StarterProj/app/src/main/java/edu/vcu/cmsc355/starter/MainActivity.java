@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Intent alarmIntent = new Intent(this, BelowThreshReciever.class);
         pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
 
-        startAlarm();
+        //startAlarm();
     }
 
     public void signUp(View view){
