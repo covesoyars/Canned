@@ -40,6 +40,8 @@ public class BelowThreshReciever extends BroadcastReceiver {
        message = "Hello,\n\nThe following foods are expiring soon:\n\n";
 
        foods = new ArrayList<FoodItem>();
+       lowStockFoods = new ArrayList<FoodItem>();
+       exprFoods = new ArrayList<FoodItem>();
 
         FirebaseApp.initializeApp(context);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -67,7 +69,7 @@ public class BelowThreshReciever extends BroadcastReceiver {
                             // FoodItem f = new FoodItem(cat, name, size, expDate,quantity, thresh);
 
                             // this line is to test our stuff
-                            FoodItem f = new FoodItem("a", "a", "a", "a", 5, 5);
+                            FoodItem f = new FoodItem(cat, name, size, expDate, quantity, thresh);
                             foods.add(f);
 
 
@@ -83,17 +85,19 @@ public class BelowThreshReciever extends BroadcastReceiver {
                             }
                         }
                         for(FoodItem item :exprFoods){ // add expired foods to message
-                            message = message + item.getName() + " " + item.getSize() + " " + item.getLocation() + "\n";
+                            message = message + item.getName() + " " + item.getSize() +  " Expiring: " + item.getExprDate() +" " + item.getLocation() + "\n";
                         }
 
                         message = message + "\n\n";
                         message = message + "The following foods are below their threshold level:\n\n";
 
                         for(FoodItem item :lowStockFoods){ // add expired foods to message
-                            message = message + item.getName() + " " + item.getSize() + " Quantity: " + item.getQuantity()
+                            message = message + item.getName() + " " + item.getSize() + " Quantity: " + item.getQuantity() + " "
                                     + "Threshold: "+ item.getThreshold() + "\n";
                         }
+                        message = message + "\n";
 
+                        message = message + "Thanks,\nThe Canned Team";
                         EmailSender sender = new EmailSender(message,"soyarsc@vcu.edu","postmaster@automail-canned.com","Expring/Low Stock foods");
                         sender.send();
 

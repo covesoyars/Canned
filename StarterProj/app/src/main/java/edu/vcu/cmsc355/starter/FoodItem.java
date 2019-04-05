@@ -129,6 +129,7 @@ public class FoodItem implements Serializable {
         int nowDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         int nowMonth = Calendar.getInstance().get(Calendar.MONTH) + 1; // months start at 0 lol
         int nowYear = Calendar.getInstance().get(Calendar.YEAR);
+        nowYear = nowYear % 100;
 
         int itemMonth = Integer.parseInt(exprDate.substring(0,2));
         int itemDay = Integer.parseInt(exprDate.substring(2,4));
@@ -138,7 +139,7 @@ public class FoodItem implements Serializable {
             return true; //expired
         }
 
-        else if(nowDay -2  <= itemDay && nowMonth  == itemMonth){  // if the item has the same month, but the day is
+        else if(nowDay + 2  <= itemDay && nowMonth  == itemMonth){  // if the item has the same month, but the day is
             // more than 2 days greater,
             return true; // expired
         }
