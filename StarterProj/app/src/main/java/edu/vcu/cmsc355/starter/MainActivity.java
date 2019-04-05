@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         user = (EditText) findViewById(R.id.editText);
         pass = (EditText) findViewById(R.id.editText2);
-
         // Retrieve a PendingIntent that will perform a broadcast
         Intent alarmIntent = new Intent(this, BelowThreshReciever.class);
         pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
