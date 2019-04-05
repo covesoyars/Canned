@@ -10,7 +10,6 @@ public class addFood extends AppCompatActivity {
     private static final String TAG = "addFoodPage";
     private static final String KEY_NAME = "name";
     private static final String KEY_SIZE = "size";
-    private static final String KEY_DATE = "dateReceived";
     private static final String KEY_EXPR = "exprDate";
     private static final String KEY_QUANTITY = "quantity";
     private static final String KEY_THRESHOLD = "threshold";
@@ -18,7 +17,6 @@ public class addFood extends AppCompatActivity {
 
     private EditText name;
     private EditText size;
-    private EditText date;
     private EditText expr;
     private EditText quan;
     private EditText thresh;

@@ -39,6 +39,8 @@ public class BelowThreshReciever extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
        message = "Hello,\n\nThe following foods are expiring soon:\n\n";
 
+       foods = new ArrayList<FoodItem>();
+
         FirebaseApp.initializeApp(context);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference usersRef = db.collection("foodItems");
@@ -61,7 +63,11 @@ public class BelowThreshReciever extends BroadcastReceiver {
                             String size = document.getData().get("size").toString();
                             int thresh = Integer.parseInt(document.getData().get("threshold").toString());
 
-                            FoodItem f = new FoodItem(cat, name, size, expDate,quantity, thresh);
+                            // this should be the actual line to create fooditems
+                            // FoodItem f = new FoodItem(cat, name, size, expDate,quantity, thresh);
+
+                            // this line is to test our stuff
+                            FoodItem f = new FoodItem("a", "a", "a", "a", 5, 5);
                             foods.add(f);
 
 
