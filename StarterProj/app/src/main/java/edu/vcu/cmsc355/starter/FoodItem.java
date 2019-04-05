@@ -139,7 +139,7 @@ public class FoodItem implements Serializable {
             return true; //expired
         }
 
-        else if(nowDay + 2  <= itemDay && nowMonth  == itemMonth){  // if the item has the same month, but the day is
+        else if(nowDay + 2  >= itemDay && nowMonth  == itemMonth){  // if the item has the same month, but the day is
             // more than 2 days greater,
             return true; // expired
         }
