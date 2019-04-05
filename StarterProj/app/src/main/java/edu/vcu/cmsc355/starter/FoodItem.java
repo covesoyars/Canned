@@ -1,6 +1,10 @@
 package edu.vcu.cmsc355.starter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 /***
  * Class to hold information about food items
@@ -27,7 +31,6 @@ public class FoodItem implements Serializable {
     public FoodItem(){
         setCategory("");
         setSize("");
-        setDateRecieved("");
         setExprDate("");
         setQuantity(0);
         setThreshold(0);
@@ -41,17 +44,15 @@ public class FoodItem implements Serializable {
      * @param category
      * @param name
      * @param size
-     * @param dateRecieved
      * @param exprDate
      * @param quantity
      * @param threshold
      */
-    public FoodItem(String category, String name, String size, String dateRecieved, String exprDate,
+    public FoodItem(String category, String name, String size, String exprDate,
                     int quantity, int threshold) {
         this.category = category;
         this.name = name;
         this.size = size;
-        this.dateRecieved = dateRecieved;
         this.exprDate = exprDate;
         this.quantity = quantity;
         this.threshold = threshold;
@@ -75,13 +76,7 @@ public class FoodItem implements Serializable {
         this.size = size;
     }
 
-    public String getDateRecieved() {
-        return dateRecieved;
-    }
 
-    public void setDateRecieved(String dateRecieved) {
-        this.dateRecieved = dateRecieved;
-    }
 
     public String getExprDate() {
         return exprDate;
@@ -126,6 +121,32 @@ public class FoodItem implements Serializable {
         else{
             return this.getCategory().compareTo(two.getCategory());
         }
+    }
+
+    // determines if item is expired
+    public boolean isExpired(){
+
+        int nowDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        int nowMonth = Calendar.getInstance().get(Calendar.MONTH) + 1; // months start at 0 lol
+        int nowYear = Calendar.getInstance().get(Calendar.YEAR);
+
+        int itemMonth = Integer.parseInt(exprDate.substring(0,2));
+        int itemDay = Integer.parseInt(exprDate.substring(2,4));
+        int itemYear = Integer.parseInt(exprDate.substring(4));
+
+        if(nowMonth > itemMonth || nowYear > itemYear){ // if the item's month/year is passed the current month/year
+            return true; //expired
+        }
+
+        else if(nowDay -2  <= itemDay && nowMonth  == itemMonth){  // if the item has the same month, but the day is
+            // more than 2 days greater,
+            return true; // expired
+        }
+
+        else{
+            return false;
+        }
+
     }
 
 }

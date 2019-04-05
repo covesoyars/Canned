@@ -29,6 +29,9 @@ public class Below_Threshold_Page extends AppCompatActivity{
     ArrayList<FoodItem> foods;
     ArrayList<FoodItem> lowStockFood;
 
+    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+            ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +41,9 @@ public class Below_Threshold_Page extends AppCompatActivity{
                 ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
         list = findViewById(R.id.list);
+        final int nameWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
+        final int numWidth = getResources().getDimensionPixelSize(R.dimen._50sdp);
 
-        // set text view sizes (universal for all screens)
-        int nameWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
-        int numWidth = getResources().getDimensionPixelSize(R.dimen._50sdp);
 
         foods = new ArrayList<FoodItem>();
         lowStockFood = new ArrayList<FoodItem>();
@@ -62,7 +64,6 @@ public class Below_Threshold_Page extends AppCompatActivity{
                     if(!q.isEmpty()) {
                         for (QueryDocumentSnapshot document : q) {
                             String cat = document.getData().get("category").toString();
-                            String dateR = document.getData().get("dateReceived").toString();
                             String expDate = document.getData().get("exprDate").toString();
                             String loc = document.getData().get("location").toString();
                             String name = document.getData().get("name").toString();
@@ -70,11 +71,24 @@ public class Below_Threshold_Page extends AppCompatActivity{
                             String size = document.getData().get("size").toString();
                             int thresh = Integer.parseInt(document.getData().get("threshold").toString());
 
-                            FoodItem f = new FoodItem(cat, name, size, dateR, expDate,quantity, thresh);
+                            FoodItem f = new FoodItem(cat, name, size, expDate,quantity, thresh);
                             foods.add(f);
 
                             Log.d(TAG, "DocumentSnapshot food data: " + document.getData());
+
                         }
+                        Toast.makeText(Below_Threshold_Page.this,String.valueOf(foods.size()),Toast.LENGTH_LONG).show();
+
+                        for(FoodItem item : foods){
+                            if(item.getQuantity() <= item.getThreshold()){
+                                lowStockFood.add(item);
+                            }
+                            Log.d(TAG, "here's ya data: "+ item.toString());
+                        }
+
+
+                        Toast.makeText(Below_Threshold_Page.this,String.valueOf(lowStockFood.size()),Toast.LENGTH_LONG).show();
+                        createButtons(numWidth,nameWidth);
                     }
 
                 }
@@ -82,19 +96,16 @@ public class Below_Threshold_Page extends AppCompatActivity{
         });
 
         // add items with low inventory to list that will be displayed
-        Toast.makeText(this,String.valueOf(foods.size()),Toast.LENGTH_LONG).show();
-
-        for(FoodItem item : foods){
-            if(item.getQuantity() <= item.getThreshold()){
-                lowStockFood.add(item);
-            }
-            Log.d(TAG, "here's ya data: "+ item.toString());
-        }
 
 
-        Toast.makeText(this,String.valueOf(lowStockFood.size()),Toast.LENGTH_LONG).show();
 
 
+
+
+
+    }
+
+    public void createButtons(int numWidth, int nameWidth){
         // add header here
 
         // set variables for inside loop:
@@ -159,11 +170,9 @@ public class Below_Threshold_Page extends AppCompatActivity{
             thresh.setWidth(numWidth);
             ll.addView(thresh);
 
+            list.addView(ll);
+
         }
-
-
-
-
     }
 
 }
