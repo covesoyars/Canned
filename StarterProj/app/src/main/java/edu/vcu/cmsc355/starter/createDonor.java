@@ -15,6 +15,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +67,7 @@ public class createDonor extends AppCompatActivity {
         note.put(KEY_EMAIL, e);
         note.put(KEY_PHONE, p);
         note.put(KEY_ADDRESS, a);
-        note.put(KEY_ADDRESS, d);
+        note.put(KEY_DONATES, Arrays.asList(d));
 
 
 

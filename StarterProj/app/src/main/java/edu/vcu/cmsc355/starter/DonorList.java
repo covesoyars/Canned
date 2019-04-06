@@ -83,7 +83,7 @@ public class DonorList extends AppCompatActivity {
                             Log.d(TAG, "user is " + (d.getFirstName() + " " + d.getLastName()));
                         }
 
-                        dons=testDons; //  REMOVE THIS ONCE THE DONOR LIST WORKS
+                        //dons=testDons; //  REMOVE THIS ONCE THE DONOR LIST WORKS
                         //JAVI: USE YOUR MAGIC TO UNLOCK THIS METHOD
                         createButtons();
                     }

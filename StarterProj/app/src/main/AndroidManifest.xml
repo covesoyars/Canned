@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".addFood"></activity>
+        <activity android:name=".changeThreshold"></activity>
+        <activity android:name=".addFood" />
         <activity android:name=".ManagerInventory" />
         <activity android:name=".ManagerEditVolunteer" />
         <activity

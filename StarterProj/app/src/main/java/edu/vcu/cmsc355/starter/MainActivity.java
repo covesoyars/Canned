@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         final Intent volunteerLogin = new Intent(this, Volenteer_hub_page.class);
 
         //Intent volLogin = new Intent(this, volunteer_hub_page.class);
-        if(user.getText().toString().equals("CoolKid123") && pass.getText().toString().equals("CoolPass")) {
+        if(user.getText().toString().trim().equals("") && pass.getText().toString().trim().equals("")) {
 
             File profilePic = new File("/StarterProj/app/src/main/res/drawable/doug.png");
             User loggedInUser = new Volunteer("CoolPass", // create user object (will pull
@@ -138,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void startAlarm() {
         manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        //int interval = 86400000; // one day in milliseconds
-        int interval = 3000; // 30 seconds for testing
+        int interval = 86400000; // one day in milliseconds
+        //int interval = 3000; // 30 seconds for testing
 
         manager.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), interval, pendingIntent);
     }
