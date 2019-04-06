@@ -20,4 +20,8 @@ public class ManagerInventory extends AppCompatActivity {
         Intent launchLowStock = new Intent(this,Below_Threshold_Page.class);
         startActivity(launchLowStock);
     }
+    public void threshold(View v){
+        Intent launchThreshold = new Intent(this,changeThreshold.class);
+        startActivity(launchThreshold);
+    }
 }

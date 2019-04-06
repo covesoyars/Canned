@@ -29,4 +29,9 @@ public class Volenteer_hub_page extends AppCompatActivity {
         Intent settings = new Intent(this, Edit_profile.class);
         startActivity(settings);
     }
+    public void back(View View)
+    {
+
+        finish();
+    }
 }
