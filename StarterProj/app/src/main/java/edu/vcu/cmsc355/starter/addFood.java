@@ -59,7 +59,7 @@ public class addFood extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference users = db.collection("foods");
+        CollectionReference users = db.collection("foodItems");
 
         Map<String, Object> note = new HashMap<>();
         note.put(KEY_NAME, n);
@@ -69,17 +69,17 @@ public class addFood extends AppCompatActivity {
         note.put(KEY_THRESHOLD, t);
         note.put(KEY_LOCATION, l);
 
-        users.document(e).set(note)
+        users.document(n).set(note)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(addFood.this, "User successfully created", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(addFood.this, "Food added", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(addFood.this, "User could not be created", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(addFood.this, "Food could not be added", Toast.LENGTH_SHORT).show();
                         Log.d(TAG, e.toString());
                     }
                 });

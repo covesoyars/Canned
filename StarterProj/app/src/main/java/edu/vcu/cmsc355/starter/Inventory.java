@@ -3,7 +3,16 @@ package edu.vcu.cmsc355.starter;
 import android.content.Intent;
 
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.intuit.sdp.BuildConfig;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +43,8 @@ import android.content.Intent;
  */
 
 public class Inventory extends AppCompatActivity {
+    private static final String TAG = "Inventory";
+    private static final ArrayList<FoodItem> testFoods = new ArrayList<FoodItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,37 +52,83 @@ public class Inventory extends AppCompatActivity {
         setContentView(R.layout.activity_inventory);
 
         final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScroll);
-        int numWidth = getResources().getDimensionPixelSize(R.dimen._50sdp);
-        int nameWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
+        final int numWidth = getResources().getDimensionPixelSize(R.dimen._50sdp);
+        final int nameWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
 
         // make a list of food items to test display
-        final ArrayList<FoodItem> testFoods = new ArrayList<FoodItem>();
-        for(int i =0; i< 20; i++){
-            FoodItem item = new FoodItem();
 
-            if(i < 9){
-                item.setCategory("Fruit");
-                item.setName("apple");
-                item.setQuantity(1999);
-                item.setThreshold(100000);
-                item.setSize("69 g");
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference usersRef = db.collection("foodItems");
+
+        usersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot q = task.getResult();
+
+                    if(!q.isEmpty()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            FoodItem item = new FoodItem();
+
+                            item.setCategory(document.getData().get("category").toString());
+                            item.setName(document.getData().get("name").toString());
+                            item.setQuantity(Integer.parseInt(document.getData().get("quantity").toString()));
+                            item.setThreshold(Integer.parseInt(document.getData().get("threshold").toString()));
+                            item.setSize(document.getData().get("size").toString());
+                            testFoods.add(item);
+
+                            Log.d(TAG, document.getId() + " => " + document.getData());
+                        }
+                        createButtons(testFoods, lm, numWidth, nameWidth);
+                    }
+                    else{
+                        Log.d(TAG, "food not found");
+                    }
+                }
+                else{
+                    Log.d(TAG, "something went wrong");
+                }
             }
-            else if(i == 10){
-                item.setThreshold(12);
-                item.setName("Dog Food");
-                item.setCategory("Dog");
-                item.setSize("12 lbs");
-                item.setQuantity(11);
-            }
-            else{
-                item.setCategory("Soup");
-                item.setName("Tomato");
-                item.setQuantity(69);
-                item.setSize("12 oz");
-            }
-            testFoods.add(item);
+        });
+
+
+    }
+
+    private void launchFoodItemPage(View view, ArrayList<FoodItem> foods, String foodName){
+
+
+        // create and launch intent
+        final Intent launchFood = new Intent(Inventory.this,food_item_page.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("foodName", foodName);
+        launchFood.putExtra("bundle", bundle);
+        startActivity(launchFood);
+    }
+
+    private void selectionSort( ArrayList<FoodItem> list)
+    {
+
+        // Find the string reference that should go in each cell of
+        // the array, from cell 0 to the end
+        for ( int j = 0; j < list.size();j++ )
+        {
+            // Find min: the index of the string reference that should go into cell j.
+            // Look through the unsorted strings (those at j or higher) for the one that is first in lexicographic order
+            int min = j;
+            for ( int k=j+1; k < list.size(); k++ )
+                if ( list.get(k).compareTo( list.get(min) ) < 0 ) min = k;
+
+            // Swap the reference at j with the reference at min
+            Collections.swap(list, j, min);
         }
+
+    }
+
+    public void createButtons(ArrayList<FoodItem> testFoods, LinearLayout lm, int numWidth, int nameWidth){
         selectionSort(testFoods);
+
 
         // create the layout params that will be used to define how your
         // button will be displayed
@@ -91,7 +148,7 @@ public class Inventory extends AppCompatActivity {
             ll.setOrientation(LinearLayout.HORIZONTAL);
 
 
-          //  FoodItem food=testFoods.get(j);
+            //  FoodItem food=testFoods.get(j);
 
             //ad catigory soace
             if(!food.getCategory().equals(currentCatigory))
@@ -154,7 +211,7 @@ public class Inventory extends AppCompatActivity {
             btn.setLayoutParams(params);
             //btn.setRight(0);
 
-           // btn.setWidth(BUTTON_SIZE);
+            // btn.setWidth(BUTTON_SIZE);
 
 
 //            RelativeLayout.LayoutParams btnlocation = (RelativeLayout.LayoutParams) btn.getLayoutParams();
@@ -165,10 +222,11 @@ public class Inventory extends AppCompatActivity {
 
             final int index = j;
             final FoodItem foodToSend = food;
+            final ArrayList<FoodItem> t = testFoods;
             // Set click listener for button
             btn.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
-                    launchFoodItemPage(v,testFoods,foodToSend.getName());
+                    launchFoodItemPage(v,t,foodToSend.getName());
 
                 }
             });
@@ -179,38 +237,6 @@ public class Inventory extends AppCompatActivity {
             lm.addView(ll);
             quantity=0;
         }
-
-    }
-
-    private void launchFoodItemPage(View view, ArrayList<FoodItem> foods, String foodName){
-
-
-        // create and launch intent
-        final Intent launchFood = new Intent(Inventory.this,food_item_page.class);
-
-        Bundle bundle = new Bundle();
-        bundle.putString("foodName", foodName);
-        launchFood.putExtra("bundle", bundle);
-        startActivity(launchFood);
-    }
-
-    private void selectionSort( ArrayList<FoodItem> list)
-    {
-
-        // Find the string reference that should go in each cell of
-        // the array, from cell 0 to the end
-        for ( int j = 0; j < list.size();j++ )
-        {
-            // Find min: the index of the string reference that should go into cell j.
-            // Look through the unsorted strings (those at j or higher) for the one that is first in lexicographic order
-            int min = j;
-            for ( int k=j+1; k < list.size(); k++ )
-                if ( list.get(k).compareTo( list.get(min) ) < 0 ) min = k;
-
-            // Swap the reference at j with the reference at min
-            Collections.swap(list, j, min);
-        }
-
     }
 
 }

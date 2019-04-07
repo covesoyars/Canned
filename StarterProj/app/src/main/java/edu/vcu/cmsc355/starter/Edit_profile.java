@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Edit_profile extends AppCompatActivity implements View.OnClickListener {
+public class    Edit_profile extends AppCompatActivity implements View.OnClickListener {
 
     private File newPicture;
     private EditText lastName;
