@@ -31,24 +31,25 @@ public class changeThreshold extends AppCompatActivity {
             FoodItem item = new FoodItem();
 
             if(i < 9){
-                item.setCategory("Fruit");
-                item.setName("apple");
-                item.setQuantity(1999);
-                item.setThreshold(100000);
-                item.setSize("69 g");
+                item.setCategory("Milk");
+                item.setName("GreatValue Milk");
+                item.setQuantity(40);
+                item.setThreshold(20);
+                item.setSize("1 gal");
             }
             else if(i == 10){
                 item.setThreshold(12);
-                item.setName("Dog Food");
-                item.setCategory("Dog");
-                item.setSize("12 lbs");
+                item.setName("Pupusas");
+                item.setCategory("Hispanic");
+                item.setSize("12 oz");
                 item.setQuantity(11);
             }
             else{
-                item.setCategory("Soup");
-                item.setName("Tomato");
-                item.setQuantity(69);
+                item.setCategory("liquid");
+                item.setName("water");
+                item.setQuantity(200);
                 item.setSize("12 oz");
+                item.setThreshold(500);
             }
             testFoods.add(item);
         }
@@ -106,7 +107,7 @@ public class changeThreshold extends AppCompatActivity {
             // Create TextView
             TextView quantity2 = new TextView(this);
             quantity2.setText(String.valueOf(quantity+food.getQuantity()));
-            if(food.getQuantity() < food.getThreshold()){
+            if(quantity < food.getThreshold()){
                 quantity2.setTextColor(Color.RED);
             }
             quantity2.setWidth(numWidth);
