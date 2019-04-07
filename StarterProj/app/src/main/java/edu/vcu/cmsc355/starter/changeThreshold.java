@@ -21,8 +21,8 @@ public class changeThreshold extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_threshold);
 
-        final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScroll);
-        int numWidth = getResources().getDimensionPixelSize(R.dimen._50sdp);
+        final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScroll2);
+        int numWidth =getResources().getDimensionPixelSize(R.dimen._50sdp);
         int nameWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
 
         // make a list of food items to test display
@@ -100,7 +100,7 @@ public class changeThreshold extends AppCompatActivity {
             // Create TextView
             TextView name = new TextView(this);
             name.setText(food.getName());
-            name.setWidth(nameWidth);
+            name.setWidth(nameWidth-50);
             ll.addView(name);
 
             // Create TextView
@@ -112,17 +112,18 @@ public class changeThreshold extends AppCompatActivity {
             quantity2.setWidth(numWidth);
             ll.addView(quantity2);
 
-            // Create TextView
-            TextView size = new TextView(this);
-            size.setText((food.getSize()));
-            size.setWidth(numWidth);
-            ll.addView(size);
 
             // Create TextView
             TextView thresh = new TextView(this);
             thresh.setText((String.valueOf(food.getThreshold())));
-            thresh.setWidth(numWidth);
+            thresh.setWidth(numWidth-50);
             ll.addView(thresh);
+
+            // Create depletion rate
+            TextView deplete = new TextView(this);
+            deplete.setText("10/day");
+            deplete.setWidth(numWidth);
+            ll.addView(deplete);
 
 
 
@@ -130,7 +131,7 @@ public class changeThreshold extends AppCompatActivity {
             final Button btn = new Button(this);
             // Give button an ID
             btn.setId(j+1);
-            btn.setText("Edit Item");
+            btn.setText("Change threshold");
             // set the layoutParams on the button
             btn.setLayoutParams(params);
             //btn.setRight(0);
@@ -167,7 +168,7 @@ public class changeThreshold extends AppCompatActivity {
 
 
         // create and launch intent
-        final Intent launchFood = new Intent(Inventory.this,food_item_page.class);
+        final Intent launchFood = new Intent(changeThreshold.this,food_item_page.class);
 
         Bundle bundle = new Bundle();
         bundle.putString("foodName", foodName);
@@ -194,4 +195,4 @@ public class changeThreshold extends AppCompatActivity {
 
     }
     }
-}
+

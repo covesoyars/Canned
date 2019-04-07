@@ -46,7 +46,7 @@
     <string name="add_location_button">Add/remove Storage Locations</string>
     <string name="manage_thresholds">Manage Thresholds</string>
     <string name="threhold">Thresholds</string>
-    <string name="thresholdBanner">\t  Name  \t\t\t\t\t\t\t Quantity \t \t \t Threshold \t\t\t Depletion </string>
+    <string name="thresholdBanner">\t  Name  \t\t\t\t Quantity \t \t Threshold \t Depletion </string>
 
 
     <!-- Strings related to Settings -->
