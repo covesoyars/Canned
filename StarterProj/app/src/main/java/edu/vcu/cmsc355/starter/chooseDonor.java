@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+
 import java.util.ArrayList;
 
 public class chooseDonor extends AppCompatActivity {
@@ -21,4 +22,6 @@ public class chooseDonor extends AppCompatActivity {
         Intent makeDonar = new Intent(this, createDonor.class);
         startActivity(makeDonar);
     }
+
+
 }

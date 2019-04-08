@@ -90,5 +90,8 @@ public class createDonor extends AppCompatActivity {
         // Intent verifyPage = new Intent(Sign_Up_Page.this, verify_Page.class );
         // Intent mainActivity = new Intent(this, MainActivity.class);       COMMENTED OUT BY JAVIER
         // startActivity(verifyPage);
+
+        finish();
     }
+
 }
