@@ -6,12 +6,14 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class manager_hub_page extends AppCompatActivity {
@@ -70,6 +72,28 @@ public class manager_hub_page extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
             Toast.makeText(this,filePath,Toast.LENGTH_SHORT).show();
+            Scanner scanzor = new Scanner(filePath);
+            Scanner scanny = new Scanner(System.in);
+            scanzor.useDelimiter(",");
+            FoodItem newFood = new FoodItem();
+
+            /*
+             *Go through the file and add all the foodItems to the list.
+             */
+            while(scanny.hasNextLine()){
+                scanzor = new Scanner(scanny.nextLine());
+                FoodItem food = new FoodItem();
+                food.setCategory(scanzor.next());
+                food.setName(scanzor.next());
+                food.setSize(scanzor.next());
+                String skip = scanzor.next();
+                food.setExprDate(scanzor.next());
+                food.setQuantity(scanzor.nextInt());
+                food.setThreshold(scanzor.nextInt());
+                //Database.addFoodToFoodList()
+                String TAG = "hi ";
+                Log.d(TAG, "Food has these stuffs: " + food.getName() + " " + food.getQuantity() + " " + food.getExprDate());
+            }
         }
     }
 
