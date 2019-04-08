@@ -26,14 +26,15 @@ public class addFood extends AppCompatActivity {
     private static final String KEY_SIZE = "size";
     private static final String KEY_EXPR = "exprDate";
     private static final String KEY_QUANTITY = "quantity";
-    private static final String KEY_THRESHOLD = "threshold";
+    private static final String KEY_CATEGORY = "category";
     private static final String KEY_LOCATION = "location";
+    private static final String KEY_THRESHOLD = "threshold";
 
     private EditText name;
     private EditText size;
     private EditText expr;
     private EditText quan;
-    private EditText thresh;
+    private EditText cat;
     private EditText loc;
 
     @Override
@@ -44,7 +45,7 @@ public class addFood extends AppCompatActivity {
         size = (EditText) findViewById(R.id.editText6);
         expr = (EditText) findViewById(R.id.editText7);
         quan = (EditText) findViewById(R.id.editText24);
-        thresh = (EditText) findViewById(R.id.editText8);
+        cat = (EditText) findViewById(R.id.editText8);
         loc = (EditText) findViewById(R.id.editText26);
         FirebaseApp.initializeApp(this);
     }
@@ -54,8 +55,9 @@ public class addFood extends AppCompatActivity {
         String s = size.getText().toString().trim();
         String e = expr.getText().toString().trim();
         String q = quan.getText().toString().trim();
-        String t = thresh.getText().toString().trim();
+        String c = cat.getText().toString().trim();
         String l = loc.getText().toString().trim();
+        String t = getThres();                          //METHOD TO BE CALLED
 
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -66,8 +68,9 @@ public class addFood extends AppCompatActivity {
         note.put(KEY_SIZE, s);
         note.put(KEY_EXPR, e);
         note.put(KEY_QUANTITY, q);
-        note.put(KEY_THRESHOLD, t);
+        note.put(KEY_CATEGORY, c);
         note.put(KEY_LOCATION, l);
+        note.put(KEY_THRESHOLD, t);
 
         users.document(n).set(note)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -88,5 +91,13 @@ public class addFood extends AppCompatActivity {
     public void selectDonor(View view){
         Intent sel = new Intent(this, DonorList.class);
         startActivity(sel);
+    }
+
+    //SEARCG THROUGH DATABASE AND IF SOMETHING HAS THE SAME NAME GET ITS THRESHOLD AND SET CURRENT
+    //FOOD OBJECT THRESHOLD TO THE ONES IN THE DATA BASE
+    public String getThres()
+    {
+
+        return "0";
     }
 }
