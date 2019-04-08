@@ -125,16 +125,33 @@ public class manageVolunteers extends AppCompatActivity {
         }
 
         sortByVerified(vols);
+        boolean currentStatus = true;
 
         for(int j=0;j<vols.size();j++)  //J is to equal the size of the Foodarray(or whatever it is)
         {
             final Volunteer c =vols.get(j);
 
-
-
             // Create LinearLayout
             LinearLayout ll = new LinearLayout(this);
             ll.setOrientation(LinearLayout.HORIZONTAL);
+
+            if(c.isVerified() != currentStatus){
+                currentStatus = c.isVerified();
+                // print banner
+                TextView status = new TextView(this);
+                if(currentStatus){
+                    status.setText("Verified");
+                }
+                else{
+                    status.setText("Unverified");
+                }
+                status.setGravity(Gravity.CENTER);
+                status.setTextSize(20);
+                status.setWidth(ll.getWidth());
+                status.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                status.setTextColor(Color.WHITE);
+                lm.addView(status);
+            }
 
             // screen size universal sizes for fields:
             int numWidth = getResources().getDimensionPixelSize(R.dimen._50sdp);
