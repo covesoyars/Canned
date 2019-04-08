@@ -50,10 +50,11 @@ public class Volunteer extends User {
         if (verified == false && other.verified == true) {
             return 1;
         }
+
         if (verified == true && other.verified == false) {
             return -1;
         } else {
-            return -1 * this.getLastName().compareTo(other.getLastName());  // compare by last name
+            return -1 * this.getFirstName().compareTo(other.getFirstName());  // compare by last name
         }
     }
 }

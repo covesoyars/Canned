@@ -87,8 +87,10 @@ public class manageVolunteers extends AppCompatActivity {
                             String l = document.getData().get("last").toString();
                             int dob = Integer.parseInt(document.getData().get("date").toString());
                             String e = document.getData().get("email").toString();
+                            boolean ver = Boolean.parseBoolean(document.getData().get("verify").toString());
 
                             Volunteer v = new Volunteer(p,u,f,l,dob,e);
+                            if (ver) { v.verify(); }
                             vols.add(v);
 
                             Log.d(TAG, document.getId() + " => " + document.getData());
@@ -119,10 +121,10 @@ public class manageVolunteers extends AppCompatActivity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
-        for(int j = 0; j<vols.size();j++){
+        /*for(int j = 0; j<vols.size();j++){
             Log.d(TAG, "CHECK USER " + vols.get(j).getUserName());
             Log.d(TAG,"IS VERIFIED? " + vols.get(j).isVerified());
-        }
+        }*/
 
         sortByVerified(vols);
         boolean currentStatus = true;
@@ -284,14 +286,15 @@ public class manageVolunteers extends AppCompatActivity {
             // Find min: the index of the string reference that should go into cell j.
             // Look through the unsorted strings (those at j or higher) for the one that is first in lexicographic order
             int min = j;
-            for ( int k=j+1; k < list.size(); k++ )
-                if ( list.get(k).compareTo( list.get(min) ) > 0 ) min = k;
+            for ( int k=j+1; k < list.size(); k++ ) {
+                if (list.get(k).compareTo(list.get(min)) > 0) {
+                    min = k;
+                }
+
+            }
 
             // Swap the reference at j with the reference at min
             Collections.swap(list, j, min);
         }
-
     }
-
-
 }
