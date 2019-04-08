@@ -77,7 +77,7 @@ public class ManagerEditVolunteer extends AppCompatActivity {
         Uri newPic = thisGuy.getProfilePicture();
         pfp.setImageURI(newPic);
 
-       
+
         FirebaseApp.initializeApp(this);
     }
 

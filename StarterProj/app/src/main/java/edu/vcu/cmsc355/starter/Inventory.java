@@ -79,6 +79,7 @@ public class Inventory extends AppCompatActivity {
                             testFoods.add(item);
 
                             Log.d(TAG, document.getId() + " => " + document.getData());
+
                         }
                         createButtons(testFoods, lm, numWidth, nameWidth);
                     }
