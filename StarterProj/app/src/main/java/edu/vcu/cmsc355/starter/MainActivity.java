@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                     profilePic);
             UserLoggedIn appState = ((UserLoggedIn) getApplicationContext());
             appState.setLoggedIn(loggedInUser);
+            user.setText("");
+            pass.setText("");
             startActivity(login);
         }
         else{
@@ -116,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
                                 UserLoggedIn appState = ((UserLoggedIn) getApplicationContext());
                                 appState.setLoggedIn(v);
                                 // startActivity(login);
+                                user.setText("");
+                                pass.setText("");
 
                             }
                             if(v.isVerified()){ startActivity(volunteerLogin); }

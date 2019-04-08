@@ -110,6 +110,9 @@ public class    Edit_profile extends AppCompatActivity implements View.OnClickLi
                 loggedIn.setProfilePicture(newPicture);
             }
             verifyNewPassword(loggedIn);
+
+
+
         finish();
         }
 
@@ -135,14 +138,17 @@ public class    Edit_profile extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(this, "Email address is not a valid email address", Toast.LENGTH_SHORT).show();
             return false;
         }
+        // verify that new passwords match
+        if (!newPassword.getText().toString().trim().equals(confirmNewPassword.getText().toString().trim())) {
+            Toast.makeText(this, "Passwords don't match", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         if (dob.getText().toString().trim().length() != 6) { // DOB is invalid if it's not of length 6
             Toast.makeText(this, "DOB is not in correct format: MMDDYY", Toast.LENGTH_SHORT).show();
             return false;
         } else {
             return true;
         }
-
-
     }
 
     private void verifyNewPassword(User loggedIn) {
