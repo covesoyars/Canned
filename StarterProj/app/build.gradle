@@ -23,7 +23,7 @@ android {
     useLibrary 'org.apache.http.legacy'
     repositories {
         maven {
-            url 'https://raw.github.com/zeeshanejaz/unirest-android/mvn-repo'
+            url "http://dl.bintray.com/lukaville/maven"
         }
     }
 
@@ -49,6 +49,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation "com.android.support:support-compat:28.0.0"
+    implementation 'com.nbsp:library:1.8'
 
 
 }
