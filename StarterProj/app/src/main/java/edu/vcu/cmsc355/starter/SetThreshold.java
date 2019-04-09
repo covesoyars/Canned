@@ -2,6 +2,7 @@ package edu.vcu.cmsc355.starter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,12 +34,30 @@ public class SetThreshold extends AppCompatActivity {
         thresh.setText(food.getThreshold());
 
         inc = (Button) findViewById(R.id.button11);
-
+        inc.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View v)
+              {
+                  increment();
+               }
+          });
 
         dec = (Button) findViewById(R.id.button17);
+        dec.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                decrement();
+            }
+        });
 
 
         save = (Button) findViewById(R.id.button18);
+        save.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                save();
+            }
+        });
+
 
     }
 
