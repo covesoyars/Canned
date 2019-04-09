@@ -167,8 +167,10 @@ public class Inventory extends AppCompatActivity {
 
             while(j<testFoods.size()-1 && food.getName().equals(testFoods.get(j+1).getName()))
             {
-                j++;
+                j=j+1;
                 quantity=quantity+food.getQuantity();
+                food = testFoods.get(j);
+                Log.d("quantity", food.getName() +" value is :"+ quantity);
             }
 
 
@@ -238,6 +240,8 @@ public class Inventory extends AppCompatActivity {
             lm.addView(ll);
             quantity=0;
         }
+        testFoods.clear();
     }
+
 
 }

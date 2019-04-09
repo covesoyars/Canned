@@ -72,7 +72,7 @@ public class addFood extends AppCompatActivity {
         note.put(KEY_LOCATION, l);
         note.put(KEY_THRESHOLD, t);
 
-        users.document(n).set(note)
+        users.document().set(note)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
