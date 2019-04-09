@@ -254,10 +254,12 @@ public class manageVolunteers extends AppCompatActivity {
                             String u = document.getData().get("user").toString();
                             String f = document.getData().get("first").toString();
                             String l = document.getData().get("last").toString();
+                            boolean verf = Boolean.parseBoolean(document.getData().get("verify").toString());
                             int dob = Integer.parseInt(document.getData().get("date").toString());
                             String e = document.getData().get("email").toString();
 
                             Volunteer v = new Volunteer(p,u,f,l,dob,e);
+                            v.setVerification(verf);
                             vols.add(v);
 
                             Log.d(TAG, document.getId() + " => " + document.getData());
