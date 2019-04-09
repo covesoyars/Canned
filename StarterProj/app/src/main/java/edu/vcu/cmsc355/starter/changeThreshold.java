@@ -165,6 +165,21 @@ public class changeThreshold extends AppCompatActivity {
 
     }
 
+
+    private void launchSetThresholdPage(View view, FoodItem food){
+
+
+        // create and launch intent
+        final Intent setThresh = new Intent(changeThreshold.this, SetThreshold.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("food", food);
+        setThresh.putExtra("bundle", bundle);
+        startActivity(setThresh);
+    }
+
+
+
     private void launchFoodItemPage(View view, ArrayList<FoodItem> foods, String foodName){
 
 
