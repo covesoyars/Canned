@@ -167,6 +167,7 @@ public class manager_hub_page extends AppCompatActivity {
                 food.setName(items[1]);
                 food.setSize(items[2]);
                 food.setExprDate(items[4]);
+                food.setLocation("none");
                 try {
                     food.setQuantity(Integer.parseInt(items[5]));
                     food.setThreshold(Integer.parseInt(items[6]));
@@ -186,5 +187,7 @@ public class manager_hub_page extends AppCompatActivity {
         }
         return returnList;
     }
+
+
 
 }
