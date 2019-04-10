@@ -167,7 +167,8 @@ public class DonorList extends AppCompatActivity {
             // Set click listener for button
             btn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                  //STALLING FO RHOW WERE ACTUALLY GONNA DO THIS
+                  //STALLING FOR HOW WERE ACTUALLY GONNA DO THIS
+
                 }
             });
 
