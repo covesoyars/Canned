@@ -24,11 +24,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Text;
 
@@ -138,7 +142,42 @@ public class ManagerEditVolunteer extends AppCompatActivity {
                 });
     }
 
-    private void removeVolunteer(Volunteer thisGuy){
+    private void removeVolunteer(Volunteer thisGuy) {
         // remove volunteer from database with information that matches thisGuy
+
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference users = db.collection("users2");
+
+        users.whereEqualTo("user", thisGuy.getUserName()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                // if it didn't crash connecting to firebase
+                if (task.isSuccessful()) {
+
+                    // result of the search
+                    QuerySnapshot q = task.getResult();
+                    /*
+                    at some point we need to sort this query so that all unverified users get put in first
+                    then everything should be sorted alphabeically
+                    -Javier
+                     */
+
+                    // if the result of the search is empty
+                    if (!q.isEmpty()) {
+
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            document.getReference().delete(); // delete the user
+
+
+                        }
+                    } else {
+                        Log.d(TAG, "User not found");
+                    }
+                } else {
+                    Log.d(TAG, "something went wrong");
+                }
+            }
+        });
     }
 }
