@@ -23,6 +23,8 @@ public class FoodItem implements Serializable {
     private int quantity;
     private int threshold;
     private String location;
+    private int counter;
+    private int depletion;
 
 
     /**
@@ -35,6 +37,8 @@ public class FoodItem implements Serializable {
         setQuantity(0);
         setThreshold(0);
         setName("");
+        setDepletion(0);
+        setCounter(0);
 
 
     }
@@ -61,6 +65,15 @@ public class FoodItem implements Serializable {
     /*
      * Getters and setters
      */
+
+    public void setDepletion(int d) {
+        depletion = d;
+    }
+
+    public int getDepletion() {
+        return depletion;
+    }
+
     public String getName() {
         return name;
     }
@@ -77,6 +90,13 @@ public class FoodItem implements Serializable {
     }
 
 
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
 
     public String getExprDate() {
         return exprDate;
