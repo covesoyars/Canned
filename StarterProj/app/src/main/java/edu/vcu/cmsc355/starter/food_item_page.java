@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class food_item_page extends AppCompatActivity {
 
-    String food;
+    String food, category;
     TextView topBanner;
     ArrayList<FoodItem> toBeRemoved;
 
@@ -43,6 +43,7 @@ public class food_item_page extends AppCompatActivity {
         // unpack food from Inventory activity:
         Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
         food = (String) foodBundle.getString("foodName");
+        category = foodBundle.getString("category");
         topBanner = (TextView) findViewById(R.id.food_page_name);
         toBeRemoved = new ArrayList<FoodItem>();
 
@@ -188,13 +189,18 @@ public class food_item_page extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // push changes to database (items removed)
-
+                    remove(toBeRemoved);
                         finish();
                     }
 
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
+    }
+
+    public void remove(ArrayList<FoodItem> list)
+    {
+        //TODO SAM I NEED A REMOVE THESE FROM THE DATABASE
     }
 
 }

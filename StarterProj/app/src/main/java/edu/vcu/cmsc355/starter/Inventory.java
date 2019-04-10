@@ -96,7 +96,7 @@ public class Inventory extends AppCompatActivity {
 
     }
 
-    private void launchFoodItemPage(View view, ArrayList<FoodItem> foods, String foodName){
+    private void launchFoodItemPage(View view, ArrayList<FoodItem> foods, String foodName,String category ){
 
 
         // create and launch intent
@@ -104,6 +104,7 @@ public class Inventory extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("foodName", foodName);
+        bundle.putString("category", category );
         launchFood.putExtra("bundle", bundle);
         startActivity(launchFood);
     }
@@ -229,7 +230,7 @@ public class Inventory extends AppCompatActivity {
             // Set click listener for button
             btn.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
-                    launchFoodItemPage(v,t,foodToSend.getName());
+                    launchFoodItemPage(v,t,foodToSend.getName(), foodToSend.getCategory());
 
                 }
             });

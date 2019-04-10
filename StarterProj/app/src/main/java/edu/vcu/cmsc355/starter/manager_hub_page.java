@@ -39,6 +39,8 @@ public class manager_hub_page extends AppCompatActivity {
     private static final String KEY_CATEGORY = "category";
     private static final String KEY_LOCATION = "location";
     private static final String KEY_THRESHOLD = "threshold";
+    private static final String KEY_DELPETION="depletion";
+    private static final String KEY_COUNTER="counter";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,8 @@ public class manager_hub_page extends AppCompatActivity {
                 note.put(KEY_CATEGORY, item.getCategory());
                 note.put(KEY_LOCATION, item.getLocation());
                 note.put(KEY_THRESHOLD, item.getThreshold());
+                note.put(KEY_DELPETION, item.getDepletion());
+                note.put(KEY_COUNTER,item.getCounter());
 
                 // send map to db:
                 users.document(item.getName()).set(note)
@@ -168,6 +172,9 @@ public class manager_hub_page extends AppCompatActivity {
                 food.setSize(items[2]);
                 food.setExprDate(items[4]);
                 food.setLocation("none");
+                food.setDepletion(0);
+                food.setThreshold(0);
+                food.setCounter(0);
                 try {
                     food.setQuantity(Integer.parseInt(items[5]));
                     food.setThreshold(Integer.parseInt(items[6]));

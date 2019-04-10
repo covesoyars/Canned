@@ -36,6 +36,7 @@ public class changeThreshold extends AppCompatActivity {
                 item.setQuantity(40);
                 item.setThreshold(20);
                 item.setSize("1 gal");
+                item.setDepletion(2);
             }
             else if(i == 10){
                 item.setThreshold(12);
@@ -43,6 +44,7 @@ public class changeThreshold extends AppCompatActivity {
                 item.setCategory("Hispanic");
                 item.setSize("12 oz");
                 item.setQuantity(11);
+                item.setDepletion(12);
             }
             else{
                 item.setCategory("liquid");
@@ -50,6 +52,7 @@ public class changeThreshold extends AppCompatActivity {
                 item.setQuantity(200);
                 item.setSize("12 oz");
                 item.setThreshold(500);
+                item.setDepletion(4);
             }
             testFoods.add(item);
         }
@@ -122,7 +125,7 @@ public class changeThreshold extends AppCompatActivity {
 
             // Create depletion rate
             TextView deplete = new TextView(this);
-            deplete.setText("10/day");
+            deplete.setText(food.getDepletion()+"/day");
             deplete.setWidth(numWidth);
             ll.addView(deplete);
 
