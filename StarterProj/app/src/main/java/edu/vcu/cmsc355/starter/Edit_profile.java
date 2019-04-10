@@ -1,14 +1,26 @@
 package edu.vcu.cmsc355.starter;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.io.File;
 
 
@@ -17,6 +29,12 @@ import java.util.regex.Pattern;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class    Edit_profile extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String KEY_PASS = "pass";
+    private static final String KEY_FIRST = "first";
+    private static final String KEY_LAST = "last";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_DATE = "date";
 
     private File newPicture;
     private EditText lastName;
@@ -111,9 +129,46 @@ public class    Edit_profile extends AppCompatActivity implements View.OnClickLi
             }
             verifyNewPassword(loggedIn);
 
+        // push changes to database:
+            FirebaseApp.initializeApp(this);
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            CollectionReference users = db.collection("users2");
+
+            users.whereEqualTo("user", loggedIn .getUserName()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    // if it didn't crash connecting to firebase
+                    if (task.isSuccessful()) {
+
+                        // result of the search
+                        QuerySnapshot q = task.getResult();
+
+                        // if the result of the search is not empty
+                        if (!q.isEmpty()) {
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                               DocumentReference myRef = document.getReference();
+                               myRef.update(KEY_DATE, loggedIn.getDob());
+                               myRef.update(KEY_EMAIL, loggedIn.getEmailAddress());
+                               myRef.update(KEY_FIRST, loggedIn.getFirstName());
+                               myRef.update(KEY_LAST, loggedIn.getLastName());
+                               myRef.update(KEY_PASS, loggedIn.getPassword());
+
+                            }
+                        } else {
+
+                        }
+                    } else {
+
+                    }
+                    // update currently logged in user and finish activity
+                    UserLoggedIn appState = ((UserLoggedIn) getApplicationContext());
+                    appState.setLoggedIn(loggedIn);
+                    finish();
+                }
+            });
 
 
-        finish();
         }
 
     }
