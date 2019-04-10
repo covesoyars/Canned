@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,9 +26,11 @@ import java.util.ArrayList;
 public class DonorList extends AppCompatActivity {
     private static final String TAG = "DonorList";
     private ArrayList<Donor> dons = new ArrayList<Donor>();
+    private EditText donorGuy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        donorGuy = (EditText)findViewById(R.id.editText27);
         //ONCE THINGS START WORKING DELETE FROM HERE
         final ArrayList<Donor> testDons = new ArrayList<Donor>();
         for(int i =0; i< 20; i++){
@@ -168,7 +171,8 @@ public class DonorList extends AppCompatActivity {
             btn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                   //STALLING FOR HOW WERE ACTUALLY GONNA DO THIS
-
+                    donorGuy.setText(c.getEmailAddress().trim());
+                    finish();
                 }
             });
 
