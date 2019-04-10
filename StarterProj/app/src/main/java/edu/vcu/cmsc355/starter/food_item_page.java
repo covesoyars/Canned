@@ -2,6 +2,8 @@ package edu.vcu.cmsc355.starter;
 
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.Switch;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +19,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -198,9 +207,48 @@ public class food_item_page extends AppCompatActivity {
                 .show();
     }
 
-    public void remove(ArrayList<FoodItem> list)
-    {
-        //TODO SAM I NEED A REMOVE THESE FROM THE DATABASE
+    public void remove(ArrayList<FoodItem> list) {
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference users = db.collection("foodItems");
+
+
+        for (FoodItem snack : list) {
+
+            users.whereEqualTo("name", snack.getName())
+                    .whereEqualTo("category",snack.getCategory())
+                    .whereEqualTo("location",snack.getLocation())
+                    .whereEqualTo("exprDate",snack.getExprDate())
+                    .whereEqualTo("quantity",snack.getQuantity())
+                    .whereEqualTo("size",snack.getSize())
+                    .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    // if it didn't crash connecting to firebase
+                    if (task.isSuccessful()) {
+
+                        // result of the search
+                        QuerySnapshot q = task.getResult();
+
+
+                        // if the result of the search is empty
+                        if (!q.isEmpty()) {
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                document.getReference().delete(); // delete the user
+
+
+                            }
+                        } else {
+
+                        }
+                    } else {
+
+                    }
+                }
+            });
+        }
     }
+
 
 }
