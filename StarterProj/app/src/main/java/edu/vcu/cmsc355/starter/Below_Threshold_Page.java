@@ -84,6 +84,9 @@ public class Below_Threshold_Page extends AppCompatActivity{
                             if(item.getQuantity() <= item.getThreshold()){
                                 lowStockFood.add(item);
                             }
+                            else if((item.getQuantity() - item.getDepletion() *2) < item.getThreshold() ){
+                                lowStockFood.add(item);
+                            }
                             Log.d(TAG, "here's ya data: "+ item.toString());
                         }
 

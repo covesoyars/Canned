@@ -36,6 +36,7 @@ public class addFood extends AppCompatActivity {
     private static final String KEY_THRESHOLD = "threshold";
     private static final String KEY_COUNTER = "counter";
     private static final String KEY_DEPLETION = "depletion";
+    private ArrayList<FoodItem> foods = new ArrayList<FoodItem>();
 
     private EditText name;
     private EditText size;
@@ -43,7 +44,7 @@ public class addFood extends AppCompatActivity {
     private EditText quan;
     private EditText cat;
     private EditText loc;
-    private FoodItem simliar;
+    private static final FoodItem simliar = new FoodItem();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +66,12 @@ public class addFood extends AppCompatActivity {
         String q = quan.getText().toString().trim();
         String c = cat.getText().toString().trim();
         String l = loc.getText().toString().trim();
-        simliar=getSimliar();
-        String t = getThres(simliar);
-        String counter = getCounter(simliar);
-        String delpetion = getDepletion(simliar);
+        getSimliar();
+        Log.d(TAG,  " FINAL SIMLIAR " + simliar.getDepletion() + " " + simliar.getCounter());
+
+        String t = simliar.getThreshold()+"";
+        String counter = simliar.getCounter()+"";
+        String delpetion = simliar.getDepletion()+"";
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference users = db.collection("foodsItems");
@@ -107,83 +110,92 @@ public class addFood extends AppCompatActivity {
 
     //SEARCG THROUGH DATABASE AND IF SOMETHING HAS THE SAME NAME GET ITS THRESHOLD AND SET CURRENT
     //FOOD OBJECT THRESHOLD TO THE ONES IN THE DATA BASE
-    public FoodItem getSimliar() {
-        FirebaseApp.initializeApp(this);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference usersRef = db.collection("foodsItems");         //change this back to fooditems
-        final FoodItem simliar = new FoodItem();
-        final ArrayList<FoodItem> foodList = new ArrayList<FoodItem>();
-        usersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    QuerySnapshot q = task.getResult();
-
-                    if (!q.isEmpty()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            FoodItem item = new FoodItem();
-
-                            item.setCategory(document.getData().get("category").toString());
-                            item.setName(document.getData().get("name").toString());
-                            item.setThreshold(Integer.parseInt(document.getData().get("threshold").toString()));
-                            item.setCounter(Integer.parseInt(document.getData().get("counter").toString()));
-                            item.setDepletion(Integer.parseInt(document.getData().get("depletion").toString()));
-                           foodList.add(item);
+    public void getSimliar() {
+            FoodItem none = new FoodItem();
+            name = (EditText) findViewById(R.id.editText3);
+            String s = name.getText().toString();
+            foods = new ArrayList<FoodItem>();
 
 
+            FirebaseApp.initializeApp(this);
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            // call to this object when making queries
+            CollectionReference usersRef = db.collection("foodsItems");
 
 
-                            Log.d(TAG,  " ==============> " + document.getData() + " " + item.getDepletion());
+        // TODO  CHECK BOTH name and caregory ARE EQUAL
+            usersRef.whereEqualTo("name", name.getText().toString()).whereEqualTo("category", cat.getText().toString()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    // if it didn't crash connecting to firebase
+                    if (task.isSuccessful()) {
 
-                        }
+                        // result of the search
+                        QuerySnapshot q = task.getResult();
+                    /*
+                    at some point we need to sort this query so that all unverified users get put in first
+                    then everything should be sorted alphabeically
+                    -Javier
+                     */
 
-                        for(FoodItem item : foodList) {
-                            //IF FOOD ITEM NAME AND CATIGORY MATCHES
+                        // if the result of the search is empty
+                        if(!q.isEmpty()) {
 
-                            Log.d(TAG, "item value " + item.getName() + " "+ item.getDepletion() + " =====> " + item.getCategory() );
-                            if (item.getCategory().equals(cat.getText().toString().trim()) && item.getName().equals(name.getText().toString().trim())) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                // cast data fields to strings
+                                String depletion = document.getData().get("depletion").toString();
+                                Log.d(TAG, "data ----->" + document.getData());
+                                String counter = document.getData().get("counter").toString();
+                                String thres = document.getData().get("threshold").toString();
 
-                                simliar.setCounter(item.getCounter());
-                                simliar.setDepletion(item.getDepletion());
-                                simliar.setThreshold(item.getThreshold());
+                                FoodItem f = new FoodItem();
+                                f.setDepletion(Integer.parseInt(depletion));
+                                f.setCounter(Integer.parseInt(counter));
+                                f.setThreshold(Integer.parseInt(thres));
+                                foods.add(f);
 
-                                Log.d(TAG, "FOUND ONE " + item.getName() + " "+ item.getDepletion() + " => " + item.getLocation());
-                                break;
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                Log.d(TAG, "depetion rate " + f.getDepletion());
                             }
+                            FoodItem dummy = new FoodItem();
+                            dummy = getFood(foods);
+                            simliar.setDepletion(dummy.getDepletion());
+                            simliar.setThreshold(dummy.getThreshold());
+                            simliar.setCounter(dummy.getCounter());
+                            Log.d(TAG, "depleteion: " + simliar.getDepletion());
 
                         }
-
-
-
-
-
-
-
-
-
-
-                    } Log.d(TAG, simliar.getDepletion() + " =====D " + simliar.getThreshold());
-
-
+                        else{
+                            Log.d(TAG, "User not found");
+                        }
+                    }
+                    else{
+                        Log.d(TAG, "something went wrong");
+                    }
                 }
+            });
 
+        Log.d(TAG, "array size ---<<< " + foods.size());
+
+
+    }
+
+    private FoodItem getFood(ArrayList<FoodItem> foods){
+        Log.d(TAG,"Size of foods; " + foods.size());
+        for(FoodItem f : foods)
+        {
+            Log.d(TAG, "FOR LOOP" + f.getDepletion() + " " + f.getCounter());
+            if(f.getDepletion()!=0 || f.getCounter()!=0)
+            {
+                Log.d(TAG, "retuned" + f.getDepletion() + " " + f.getCounter());
+                return f;
             }
-
-
-        });
-        Log.d(TAG, simliar.getDepletion() + " =====> " + simliar.getThreshold());
-        return simliar;
+        }
+        return new FoodItem();
     }
 
-    public String getCounter(FoodItem simliar){
-        return simliar.getCounter()+"";
-    }
-    public String getThres(FoodItem simliar){
-        return simliar.getThreshold()+"";
-    }
-    public String getDepletion(FoodItem simliar){
-        return simliar.getDepletion()+"";
-    }
+
 
 
 }
