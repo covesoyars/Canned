@@ -171,8 +171,7 @@ public class DonorList extends AppCompatActivity {
             btn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                   //STALLING FOR HOW WERE ACTUALLY GONNA DO THIS
-                    donorGuy.setText(c.getEmailAddress().trim());
-                    finish();
+                   pickDonor(v, c);
                 }
             });
 
@@ -181,5 +180,17 @@ public class DonorList extends AppCompatActivity {
             //Add button to LinearLayout defined in XML
             lm.addView(ll);
         }
+    }
+
+    public void pickDonor(View view, Donor thisDonor){
+
+
+        // create and launch intent
+        final Intent launchPick = new Intent(this,addFood.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("thisDonor", thisDonor);
+        launchPick.putExtra("bundle", bundle);
+        startActivity(launchPick);
     }
 }
