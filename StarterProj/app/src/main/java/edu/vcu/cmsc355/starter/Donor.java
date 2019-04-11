@@ -1,5 +1,6 @@
 package edu.vcu.cmsc355.starter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -9,7 +10,7 @@ import java.text.SimpleDateFormat;
  *
  * Contributors: Justin Nelson, Cove Soyars,
  */
-public class Donor {
+public class Donor implements Serializable {
 
     private String firstName;
     private String lastName;

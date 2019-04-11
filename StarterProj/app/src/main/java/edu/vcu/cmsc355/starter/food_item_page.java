@@ -60,6 +60,7 @@ public class food_item_page extends AppCompatActivity {
         topBanner = (TextView) findViewById(R.id.food_page_name);
         toBeRemoved = new ArrayList<DocumentReference>();
 
+
         topBanner.setText(food);
 
 
@@ -234,7 +235,7 @@ public class food_item_page extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         // push changes to database (items removed)
                     remove(toBeRemoved);
-                        finish();
+                    finish();
                     }
 
                 })

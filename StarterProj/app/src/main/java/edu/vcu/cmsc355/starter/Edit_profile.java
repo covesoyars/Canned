@@ -143,6 +143,7 @@ public class    Edit_profile extends AppCompatActivity implements View.OnClickLi
                         // result of the search
                         QuerySnapshot q = task.getResult();
 
+
                         // if the result of the search is not empty
                         if (!q.isEmpty()) {
 

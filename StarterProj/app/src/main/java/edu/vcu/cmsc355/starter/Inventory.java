@@ -104,6 +104,7 @@ public class Inventory extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("foodName", foodName);
+        bundle.putSerializable("foodList",foods);
         bundle.putString("category", category );
         launchFood.putExtra("bundle", bundle);
         startActivity(launchFood);
