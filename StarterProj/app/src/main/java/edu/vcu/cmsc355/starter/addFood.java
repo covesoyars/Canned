@@ -64,7 +64,7 @@ public class addFood extends AppCompatActivity {
     }
 
     public void add(View view){
-        if(donorGuyPick.getText().toString().contains("@")) {
+       // if(donorGuyPick.getText().toString().contains("@")) {
             String n = name.getText().toString().trim();
             String s = size.getText().toString().trim();
             String e = expr.getText().toString().trim();
@@ -79,7 +79,7 @@ public class addFood extends AppCompatActivity {
             String delpetion = simliar.getDepletion() + "";
             FirebaseApp.initializeApp(this);
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            CollectionReference users = db.collection("foodsItems");
+            CollectionReference users = db.collection("foodItems");
 
             Map<String, Object> note = new HashMap<>();
             note.put(KEY_NAME, n);
@@ -107,8 +107,8 @@ public class addFood extends AppCompatActivity {
                             Log.d(TAG, e.toString());
                         }
                     });
-        }
-        else { Toast.makeText(addFood.this, "Donor was not selected, must select one before adding.", Toast.LENGTH_SHORT).show(); }
+        //}
+       // else { Toast.makeText(addFood.this, "Donor was not selected, must select one before adding.", Toast.LENGTH_SHORT).show(); }
     }
 
     public void selectDonor(View view){
@@ -129,7 +129,7 @@ public class addFood extends AppCompatActivity {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
             // call to this object when making queries
-            CollectionReference usersRef = db.collection("foodsItems");
+            CollectionReference usersRef = db.collection("foodItems");
 
 
         // TODO  CHECK BOTH name and caregory ARE EQUAL
@@ -208,8 +208,8 @@ public class addFood extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         // put your code here...
-        Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
-        pickDonor = (Donor) foodBundle.getSerializable("thisDonor");
+     //   Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
+     //   pickDonor = (Donor) foodBundle.getSerializable("thisDonor");
 
     }*/
 

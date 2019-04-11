@@ -185,10 +185,16 @@ public class food_item_page extends AppCompatActivity {
                                 public void onClick(View v) {
                                     if(btn.isChecked()){
                                         toBeRemoved.add(ref);
+                                      //  foodList.add(currentFood);
+                                        Log.d(TAG, "if FOODLIST SIZE ->>>>>>>" + foodList.size());
                                         Toast.makeText(food_item_page.this,"added remove list", Toast.LENGTH_LONG).show();
                                     }
                                     else{
                                         toBeRemoved.remove(ref);
+                                        foodList.remove(currentFood);
+                                        Log.d(TAG, "REMOVED FROM LIST???"+ foodList.contains(currentFood));
+                                        foodList.remove(currentFood);
+                                        Log.d(TAG, "FOODLIST SIZE ->>>>>>>" + foodList.size()) ;
                                         Toast.makeText(food_item_page.this,"removed from remove list", Toast.LENGTH_LONG).show();
                                     }
 
@@ -244,6 +250,13 @@ public class food_item_page extends AppCompatActivity {
     }
 
     public void remove(ArrayList<DocumentReference> list) {
+         int quanity=0;
+        for(FoodItem temp : foodList)
+        {
+            Log.d(TAG, "foodList size ->>>>>>> " + foodList.size());
+            quanity=quanity+temp.getQuantity();
+        }
+        final int fullQuantity = quanity;
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference users = db.collection("foodItems");
@@ -265,9 +278,11 @@ public class food_item_page extends AppCompatActivity {
                         if (!q.isEmpty()) {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if(document.getReference().equals(ref))
-                                document.getReference().delete();// delete the user
-                                q.getDocuments().remove(ref);
+                                if(document.getReference().equals(ref)) {
+                                    document.getReference().delete();// delete the user
+                                    q.getDocuments().remove(ref);
+
+                                }
 
                             }
                         } else {
