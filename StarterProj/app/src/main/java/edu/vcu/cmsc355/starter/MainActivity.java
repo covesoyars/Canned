@@ -11,6 +11,7 @@ import android.widget.Toast;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import java.util.Calendar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private Volunteer v;
 
     // for below threshold notifications:
-    private PendingIntent pendingIntent;
+    private PendingIntent belowThreshPendingIntent;
     private AlarmManager manager;
+    private PendingIntent depletionPendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +51,11 @@ public class MainActivity extends AppCompatActivity {
         pass = (EditText) findViewById(R.id.editText2);
         // Retrieve a PendingIntent that will perform a broadcast
         Intent alarmIntent = new Intent(this, BelowThreshReciever.class);
-        pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
+        Intent depletionIntent = new Intent(this,DepletionReciever.class);
+        belowThreshPendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
+        depletionPendingIntent = PendingIntent.getBroadcast(this, 1, depletionIntent, 0);
 
-        //startAlarm();
+
     }
 
     public void signUp(View view){
@@ -85,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
             user.setText("");
             pass.setText("");
             startActivity(login);
+            startDepletionAlarm();
+            startBelowThreshAlarm();
         }
         else{
             fb = false;
@@ -140,11 +146,23 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
-    public void startAlarm() {
-        manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        int interval = 86400000; // one day in milliseconds
-        //int interval = 3000; // 30 seconds for testing
+    public void startBelowThreshAlarm() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 9);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
 
-        manager.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), interval, pendingIntent);
+        manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        manager.set(AlarmManager.RTC, calendar.getTimeInMillis(), belowThreshPendingIntent);
+    }
+
+    public void startDepletionAlarm(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 24);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        manager.set(AlarmManager.RTC, calendar.getTimeInMillis(), depletionPendingIntent);
     }
 }

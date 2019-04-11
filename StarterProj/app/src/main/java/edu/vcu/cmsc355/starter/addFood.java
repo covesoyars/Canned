@@ -204,14 +204,14 @@ public class addFood extends AppCompatActivity {
     }
 
     //This method is to get the donor that is passed back.
-    @Override
+    /*@Override
     public void onResume(){
         super.onResume();
         // put your code here...
      //   Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
      //   pickDonor = (Donor) foodBundle.getSerializable("thisDonor");
 
-    }
+    }*/
 
 
 
