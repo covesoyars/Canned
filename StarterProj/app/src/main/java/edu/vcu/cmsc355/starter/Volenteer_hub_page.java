@@ -24,6 +24,11 @@ public class Volenteer_hub_page extends AppCompatActivity {
         Intent inventory = new Intent(this, Inventory.class);
         startActivity(inventory);
     }
+
+    @Override
+    public void onBackPressed() {
+        // disables back button
+    }
     public void settings(View View)
     {
         Intent settings = new Intent(this, Edit_profile.class);

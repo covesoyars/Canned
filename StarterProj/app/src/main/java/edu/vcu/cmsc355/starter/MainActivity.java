@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             pass.setText("");
             startActivity(login);
             startDepletionAlarm();
-            startBelowThreshAlarm();
+           // startBelowThreshAlarm();
         }
         else{
             fb = false;

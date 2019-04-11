@@ -91,6 +91,11 @@ public class manager_hub_page extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        //disables back button
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
