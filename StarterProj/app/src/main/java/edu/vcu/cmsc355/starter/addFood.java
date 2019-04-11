@@ -79,7 +79,7 @@ public class addFood extends AppCompatActivity {
             String delpetion = simliar.getDepletion() + "";
             FirebaseApp.initializeApp(this);
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            CollectionReference users = db.collection("foodsItems");
+            CollectionReference users = db.collection("foodItems");
 
             Map<String, Object> note = new HashMap<>();
             note.put(KEY_NAME, n);
@@ -129,7 +129,7 @@ public class addFood extends AppCompatActivity {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
             // call to this object when making queries
-            CollectionReference usersRef = db.collection("foodsItems");
+            CollectionReference usersRef = db.collection("foodItems");
 
 
         // TODO  CHECK BOTH name and caregory ARE EQUAL

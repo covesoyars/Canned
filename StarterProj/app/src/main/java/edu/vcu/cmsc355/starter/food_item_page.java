@@ -244,6 +244,12 @@ public class food_item_page extends AppCompatActivity {
     }
 
     public void remove(ArrayList<DocumentReference> list) {
+        int quanity=0;
+        for(FoodItem temp : foodList)
+        {
+            Log.d(TAG, "foodList size ->>>>>>> " + foodList.size());
+            quanity=quanity+temp.getQuantity();
+        }
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference users = db.collection("foodItems");
@@ -265,9 +271,17 @@ public class food_item_page extends AppCompatActivity {
                         if (!q.isEmpty()) {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if(document.getReference().equals(ref))
-                                document.getReference().delete();// delete the user
-                                q.getDocuments().remove(ref);
+                                if(document.getReference().equals(ref)) {
+                                    document.getReference().delete();// delete the user
+                                    q.getDocuments().remove(ref);
+
+                                }
+
+                                else{
+                                    int quantity = Integer.parseInt(document.getData().get("quantity").toString());
+                                    document.getData().put("counter", quantity);
+                                    //CHANGE COUNTER TO BE REF
+                                }
 
                             }
                         } else {
