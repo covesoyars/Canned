@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         Intent depletionIntent = new Intent(this,DepletionReciever.class);
         belowThreshPendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
         depletionPendingIntent = PendingIntent.getBroadcast(this, 1, depletionIntent, 0);
-        startBelowThreshAlarm();
+
 
     }
 
@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
             user.setText("");
             pass.setText("");
             startActivity(login);
+            startDepletionAlarm();
+            startBelowThreshAlarm();
         }
         else{
             fb = false;
