@@ -38,7 +38,8 @@ public class food_item_page extends AppCompatActivity {
     String food, category;
     TextView topBanner;
     ArrayList<DocumentReference> toBeRemoved;
-    ArrayList<FoodItem> foodList;
+    ArrayList<FoodItem> foodList = new ArrayList<>();
+    String TAG = "fak";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class food_item_page extends AppCompatActivity {
 
         // unpack food from Inventory activity:
         Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
-        food = (String) foodBundle.getString("foodName");
+        food =  foodBundle.getString("foodName");
         category = foodBundle.getString("category");
         topBanner = (TextView) findViewById(R.id.food_page_name);
         toBeRemoved = new ArrayList<DocumentReference>();
@@ -66,6 +67,8 @@ public class food_item_page extends AppCompatActivity {
         FoodItem daddy = new FoodItem();
         daddy.setName(food);
         daddy.setCategory(category);
+        Log.d(TAG, "name ->>>>>>> "+ daddy.getName());
+        Log.d(TAG, "category ->>>>>>> "+ daddy.getCategory());
 
 
       final  ArrayList<DocumentReference> refList = new ArrayList();
@@ -75,7 +78,7 @@ public class food_item_page extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // call to this object when making queries
-        CollectionReference usersRef = db.collection("foodsItems");
+        CollectionReference usersRef = db.collection("foodItems");
 
 
         // TODO  CHECK BOTH name and caregory ARE EQUAL
@@ -106,7 +109,7 @@ public class food_item_page extends AppCompatActivity {
                             food.setQuantity(Integer.parseInt(document.getData().get("quantity").toString()));
                             food.setSize(document.getData().get("size").toString());
                             foodList.add(food);
-                            Log.d(food.getName(), "list size "+ foodList.size());
+                            Log.d(food.getName(), "list size -------------------> "+ foodList.size());
 
 
 
@@ -197,7 +200,7 @@ public class food_item_page extends AppCompatActivity {
                         }
                     }
                     else{
-
+                        Log.d(TAG, "LIST WAS EMPTY");
                     }
                 }
                 else{
