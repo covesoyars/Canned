@@ -64,7 +64,7 @@ public class addFood extends AppCompatActivity {
     }
 
     public void add(View view){
-        if(donorGuyPick.getText().toString().contains("@")) {
+       // if(donorGuyPick.getText().toString().contains("@")) {
             String n = name.getText().toString().trim();
             String s = size.getText().toString().trim();
             String e = expr.getText().toString().trim();
@@ -107,8 +107,8 @@ public class addFood extends AppCompatActivity {
                             Log.d(TAG, e.toString());
                         }
                     });
-        }
-        else { Toast.makeText(addFood.this, "Donor was not selected, must select one before adding.", Toast.LENGTH_SHORT).show(); }
+        //}
+       // else { Toast.makeText(addFood.this, "Donor was not selected, must select one before adding.", Toast.LENGTH_SHORT).show(); }
     }
 
     public void selectDonor(View view){
@@ -208,8 +208,8 @@ public class addFood extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         // put your code here...
-        Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
-        pickDonor = (Donor) foodBundle.getSerializable("thisDonor");
+     //   Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
+     //   pickDonor = (Donor) foodBundle.getSerializable("thisDonor");
 
     }
 
