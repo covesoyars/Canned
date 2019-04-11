@@ -31,6 +31,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class food_item_page extends AppCompatActivity {
@@ -39,6 +41,7 @@ public class food_item_page extends AppCompatActivity {
     TextView topBanner;
     ArrayList<DocumentReference> toBeRemoved;
     ArrayList<FoodItem> foodList = new ArrayList<>();
+    ArrayList<FoodItem> foodListToBeRemoved = new ArrayList<>();
     String TAG = "fak";
 
     @Override
@@ -180,20 +183,20 @@ public class food_item_page extends AppCompatActivity {
                             btn.setLayoutParams(params);
 
                             // Set click listener for button
-                            final FoodItem foodToSend = currentFood;
+                          //  final FoodItem foodToSend = currentFood;
                             btn.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v) {
                                     if(btn.isChecked()){
                                         toBeRemoved.add(ref);
-                                      //  foodList.add(currentFood);
+                                        foodListToBeRemoved.add(currentFood);
+
                                         Log.d(TAG, "if FOODLIST SIZE ->>>>>>>" + foodList.size());
                                         Toast.makeText(food_item_page.this,"added remove list", Toast.LENGTH_LONG).show();
                                     }
                                     else{
                                         toBeRemoved.remove(ref);
-                                        foodList.remove(currentFood);
                                         Log.d(TAG, "REMOVED FROM LIST???"+ foodList.contains(currentFood));
-                                        foodList.remove(currentFood);
+                                        foodListToBeRemoved.remove(currentFood);
                                         Log.d(TAG, "FOODLIST SIZE ->>>>>>>" + foodList.size()) ;
                                         Toast.makeText(food_item_page.this,"removed from remove list", Toast.LENGTH_LONG).show();
                                     }
@@ -251,20 +254,19 @@ public class food_item_page extends AppCompatActivity {
 
     public void remove(ArrayList<DocumentReference> list) {
          int quanity=0;
-        for(FoodItem temp : foodList)
+         final ArrayList<DocumentReference> list1 = list;
+        for(FoodItem temp : foodListToBeRemoved)
         {
-            Log.d(TAG, "foodList size ->>>>>>> " + foodList.size());
+            Log.d(TAG, "foodList size ->>>>>>> " + foodListToBeRemoved.size());
             quanity=quanity+temp.getQuantity();
         }
+        Log.d(TAG, "QUANTITY COUNT-------> " + quanity);
+
         final int fullQuantity = quanity;
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference users = db.collection("foodItems");
-
-
-        for (final DocumentReference ref : list) {
-
-            users.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        final CollectionReference users = db.collection("foodItems");
+            users.whereEqualTo("name", foodListToBeRemoved.get(0).getName()).whereEqualTo("category",foodListToBeRemoved.get(0).getCategory()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     // if it didn't crash connecting to firebase
@@ -278,22 +280,35 @@ public class food_item_page extends AppCompatActivity {
                         if (!q.isEmpty()) {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if(document.getReference().equals(ref)) {
+
+                                if(list1.contains(document.getReference())) {
                                     document.getReference().delete();// delete the user
-                                    q.getDocuments().remove(ref);
 
                                 }
 
+                                else{
+                                    //TODO GET QUANITTY THEN ADD FULL QUANTITY
+                                    int currentCounter = Integer.parseInt(document.get("counter").toString());
+                                   users.document(document.getId()).update("counter", (currentCounter + fullQuantity)+"");
+                                    Log.d(TAG, "ID GETTING UPDATES " + document.getId());
+                                    Log.d(TAG, "UPDATE ARE CURRENT: "+ currentCounter + "ADDING QUANT" + fullQuantity );
+                                }
+
+
                             }
-                        } else {
 
                         }
-                    } else {
+
+
+
+
+                    }
+                    else {
 
                     }
                 }
             });
-        }
+
     }
 
 
