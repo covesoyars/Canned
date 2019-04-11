@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +24,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -35,7 +37,8 @@ public class food_item_page extends AppCompatActivity {
 
     String food, category;
     TextView topBanner;
-    ArrayList<FoodItem> toBeRemoved;
+    ArrayList<DocumentReference> toBeRemoved;
+    ArrayList<FoodItem> foodList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +47,8 @@ public class food_item_page extends AppCompatActivity {
         final LinearLayout lm = (LinearLayout) findViewById(R.id.food_ll);
 
         //set screen universal text view sizes:
-        int numWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
-        int nameWidth = getResources().getDimensionPixelSize(R.dimen._115sdp);
+       final int numWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
+       final int nameWidth = getResources().getDimensionPixelSize(R.dimen._115sdp);
 
 
 
@@ -54,130 +57,159 @@ public class food_item_page extends AppCompatActivity {
         food = (String) foodBundle.getString("foodName");
         category = foodBundle.getString("category");
         topBanner = (TextView) findViewById(R.id.food_page_name);
-        toBeRemoved = new ArrayList<FoodItem>();
+        toBeRemoved = new ArrayList<DocumentReference>();
 
         topBanner.setText(food);
 
-        // create dummy food list for testing:
-        ArrayList<FoodItem> testFoods = new ArrayList<FoodItem>();
-        for(int i =0; i< 20; i++){
-            FoodItem item = new FoodItem();
 
-            if(i < 9){
-                item.setCategory("Fruit");
-                item.setName("apple");
-                item.setQuantity(1999);
-                item.setThreshold(100000);
-                item.setSize("69 g");
-                item.setLocation("C4");
-                item.setExprDate("11/02/1963");
-            }
-            else if(i == 10){
-                item.setThreshold(12);
-                item.setName("Dog Food");
-                item.setCategory("Dog");
-                item.setQuantity(11);
-                item.setSize("12 lbs");
-                item.setLocation("A4");
-                item.setExprDate("12/07/1941");
-            }
-            else{
-                item.setCategory("Soup");
-                item.setName("Tomato");
-                item.setQuantity(69);
-                item.setSize("12 oz");
-                item.setLocation("B4");
-                item.setExprDate("03/27/1994");
-            }
-            testFoods.add(item);
-        }
-        // remove food items that don't have the correct name:
-        ArrayList<FoodItem> selectedFood = new ArrayList<FoodItem>();
-        for(FoodItem currentFood : testFoods){
-            if(currentFood.getName().equals(food)){
-                selectedFood.add(currentFood);
-            }
-        }
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
-        // make header:
-        LinearLayout header = findViewById(R.id.foodItemHeader);
-        TextView quantityHead = new TextView(this);
-        quantityHead.setText("Quantity");
-        quantityHead.setWidth(numWidth);
-        header.addView(quantityHead);
+        FoodItem daddy = new FoodItem();
+        daddy.setName(food);
+        daddy.setCategory(category);
 
-        TextView ExprdateHead = new TextView(this);
-        ExprdateHead.setText("Expr. Date");
-        ExprdateHead.setWidth(nameWidth-115);
-        header.addView(ExprdateHead);
 
-        TextView locHead = new TextView(this);
-        locHead.setText("Location");
-        locHead.setWidth(numWidth);
-        header.addView(locHead);
+      final  ArrayList<DocumentReference> refList = new ArrayList();
 
-        for(int j = 0; j<selectedFood.size(); j++){
 
-            final FoodItem currentFood = selectedFood.get(j);
-            // Create LinearLayout
-            LinearLayout ll = new LinearLayout(this);
-            ll.setOrientation(LinearLayout.HORIZONTAL);
-            ll.setLayoutParams(params);
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-            // display quantity, expiration date, and location:
-            TextView quantity = new TextView(this);
-            quantity.setText(String.valueOf(currentFood.getQuantity()));
-            quantity.setWidth(numWidth);
-            ll.addView(quantity);
+        // call to this object when making queries
+        CollectionReference usersRef = db.collection("foodsItems");
 
-            TextView exprDate = new TextView(this);
-            exprDate.setText(currentFood.getExprDate());
-            exprDate.setWidth(nameWidth);
-            ll.addView(exprDate);
 
-            TextView loc = new TextView(this);
-            loc.setText(currentFood.getLocation());
-            exprDate.setWidth(numWidth);
-            ll.addView(loc);
+        // TODO  CHECK BOTH name and caregory ARE EQUAL
+        usersRef.whereEqualTo("name", daddy.getName()).whereEqualTo("category", daddy.getCategory()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                // if it didn't crash connecting to firebase
+                if (task.isSuccessful()) {
 
-            TextView spacer = new TextView(this);       //  so i was playing with stuff and i  think playing with the constraints was a better way to do it
-                                                           // lemme know what you think
-            spacer.setWidth(numWidth/2);
-            ll.addView(spacer);
+                    // result of the search
+                    QuerySnapshot q = task.getResult();
+
+
+                    // if the result of the search is empty
+                    if(!q.isEmpty()) {
+
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            // cast data fields to strings
+
+
+                           DocumentReference ref =  document.getReference();
+                           refList.add(ref);
+                           FoodItem food = new FoodItem();
+                            food.setCategory(document.getData().get("category").toString());
+                            food.setExprDate(document.getData().get("exprDate").toString());
+                            food.setLocation(document.getData().get("location").toString());
+                            food.setName(document.getData().get("name").toString());
+                            food.setQuantity(Integer.parseInt(document.getData().get("quantity").toString()));
+                            food.setSize(document.getData().get("size").toString());
+                            foodList.add(food);
+                            Log.d(food.getName(), "list size "+ foodList.size());
 
 
 
 
-            final Switch btn = new Switch(this);
-            // Give button an ID
-            btn.setId(j+1);
-            btn.setText("Remove");
+                        }
 
-            // set the layoutParams on the button
-            btn.setLayoutParams(params);
+                        //INSERT HERE
 
-            // Set click listener for button
-            final FoodItem foodToSend = currentFood;
-            btn.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    if(btn.isChecked()){
-                        toBeRemoved.add(currentFood);
-                        Toast.makeText(food_item_page.this,"added remove list", Toast.LENGTH_LONG).show();
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+                        // make header:
+                        LinearLayout header = findViewById(R.id.foodItemHeader);
+                        TextView quantityHead = new TextView(food_item_page.this);
+                        quantityHead.setText("Quantity");
+                        quantityHead.setWidth(numWidth);
+                        header.addView(quantityHead);
+
+                        TextView ExprdateHead = new TextView(food_item_page.this);
+                        ExprdateHead.setText("Expr. Date");
+                        ExprdateHead.setWidth(nameWidth-115);
+                        header.addView(ExprdateHead);
+
+                        TextView locHead = new TextView(food_item_page.this);
+                        locHead.setText("Location");
+                        locHead.setWidth(numWidth);
+                        header.addView(locHead);
+
+                        for(int j = 0; j<foodList.size(); j++){
+
+                            final FoodItem currentFood = foodList.get(j);
+                            final DocumentReference ref = refList.get(j);
+                            // Create LinearLayout
+                            LinearLayout ll = new LinearLayout(food_item_page.this);
+                            ll.setOrientation(LinearLayout.HORIZONTAL);
+                            ll.setLayoutParams(params);
+
+                            // display quantity, expiration date, and location:
+                            TextView quantity = new TextView(food_item_page.this);
+                            quantity.setText(String.valueOf(currentFood.getQuantity()));
+                            quantity.setWidth(numWidth);
+                            ll.addView(quantity);
+
+                            TextView exprDate = new TextView(food_item_page.this);
+                            exprDate.setText(currentFood.getExprDate());
+                            exprDate.setWidth(nameWidth);
+                            ll.addView(exprDate);
+
+                            TextView loc = new TextView(food_item_page.this);
+                            loc.setText(currentFood.getLocation());
+                            exprDate.setWidth(numWidth);
+                            ll.addView(loc);
+
+                            TextView spacer = new TextView(food_item_page.this);       //  so i was playing with stuff and i  think playing with the constraints was a better way to do it
+                            // lemme know what you think
+                            spacer.setWidth(numWidth/2);
+                            ll.addView(spacer);
+
+
+
+
+                            final Switch btn = new Switch(food_item_page.this);
+                            // Give button an ID
+                            btn.setId(j+1);
+                            btn.setText("Remove");
+
+                            // set the layoutParams on the button
+                            btn.setLayoutParams(params);
+
+                            // Set click listener for button
+                            final FoodItem foodToSend = currentFood;
+                            btn.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    if(btn.isChecked()){
+                                        toBeRemoved.add(ref);
+                                        Toast.makeText(food_item_page.this,"added remove list", Toast.LENGTH_LONG).show();
+                                    }
+                                    else{
+                                        toBeRemoved.remove(ref);
+                                        Toast.makeText(food_item_page.this,"removed from remove list", Toast.LENGTH_LONG).show();
+                                    }
+
+                                }
+                            });
+                            ll.addView(btn);
+                            lm.addView(ll);
+
+
+                        }
                     }
                     else{
-                        toBeRemoved.remove(currentFood);
-                        Toast.makeText(food_item_page.this,"removed from remove list", Toast.LENGTH_LONG).show();
+
                     }
+                }
+                else{
 
                 }
-            });
-            ll.addView(btn);
-            lm.addView(ll);
+            }
+        });
 
 
-        }
+
+
+
 
         //@SAM: We need you to pull all the fooditems that have
         // the name stored in the string variable 'food'
@@ -207,21 +239,15 @@ public class food_item_page extends AppCompatActivity {
                 .show();
     }
 
-    public void remove(ArrayList<FoodItem> list) {
+    public void remove(ArrayList<DocumentReference> list) {
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference users = db.collection("foodItems");
 
 
-        for (FoodItem snack : list) {
+        for (final DocumentReference ref : list) {
 
-            users.whereEqualTo("name", snack.getName())
-                    .whereEqualTo("category",snack.getCategory())
-                    .whereEqualTo("location",snack.getLocation())
-                    .whereEqualTo("exprDate",snack.getExprDate())
-                    .whereEqualTo("quantity",snack.getQuantity())
-                    .whereEqualTo("size",snack.getSize())
-                    .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            users.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     // if it didn't crash connecting to firebase
@@ -235,8 +261,9 @@ public class food_item_page extends AppCompatActivity {
                         if (!q.isEmpty()) {
 
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                document.getReference().delete(); // delete the user
-
+                                if(document.getReference().equals(ref))
+                                document.getReference().delete();// delete the user
+                                q.getDocuments().remove(ref);
 
                             }
                         } else {
