@@ -182,7 +182,7 @@ public class DonorList extends AppCompatActivity {
         }
     }
 
-   /* public void pickDonor(View view, Donor thisDonor){
+    public void pickDonor(View view, Donor thisDonor){
 
 
         // create and launch intent
@@ -192,5 +192,5 @@ public class DonorList extends AppCompatActivity {
         bundle.putSerializable("thisDonor", thisDonor);
         launchPick.putExtra("bundle", bundle);
         startActivity(launchPick);
-    }*/
+    }
 }

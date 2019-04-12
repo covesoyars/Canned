@@ -1,6 +1,8 @@
 package edu.vcu.cmsc355.starter;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -9,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -42,11 +45,19 @@ public class manager_hub_page extends AppCompatActivity {
     private static final String KEY_DELPETION="depletion";
     private static final String KEY_COUNTER="counter";
 
+    private EditText userReset;
+    private EditText passReset;
+    private boolean log = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manager_hub_page);
         FirebaseApp.initializeApp(this);
+
+        userReset = (EditText)findViewById(R.id.editText);
+        passReset = (EditText)findViewById(R.id.editText2);
 
 
     }
@@ -88,6 +99,28 @@ public class manager_hub_page extends AppCompatActivity {
     public void back(View View)
     {
        //TURN THIS INTO A LOGOUT METHOD THINGY -Javier
+        final Intent logout = new Intent(this, MainActivity.class);
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Logout?")
+                .setMessage("Are you sure you want to logout?")
+                .setPositiveButton("Finish", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // remove jimbo from volunteer database
+                        Log.d(TAG, "REEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+                        //userReset.setText("");
+                        //passReset.setText("");
+                        log = true;
+                        startActivity(logout);
+                        //Toast.makeText(this,log + " " + log,Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "REEEEEEEEEEEEEEEEEEEEEEEEEEEEE" + log);
+                    }
+
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     @Override

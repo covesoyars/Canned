@@ -1,9 +1,13 @@
 package edu.vcu.cmsc355.starter;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 public class Volenteer_hub_page extends AppCompatActivity {
 
@@ -25,6 +29,39 @@ public class Volenteer_hub_page extends AppCompatActivity {
         startActivity(inventory);
     }
 
+    public void back(View View)
+    {
+        //TURN THIS INTO A LOGOUT METHOD THINGY -Javier
+        final Intent logout = new Intent(this, MainActivity.class);
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Logout?")
+                .setMessage("Are you sure you want to logout?")
+                .setPositiveButton("Finish", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // remove jimbo from volunteer database
+                        //Log.d(TAG, "REEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+                        //userReset.setText("");
+                        //passReset.setText("");
+                        //log = true;
+                        startActivity(logout);
+                        //Toast.makeText(this,log + " " + log,Toast.LENGTH_SHORT).show();
+                        //Log.d(TAG, "REEEEEEEEEEEEEEEEEEEEEEEEEEEEE" + log);
+                    }
+
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+        /*if(log) {
+            userReset.setText("");
+            passReset.setText("");
+            startActivity(logout);
+        }*/
+        //Toast.makeText(this,log + " ",Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void onBackPressed() {
         // disables back button
@@ -33,9 +70,5 @@ public class Volenteer_hub_page extends AppCompatActivity {
     {
         Intent settings = new Intent(this, Edit_profile.class);
         startActivity(settings);
-    }
-    public void back(View View)
-    {
-        finish();
     }
 }

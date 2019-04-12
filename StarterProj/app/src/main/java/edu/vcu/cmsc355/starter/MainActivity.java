@@ -58,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        user.setText("");
+        pass.setText("");
+    }
+
     public void signUp(View view){
     Intent startSignUp = new Intent(this, Sign_Up_Page.class);
     startActivity(startSignUp);
