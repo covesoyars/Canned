@@ -24,4 +24,9 @@ public class ManagerInventory extends AppCompatActivity {
         Intent launchThreshold = new Intent(this,changeThreshold.class);
         startActivity(launchThreshold);
     }
+
+    public void storage(View view){
+        Intent storage = new Intent(this, storage.class);
+        startActivity(storage);
+    }
 }

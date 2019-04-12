@@ -14,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_real_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".manageStorage"></activity>
+        <activity android:name=".removeLocation"></activity>
+        <activity android:name=".addLocation" />
+        <activity android:name=".storage" />
+        <activity android:name=".manageStorage" />
         <activity android:name=".SetThreshold" />
         <activity android:name=".changeThreshold" />
         <activity android:name=".addFood" />
@@ -26,7 +29,6 @@
         <activity
             android:name=".manageVolunteers"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Inventory"
             android:screenOrientation="portrait" />
