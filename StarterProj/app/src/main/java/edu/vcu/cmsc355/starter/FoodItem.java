@@ -153,48 +153,28 @@ public class FoodItem implements Serializable {
         int nowDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         int nowMonth = Calendar.getInstance().get(Calendar.MONTH) + 1; // months start at 0 lol
         int nowYear = Calendar.getInstance().get(Calendar.YEAR);
-        nowYear = nowYear % 100;
-        try{
-            int itemMonth = Integer.parseInt(exprDate.substring(0,2));
-            int itemDay = Integer.parseInt(exprDate.substring(3,5));
-            int itemYear = Integer.parseInt(exprDate.substring(6));
-            itemYear = itemYear % 100;
 
-            if(nowMonth > itemMonth || nowYear > itemYear){ // if the item's month/year is passed the current month/year
-                return true; //expired
-            }
 
-            else if(nowDay + 2  >= itemDay && nowMonth  == itemMonth){  // if the item has the same month, but the day is
-                // more than 2 days greater,
-                return true; // expired
-            }
+        String[] splitByDash = exprDate.split("/");
 
-            else{
-                return false;
-            }
-        }catch (NumberFormatException e){
-            int itemMonth = Integer.parseInt(exprDate.substring(0,1));
-            int itemDay = Integer.parseInt(exprDate.substring(2,3));
-            int itemYear = Integer.parseInt(exprDate.substring(5));
-            itemYear = itemYear % 100;
+        int itemMonth = Integer.parseInt(splitByDash[0]);
+        int itemDay = Integer.parseInt(splitByDash[1]);
+        int itemYear = Integer.parseInt(splitByDash[2]);
 
-            if(nowMonth > itemMonth || nowYear > itemYear){ // if the item's month/year is passed the current month/year
-                return true; //expired
-            }
-
-            else if(nowDay + 2  >= itemDay && nowMonth  == itemMonth){  // if the item has the same month, but the day is
-                // more than 2 days greater,
-                return true; // expired
-            }
-
-            else{
-                return false;
-            }
+        if (nowMonth > itemMonth || nowYear > itemYear) { // if the item's month/year is passed the current month/year
+            return true; //expired
+        } else if (nowDay -2 >= itemDay && nowMonth == itemMonth) {  // if the item has the same month, but the day is
+            // more than 2 days greater,
+            return true; // expired
+        } else {
+            return false;
         }
+
+    }
 
 
 
 
     }
 
-}
+

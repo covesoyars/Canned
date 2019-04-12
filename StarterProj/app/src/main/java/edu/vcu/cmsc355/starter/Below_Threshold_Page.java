@@ -158,7 +158,7 @@ public class Below_Threshold_Page extends AppCompatActivity{
             // Create TextView
             TextView quantity2 = new TextView(this);
             quantity2.setText(String.valueOf(quantity+currentFood.getQuantity()));
-            if(currentFood.getQuantity() < currentFood.getThreshold()){
+            if(quantity < currentFood.getThreshold()){
                 quantity2.setTextColor(Color.RED);
             }
             quantity2.setWidth(numWidth);
@@ -175,6 +175,12 @@ public class Below_Threshold_Page extends AppCompatActivity{
             thresh.setText((String.valueOf(currentFood.getThreshold())));
             thresh.setWidth(numWidth);
             ll.addView(thresh);
+
+            // Create TextView
+            TextView deplet = new TextView(this);
+            thresh.setText((String.valueOf(currentFood.getDepletion()))+"/Day");
+            thresh.setWidth(numWidth);
+            ll.addView(deplet);
 
             list.addView(ll);
 

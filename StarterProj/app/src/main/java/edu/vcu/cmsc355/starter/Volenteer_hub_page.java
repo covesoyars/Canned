@@ -32,7 +32,6 @@ public class Volenteer_hub_page extends AppCompatActivity {
     public void back(View View)
     {
         //TURN THIS INTO A LOGOUT METHOD THINGY -Javier
-        final Intent logout = new Intent(this, MainActivity.class);
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Logout?")
@@ -46,8 +45,7 @@ public class Volenteer_hub_page extends AppCompatActivity {
                         //userReset.setText("");
                         //passReset.setText("");
                         //log = true;
-                        startActivity(logout);
-                        //Toast.makeText(this,log + " " + log,Toast.LENGTH_SHORT).show();
+                        finish();
                         //Log.d(TAG, "REEEEEEEEEEEEEEEEEEEEEEEEEEEEE" + log);
                     }
 

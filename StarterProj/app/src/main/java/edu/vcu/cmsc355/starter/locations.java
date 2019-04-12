@@ -1,11 +1,11 @@
 package edu.vcu.cmsc355.starter;
 
 public class locations {
-    private int size;
-    private char shelf;
+    private String shelf;
+    private String[] size;
 
 
-    locations(char shelf, int size)
+    locations(String shelf, String[] size)
     {
         setShelf(shelf);
         setSize(size);
@@ -13,23 +13,31 @@ public class locations {
     }
 
 
-    public void setShelf(char shelf) {
+    public void setShelf(String shelf) {
         this.shelf = shelf;
     }
 
 
 
-    public void setSize(int size) {
+    public void setSize(String[] size) {
         this.size = size;
     }
 
     public int getSize() {
-        return size;
+        return size.length;
     }
 
+    public int getRoomLeft(){
+        int count = 0;
+        for(String i: size){
+            if(i == null){
+                count += 1;
+            }
+        }
+        return getSize() - count;
+    }
 
-
-    public char getShelf() {
+    public String getShelf() {
         return shelf;
     }
 }

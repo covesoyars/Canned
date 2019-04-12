@@ -73,6 +73,9 @@
         </activity>
 
         <receiver android:name=".BelowThreshReciever" />
+        <receiver android:name=".DepletionReciever" />
+
+
     </application>
 
 </manifest>

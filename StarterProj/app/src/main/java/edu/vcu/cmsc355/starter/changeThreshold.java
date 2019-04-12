@@ -3,170 +3,80 @@ package edu.vcu.cmsc355.starter;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class changeThreshold extends AppCompatActivity {
 
+    ArrayList<FoodItem> testFoods;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_threshold);
 
+        testFoods = new ArrayList<>();
+
         final LinearLayout lm = (LinearLayout) findViewById(R.id.mainScroll2);
-        int numWidth =getResources().getDimensionPixelSize(R.dimen._50sdp);
-        int nameWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
+        final int numWidth =getResources().getDimensionPixelSize(R.dimen._50sdp);
+        final int nameWidth = getResources().getDimensionPixelSize(R.dimen._75sdp);
 
-        // make a list of food items to test display
-        final ArrayList<FoodItem> testFoods = new ArrayList<FoodItem>();
-        for(int i =0; i< 20; i++){
-            FoodItem item = new FoodItem();
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference usersRef = db.collection("foodItems");
 
-            if(i < 9){
-                item.setCategory("Milk");
-                item.setName("GreatValue Milk");
-                item.setQuantity(40);
-                item.setThreshold(20);
-                item.setSize("1 gal");
-                item.setDepletion(2);
-            }
-            else if(i == 10){
-                item.setThreshold(12);
-                item.setName("Pupusas");
-                item.setCategory("Hispanic");
-                item.setSize("12 oz");
-                item.setQuantity(11);
-                item.setDepletion(12);
-            }
-            else{
-                item.setCategory("liquid");
-                item.setName("water");
-                item.setQuantity(200);
-                item.setSize("12 oz");
-                item.setThreshold(500);
-                item.setDepletion(4);
-            }
-            testFoods.add(item);
-        }
-        selectionSort(testFoods);
+        usersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    QuerySnapshot q = task.getResult();
 
-        // create the layout params that will be used to define how your
-        // button will be displayed
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+                    if(!q.isEmpty()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            FoodItem item = new FoodItem();
+
+                            item.setCategory(document.getData().get("category").toString());
+                            item.setName(document.getData().get("name").toString());
+                            item.setQuantity(Integer.parseInt(document.getData().get("quantity").toString()));
+                            item.setThreshold(Integer.parseInt(document.getData().get("threshold").toString()));
+                            item.setSize(document.getData().get("size").toString());
+                            testFoods.add(item);
 
 
-        String currentCatigory = "";
-        int quantity=0;
-        //Create four
-        for(int j=0;j<testFoods.size();j++)  //J is to equal the size of the Foodarray(or whatever it is)
-        {
-            FoodItem food=testFoods.get(j);
-
-            // Create LinearLayout
-            LinearLayout ll = new LinearLayout(this);
-            ll.setOrientation(LinearLayout.HORIZONTAL);
-
-
-            //  FoodItem food=testFoods.get(j);
-
-            //ad catigory soace
-            if(!food.getCategory().equals(currentCatigory))
-            {
-                currentCatigory=food.getCategory();
-                TextView catigory = new TextView(this);
-                catigory.setText( currentCatigory );
-                catigory.setGravity(Gravity.CENTER);
-                catigory.setTextSize(20);
-                catigory.setWidth(ll.getWidth());
-                catigory.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                catigory.setTextColor(Color.WHITE);
-                lm.addView(catigory);
-            }
-
-            while(j<testFoods.size()-1 && food.getName().equals(testFoods.get(j+1).getName()))
-            {
-                j++;
-                quantity=quantity+food.getQuantity();
-            }
-
-
-
-            ll.setLayoutParams(params);
-            // Create TextView
-            TextView name = new TextView(this);
-            name.setText(food.getName());
-            name.setWidth(nameWidth-50);
-            ll.addView(name);
-
-            // Create TextView
-            TextView quantity2 = new TextView(this);
-            quantity2.setText(String.valueOf(quantity+food.getQuantity()));
-            if(quantity < food.getThreshold()){
-                quantity2.setTextColor(Color.RED);
-            }
-            quantity2.setWidth(numWidth);
-            ll.addView(quantity2);
-
-
-            // Create TextView
-            TextView thresh = new TextView(this);
-            thresh.setText((String.valueOf(food.getThreshold())));
-            thresh.setWidth(numWidth-50);
-            ll.addView(thresh);
-
-            // Create depletion rate
-            TextView deplete = new TextView(this);
-            deplete.setText(food.getDepletion()+"/day");
-            deplete.setWidth(numWidth);
-            ll.addView(deplete);
-
-
-
-            // Create Button
-            final Button btn = new Button(this);
-            // Give button an ID
-            btn.setId(j+1);
-            btn.setText("Change threshold");
-            // set the layoutParams on the button
-            btn.setLayoutParams(params);
-            //btn.setRight(0);
-
-            // btn.setWidth(BUTTON_SIZE);
-
-
-//            RelativeLayout.LayoutParams btnlocation = (RelativeLayout.LayoutParams) btn.getLayoutParams();
-//            btnlocation.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-//            btn.setLayoutParams(btnlocation);
-
-
-
-            final int index = j;
-            final FoodItem foodToSend = food;
-            // Set click listener for button
-            btn.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    launchFoodItemPage(v,testFoods,foodToSend.getName());
-
+                        }
+                        selectionSort(testFoods);
+                        createButtons(testFoods, lm, numWidth, nameWidth);
+                    }
+                    else{
+                    }
                 }
-            });
-
-            //Add button to LinearLayout
-            ll.addView(btn);
-            //Add button to LinearLayout defined in XML
-            lm.addView(ll);
-            quantity=0;
+                else{
+                }
+            }
+        });
         }
 
-    }
+
+
+
+
 
 
     private void launchSetThresholdPage(View view, FoodItem food){
@@ -213,5 +123,120 @@ public class changeThreshold extends AppCompatActivity {
         }
 
     }
+
+    public void createButtons(ArrayList<FoodItem> testFoods, LinearLayout lm, int numWidth, int nameWidth){
+        selectionSort(testFoods);
+
+
+        // create the layout params that will be used to define how your
+        // button will be displayed
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+
+        String currentCatigory = "";
+        int quantity=0;
+        //Create four
+        for(int j=0;j<testFoods.size();j++)  //J is to equal the size of the Foodarray(or whatever it is)
+        {
+            FoodItem food=testFoods.get(j);
+
+            // Create LinearLayout
+            LinearLayout ll = new LinearLayout(this);
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+
+
+            //  FoodItem food=testFoods.get(j);
+
+            //ad catigory soace
+            if(!food.getCategory().equals(currentCatigory))
+            {
+                currentCatigory=food.getCategory();
+                TextView catigory = new TextView(this);
+                catigory.setText( currentCatigory );
+                catigory.setGravity(Gravity.CENTER);
+                catigory.setTextSize(20);
+                catigory.setWidth(ll.getWidth());
+                catigory.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                catigory.setTextColor(Color.WHITE);
+                lm.addView(catigory);
+            }
+
+            while(j<testFoods.size()-1 && food.getName().equals(testFoods.get(j+1).getName()))
+            {
+                j=j+1;
+                quantity=quantity+food.getQuantity();
+                food = testFoods.get(j);
+                Log.d("quantity", food.getName() +" value is :"+ quantity);
+            }
+
+
+
+            ll.setLayoutParams(params);
+            // Create TextView
+            TextView name = new TextView(this);
+            name.setText(food.getName());
+            name.setWidth(nameWidth);
+            ll.addView(name);
+
+            // Create TextView
+            TextView quantity2 = new TextView(this);
+            quantity2.setText(String.valueOf(quantity+food.getQuantity()));
+            if(food.getQuantity() < food.getThreshold()){
+                quantity2.setTextColor(Color.RED);
+            }
+            quantity2.setWidth(numWidth);
+            ll.addView(quantity2);
+
+            // Create TextView
+            TextView size = new TextView(this);
+            size.setText((food.getSize()));
+            size.setWidth(numWidth);
+            ll.addView(size);
+
+            // Create TextView
+            TextView thresh = new TextView(this);
+            thresh.setText((String.valueOf(food.getThreshold())));
+            thresh.setWidth(numWidth);
+            ll.addView(thresh);
+
+
+
+            // Create Button
+            final Button btn = new Button(this);
+            // Give button an ID
+            btn.setId(j+1);
+            btn.setText("Edit");
+            // set the layoutParams on the button
+            btn.setLayoutParams(params);
+            //btn.setRight(0);
+
+            // btn.setWidth(BUTTON_SIZE);
+
+
+//            RelativeLayout.LayoutParams btnlocation = (RelativeLayout.LayoutParams) btn.getLayoutParams();
+//            btnlocation.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+//            btn.setLayoutParams(btnlocation);
+
+
+
+            final int index = j;
+            final FoodItem foodToSend = food;
+            final ArrayList<FoodItem> t = testFoods;
+            // Set click listener for button
+            btn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    // launch set thrshold page here:
+                    launchSetThresholdPage(btn, foodToSend);
+                }
+            });
+
+            //Add button to LinearLayout
+            ll.addView(btn);
+            //Add button to LinearLayout defined in XML
+            lm.addView(ll);
+            quantity=0;
+        }
     }
+}
 
