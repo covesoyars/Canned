@@ -57,16 +57,6 @@ public class Forgot_info extends AppCompatActivity {
     }
 
 
-    /*
-
-    SETS UP BACK BUTTON TO LOGIN PAGE
-     */
-    public void back(View View)
-    {
-
-        finish();
-    }
-
     public void sendEmail(View v){
 
         String subject = subject = "Forgot Canned information?"; // set subject

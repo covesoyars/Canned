@@ -66,14 +66,6 @@ public class Sign_Up_Page extends AppCompatActivity {
         date = (EditText) findViewById(R.id.editText8);
         FirebaseApp.initializeApp(this);
     }
-/*
-
-SETS UP BACK BUTTON TO LOGIN PAGE
- */
-    public void back(View View)
-    {
-       finish();
-    }
 
     public void addUser(View view){
 

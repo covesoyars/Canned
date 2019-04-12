@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Forgot_info">
 
-    <ImageButton
-        android:id="@+id/backButton5"
-        android:layout_width="80dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
-
     <CheckBox
         android:id="@+id/checkBox3"
         android:layout_width="157dp"

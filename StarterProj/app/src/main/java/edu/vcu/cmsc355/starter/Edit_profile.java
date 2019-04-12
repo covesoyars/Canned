@@ -113,12 +113,6 @@ public class    Edit_profile extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    public void back(View View) {
-        finish();
-
-
-    }
-
     public void save(View View) {
         if (verifyInputs(loggedIn)) {
             loggedIn.setEmailAddress(email.getText().toString());
