@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         Intent alarmIntent = new Intent(this, BelowThreshReciever.class);
         Intent depletionIntent = new Intent(this,DepletionReciever.class);
         belowThreshPendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
-        depletionPendingIntent = PendingIntent.getBroadcast(this, 1, depletionIntent, 0);
+        depletionPendingIntent = PendingIntent.getBroadcast(this, 0, depletionIntent, 0);
 
 
     }
@@ -95,8 +95,9 @@ public class MainActivity extends AppCompatActivity {
             appState.setLoggedIn(loggedInUser);
             user.setText("");
             pass.setText("");
-            startActivity(login);
             startDepletionAlarm();
+            startActivity(login);
+
            // startBelowThreshAlarm();
         }
         else{
@@ -165,11 +166,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void startDepletionAlarm(){
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 24);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
 
         manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         manager.set(AlarmManager.RTC, calendar.getTimeInMillis(), depletionPendingIntent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish(); // close app?
     }
 }

@@ -99,8 +99,7 @@ public class manager_hub_page extends AppCompatActivity {
     public void back(View View)
     {
        //TURN THIS INTO A LOGOUT METHOD THINGY -Javier
-        final Intent logout = new Intent(this, MainActivity.class);
-        new AlertDialog.Builder(this)
+               new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Logout?")
                 .setMessage("Are you sure you want to logout?")
@@ -113,9 +112,9 @@ public class manager_hub_page extends AppCompatActivity {
                         //userReset.setText("");
                         //passReset.setText("");
                         log = true;
-                        startActivity(logout);
                         //Toast.makeText(this,log + " " + log,Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "REEEEEEEEEEEEEEEEEEEEEEEEEEEEE" + log);
+                        finish();
                     }
 
                 })

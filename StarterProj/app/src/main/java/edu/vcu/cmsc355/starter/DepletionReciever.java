@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,9 +23,10 @@ public class DepletionReciever extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent){
+        Log.d("task: ", "successful");
         FirebaseApp.initializeApp(context);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference foods = db.collection("foodItems");
+      final   CollectionReference foods = db.collection("foodItems");
 
         foods.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -40,10 +42,12 @@ public class DepletionReciever extends BroadcastReceiver {
                     if (!q.isEmpty()) {
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            DocumentReference myRef = document.getReference();
+
                             int counter = Integer.parseInt(document.getData().get(KEY_COUNTER).toString());
-                            myRef.update(KEY_COUNTER, 0);
-                            myRef.update(KEY_DEPLETION, counter);
+
+                            foods.document(document.getId()).update(KEY_DEPLETION, (counter+""));
+                            foods.document(document.getId()).update(KEY_COUNTER, (0+""));
+                            Log.d("depletion recevier", "update code ran");
 
                         }
                     } else {
