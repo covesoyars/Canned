@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.regex.Matcher;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class addFood extends AppCompatActivity {
 
@@ -38,6 +40,8 @@ public class addFood extends AppCompatActivity {
     private static final String KEY_COUNTER = "counter";
     private static final String KEY_DEPLETION = "depletion";
     private ArrayList<FoodItem> foods = new ArrayList<FoodItem>();
+
+    final Pattern datePattern = Pattern.compile("^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$");
 
     private EditText name;
     private EditText size;
@@ -75,6 +79,19 @@ public class addFood extends AppCompatActivity {
             String q = quan.getText().toString().trim();
             String c = cat.getText().toString().trim();
             String l = loc.getText().toString().trim();
+            String[] params = {n,s,e,q,c,l};
+
+            for(int i = 0;i<params.length;i++){
+                if(params[i].isEmpty()){
+                    Toast.makeText(this,"Please fill out all fields",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            Matcher matcher = datePattern.matcher(e);
+            if(!matcher.matches()){
+                Toast.makeText(addFood.this,"Expiration date must be in format: mm/dd/yyyy", Toast.LENGTH_SHORT).show();
+            }
+
             getSimliar();
             Log.d(TAG, " FINAL SIMLIAR " + simliar.getDepletion() + " " + simliar.getCounter());
 

@@ -96,9 +96,10 @@ public class MainActivity extends AppCompatActivity {
             user.setText("");
             pass.setText("");
             startDepletionAlarm();
+            startBelowThreshAlarm();
             startActivity(login);
 
-           // startBelowThreshAlarm();
+
         }
         else{
             fb = false;
