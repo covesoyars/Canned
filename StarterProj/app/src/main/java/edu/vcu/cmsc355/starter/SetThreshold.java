@@ -91,8 +91,8 @@ public class SetThreshold extends AppCompatActivity {
         final String newThresh = (thresh.getText().toString());
         FirebaseApp.initializeApp(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference ref = db.collection("foodItems");
-        ref.whereEqualTo("name", foodName).whereEqualTo("category", foodCat).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        final CollectionReference colRef = db.collection("foodItems");
+        colRef.whereEqualTo("name", foodName).whereEqualTo("category", foodCat).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
@@ -100,11 +100,15 @@ public class SetThreshold extends AppCompatActivity {
 
                     if(!q.isEmpty()){
                         for(QueryDocumentSnapshot  document : task.getResult()){
-                            DocumentReference ref = document.getReference();
-                            ref.update("threshold", newThresh);
+                            //DocumentReference ref = document.getReference();
+                            //ref.update("threshold", Integer.parseInt(newThresh));
+                            colRef.document(document.getId()).update("threshold",newThresh+"");
+
                         }
                     }
+
                 }
+
             }
         });
         finish();
