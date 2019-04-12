@@ -30,7 +30,6 @@ public class DonorList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        donorGuy = (EditText)findViewById(R.id.editText27);
         //ONCE THINGS START WORKING DELETE FROM HERE
         final ArrayList<Donor> testDons = new ArrayList<Donor>();
         for(int i =0; i< 20; i++){

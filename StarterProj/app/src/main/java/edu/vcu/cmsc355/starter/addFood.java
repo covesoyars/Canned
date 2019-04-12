@@ -60,7 +60,6 @@ public class addFood extends AppCompatActivity {
         quan = (EditText) findViewById(R.id.editText24);
         cat = (EditText) findViewById(R.id.editText8);
         loc = (EditText) findViewById(R.id.editText26);
-        donorGuyPick = (EditText) findViewById(R.id.editText27);
 
         pick = false;
 
@@ -68,51 +67,48 @@ public class addFood extends AppCompatActivity {
     }
 
     public void add(View view){
-        if(donorGuyPick.getText().toString().contains("@")) {
-            String n = name.getText().toString().trim();
-            String s = size.getText().toString().trim();
-            String e = expr.getText().toString().trim();
-            String q = quan.getText().toString().trim();
-            String c = cat.getText().toString().trim();
-            String l = loc.getText().toString().trim();
-            getSimliar();
-            Log.d(TAG, " FINAL SIMLIAR " + simliar.getDepletion() + " " + simliar.getCounter());
+        String n = name.getText().toString().trim();
+        String s = size.getText().toString().trim();
+        String e = expr.getText().toString().trim();
+        String q = quan.getText().toString().trim();
+        String c = cat.getText().toString().trim();
+        String l = loc.getText().toString().trim();
+        getSimliar();
+        Log.d(TAG, " FINAL SIMLIAR " + simliar.getDepletion() + " " + simliar.getCounter());
 
-            String t = simliar.getThreshold() + "";
-            String counter = simliar.getCounter() + "";
-            String delpetion = simliar.getDepletion() + "";
-            FirebaseApp.initializeApp(this);
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            CollectionReference users = db.collection("foodItems");
+        String t = simliar.getThreshold() + "";
+        String counter = simliar.getCounter() + "";
+        String delpetion = simliar.getDepletion() + "";
+        FirebaseApp.initializeApp(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference users = db.collection("foodItems");
 
-            Map<String, Object> note = new HashMap<>();
-            note.put(KEY_NAME, n);
-            note.put(KEY_SIZE, s);
-            note.put(KEY_EXPR, e);
-            note.put(KEY_QUANTITY, q);
-            note.put(KEY_CATEGORY, c);
-            note.put(KEY_LOCATION, l);
-            note.put(KEY_THRESHOLD, t);
-            note.put(KEY_DEPLETION, delpetion);
-            note.put(KEY_COUNTER, counter);
+        Map<String, Object> note = new HashMap<>();
+        note.put(KEY_NAME, n);
+        note.put(KEY_SIZE, s);
+        note.put(KEY_EXPR, e);
+        note.put(KEY_QUANTITY, q);
+        note.put(KEY_CATEGORY, c);
+        note.put(KEY_LOCATION, l);
+        note.put(KEY_THRESHOLD, t);
+        note.put(KEY_DEPLETION, delpetion);
+        note.put(KEY_COUNTER, counter);
 
-            users.document().set(note)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(addFood.this, "Food added", Toast.LENGTH_SHORT).show();
+        users.document().set(note)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(addFood.this, "Food added", Toast.LENGTH_SHORT).show();
 
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(addFood.this, "Food could not be added", Toast.LENGTH_SHORT).show();
-                            Log.d(TAG, e.toString());
-                        }
-                    });
-        }
-        else { Toast.makeText(addFood.this, "Donor was not selected, must select one before adding.", Toast.LENGTH_SHORT).show(); }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(addFood.this, "Food could not be added", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, e.toString());
+                    }
+                });
     }
 
     public void selectDonor(View view){
