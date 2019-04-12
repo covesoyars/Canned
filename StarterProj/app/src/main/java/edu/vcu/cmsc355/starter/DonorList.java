@@ -1,6 +1,8 @@
 package edu.vcu.cmsc355.starter;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -185,13 +187,30 @@ public class DonorList extends AppCompatActivity {
     public void pickDonor(View view, Donor thisDonor){
 
         Log.d(TAG, "pick button activate REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        final Donor picker = thisDonor; //Must be final for a reason
         // create and launch intent
         final Intent launchPick = new Intent(this,addFood.class);
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Pick Donor")
+                .setMessage("Are you sure this is the right donor?")
+                .setPositiveButton("Finish", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // remove jimbo from volunteer database
+                        Log.d(TAG, "REEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("thisDonor", picker);
+                        launchPick.putExtra("bundle", bundle);
+                        startActivity(launchPick);
+                        //log = true;
+                        startActivity(launchPick);
+                        //Log.d(TAG, "REEEEEEEEEEEEEEEEEEEEEEEEEEEEE" + log);
+                    }
 
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("thisDonor", thisDonor);
-        launchPick.putExtra("bundle", bundle);
-        //donorGuy.setText(thisDonor.getEmailAddress());
-        startActivity(launchPick);
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 }
