@@ -60,7 +60,7 @@ public class addFood extends AppCompatActivity {
         quan = (EditText) findViewById(R.id.editText24);
         cat = (EditText) findViewById(R.id.editText8);
         loc = (EditText) findViewById(R.id.editText26);
-        donorGuyPick = (EditText) findViewById(R.id.editText27);
+       // donorGuyPick = (EditText) findViewById(R.id.editText27);
 
         pick = false;
 
