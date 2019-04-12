@@ -45,10 +45,8 @@ public class addFood extends AppCompatActivity {
     private EditText quan;
     private EditText cat;
     private EditText loc;
-    public EditText donorGuyPick;
     private static final FoodItem simliar = new FoodItem();
-    private Donor pickDonor;
-    private boolean pick;
+    private Donor pickDonor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,15 +58,13 @@ public class addFood extends AppCompatActivity {
         quan = (EditText) findViewById(R.id.editText24);
         cat = (EditText) findViewById(R.id.editText8);
         loc = (EditText) findViewById(R.id.editText26);
-       // donorGuyPick = (EditText) findViewById(R.id.editText27);
 
-        pick = false;
 
         FirebaseApp.initializeApp(this);
     }
 
     public void add(View view){
-        if(donorGuyPick.getText().toString().contains("@")) {
+        if(pickDonor != null) {
             String n = name.getText().toString().trim();
             String s = size.getText().toString().trim();
             String e = expr.getText().toString().trim();
@@ -101,7 +97,12 @@ public class addFood extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(addFood.this, "Food added", Toast.LENGTH_SHORT).show();
-
+                            name.setText("");
+                            size.setText("");
+                            expr.setText("");
+                            quan.setText("");
+                            cat.setText("");
+                            loc.setText("");
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -116,7 +117,6 @@ public class addFood extends AppCompatActivity {
     }
 
     public void selectDonor(View view){
-        pick = true;
         Intent sel = new Intent(this, DonorList.class);
         startActivity(sel);
     }
@@ -221,8 +221,6 @@ public class addFood extends AppCompatActivity {
             Log.d(TAG, "bundle got REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
             pickDonor = (Donor) foodBundle.getSerializable("thisDonor");
             Log.d(TAG, "donor got REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-            donorGuyPick.setText(pickDonor.getEmailAddress());
-            Log.d(TAG, "all good REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         }
         catch(Exception e){
             //Meant for opening first time
