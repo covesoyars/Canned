@@ -1,0 +1,21 @@
+﻿Test Case,Feature,Description,Steps,Test Data,Expected Results,Actual Result,Status
+1,pages,"Check all buttons, radio buttons, checkboxes",Click on all buttons and check if they are working or not,NA,UI should be perfect,UI works fine,Pass
+2,Required Fields,Check all required fields by not entering the data,Do not enter any value in mandatory field and click on signup,NA,* should show asking for mandatory field,added empty stuff to database,Fail
+3,Csv file,Add new invertory to database from csv file,add a csv file and see if ti updates,test.csv (file given),the database shold be updated,database updates,Pass
+5,depletion rate,check if depletion rate automatically updates every day,remove things from database and see if the depetion rate gets updated,NA,depletion sate should update to amoount lost yesterday,delpetion rate updates now,Pass
+6,password reset,users password now gets reset,reset password using UI,coves email,password should update and user shjould log in with new passwoird,password updates,Pass
+18,User Interface,back on main page should not return to log in page,Press the back button ,NA,It should help the user not sign out by accident,press back button,Pass
+19,User Interface,Test the sign out button,Press the sign out button ,NA,The enter should promt user to validate iof they want to sign out,propmt appears ands user can choose to sign out,Pass
+20,locatiuon,add locations to database,add using UI as manager,NA,location should be added to database,location added,Pass
+20,threshold,update food ityems thresholds,edit threshold as a manager,NA,threshold sould be updated,threhold updates,Pass
+20,add food,add new food items to the database,add as a volenteer,NA,new food should appeare in database/inventory,food added,Pass
+20,remove food,remove food items,remove from the inventoy page,NA,food should be removed from the datatbase,food item removed,Pass
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
