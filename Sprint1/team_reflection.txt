@@ -1,13 +1,24 @@
-Each mEach member's contribution:
+Each member's contribution:
 
-    Javier Moreira: (1) Made majority of UI xml pages, got artwork for logo, helped build activities, helped debug, tested on phone (2) worked on setting up the layout of the inventory/volunteer page. 
+    Javier Moreira: 
+    (1) Made majority of UI xml pages, got artwork for logo, helped build activities, helped debug, tested on phone 
+    (2) worked on setting up the layout of the inventory/volunteer page. 
+    (3) Manage threshold page, remove locations, figured out depletion rate, tried to kill Justin multiple times.
 
- Justin Nelson: (1)Figured out how to access the phone's gallery and implemented it, made UI xml pages, helped debug, helped build activities(2) worked on donor and food item class as well as attempted to make the app receive csv file. Created the personal volunteer 
-page
+ Justin Nelson: 
+ (1)Figured out how to access the phone's gallery and implemented it, made UI xml pages, helped debug, helped build activities
+ (2) worked on donor and food item class as well as attempted to make the app receive csv file.  
+ (3) Select donor button, set volunteers' verification status at sign up, set threshold page, manager and volunteer logout.
 
-    Sam Portillo: (1) Implemented Firebase, kept track of scrum meeting notes, tested on phone (2) Finish sign up page, created manage volunteers activity, created volunteer database, started fooditem database, pulled various pieces of data from volunteer database in different activities
 
-    Cove Soyars: (1) Build sign up and forgot information activities, implemented global user variable, designed User classes, set up email domain and Mailgun. (2) Saved user that’s logged in, helped create inventory page and its child pages, helped send data between activities, 
+    Sam Portillo: 
+    (1) Implemented Firebase, kept track of scrum meeting notes, tested on phone 
+    (2) Finish sign up page, created manage volunteers activity, created volunteer database, started fooditem database, pulled         various pieces of data from volunteer database in different activities. 
+    (3) Made add food page, select donor function, updated scrum, helped other members learn how to use the database.
+
+    Cove Soyars: 
+    (1) Build sign up and forgot information activities, implemented global user variable, designed User classes, set up email          domain and Mailgun. 
+    (2) Saved user that’s logged in, helped create inventory page and its child pages, helped send data between activities.       (3) Connected old activities to database, helped implement depletion rate, allowed manager to edit threshold levels,          upload a csv and remove volunteers, send email to manager with low stock/expiring food. 
 
 What was accomplished:
 
@@ -22,7 +33,19 @@ logo chosen and deployed
 
 Sprint 2:
 
-Manage volunteers, inventory and add a csv file (in progress) activities built, sign up page competed, foodItem and Donor classes created, 
+Manage volunteers, 
+inventory and add a csv file (in progress) activities built, 
+sign up page competed, 
+foodItem and Donor classes created, 
+
+Sprint 3:
+
+Manager's special inventory privelages added (set threshold level, recieve emails for inventory updates, view low stock/expiring foods, upload a csv, etc), 
+All activities have database function from earlier sprints, 
+Add food activity created, 
+donor collection added to database
+add and remove valid storage locations added
+
 
 What worked during this sprint:
 
@@ -35,6 +58,14 @@ High communication between members
 Sprint 2:
 
 Same as sprint 1, but add time management skills
+
+Sprint 3:
+
+Everything from previous sprints
+Doing code together after scrum meetings
+Assigning tasks to whoever wanted them
+
+
 Issues encounterd:
 
 
@@ -50,6 +81,11 @@ Sprint 2:
 Accessing csv file 
 Passing image URIs
 General UI manipulation 
+
+Sprint 3:
+
+Setting and testing alarms was difficult
+database debugging
 
 Goals that need to be modified for Sprint 2: none
 
