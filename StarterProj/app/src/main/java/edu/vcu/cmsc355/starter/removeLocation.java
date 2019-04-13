@@ -163,7 +163,7 @@ public class removeLocation extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Remove location?")
-                .setMessage("Are you sure you want to remove this volunteer?")
+                .setMessage("Are you sure you want to remove location \"" + docID.get("name") + "\" ?")
                 .setPositiveButton("Finish", new DialogInterface.OnClickListener()
                 {
                     @Override

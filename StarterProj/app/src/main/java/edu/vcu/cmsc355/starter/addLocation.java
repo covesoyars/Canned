@@ -63,5 +63,8 @@ public class addLocation extends AppCompatActivity {
                         Log.d(TAG, e.toString());
                     }
                 });
+
+    finish();
     }
+
 }

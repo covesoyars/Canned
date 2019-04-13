@@ -48,6 +48,7 @@
     <string name="threhold">Thresholds</string>
     <string name="thresholdBanner">\t  Name  \t\t\t\t Quantity \t \t Threshold \t Depletion </string>
     <string name="Locations">Locations</string>
+    <string name="addLocation" > Add Location</string>
 
 
     <!-- Strings related to Settings -->
