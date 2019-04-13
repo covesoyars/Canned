@@ -207,26 +207,5 @@ public class addFood extends AppCompatActivity {
         }
         return new FoodItem();
     }
-
-    //This method is to get the donor that is passed back.
-    //@Override
-    public void onResume(){
-        super.onResume();
-        // put your code here...
-        Log.d(TAG, "onResume works REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-        //if(pick)
-         try{
-            Log.d(TAG, "onResume works REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-            Bundle foodBundle = (Bundle) getIntent().getBundleExtra("bundle");
-            Log.d(TAG, "bundle got REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-            pickDonor = (Donor) foodBundle.getSerializable("thisDonor");
-            Log.d(TAG, "donor got REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-        }
-        catch(Exception e){
-            //Meant for opening first time
-        }
-    }
-
-
-
+    
 }

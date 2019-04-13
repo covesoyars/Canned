@@ -183,12 +183,12 @@ public class DonorList extends AppCompatActivity {
         }
     }
 
-    public void pickDonor(View view, Donor thisDonor){
+    public void pickDonor(View view, final Donor thisDonor){
 
         Log.d(TAG, "pick button activate REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         final Donor picker = thisDonor; //Must be final for a reason
         // create and launch intent
-        final Intent launchPick = new Intent(this,addFood.class);
+        final Intent launchPick = new Intent(this,Volenteer_hub_page.class);
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Pick Donor")
@@ -199,13 +199,8 @@ public class DonorList extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         // remove jimbo from volunteer database
                         Log.d(TAG, "REEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("thisDonor", picker);
-                        launchPick.putExtra("bundle", bundle);
+                        thisDonor.sendEmail();
                         startActivity(launchPick);
-                        //log = true;
-                        startActivity(launchPick);
-                        //Log.d(TAG, "REEEEEEEEEEEEEEEEEEEEEEEEEEEEE" + log);
                     }
 
                 })
