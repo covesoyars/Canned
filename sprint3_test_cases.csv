@@ -10,9 +10,9 @@
 20,threshold,update food ityems thresholds,edit threshold as a manager,NA,threshold sould be updated,threhold updates,Pass
 20,add food,add new food items to the database,add as a volenteer,NA,new food should appeare in database/inventory,food added,Pass
 20,remove food,remove food items,remove from the inventoy page,NA,food should be removed from the datatbase,food item removed,Pass
-,,,,,,,
-,,,,,,,
-,,,,,,,
+21,Verified login ,Only login if verified ,Sign in as unverified ,NA ,Shouldn't be able to login ,Wasn't able to login ,Pass
+22,Refresh page ,When going back page should be reset ,Go back after creating a donor ,NA ,Page should include the new donor ,Page does not refresh , Fail
+23,Pick donor, Select a donor for the donation ,Use pick on the donor list and verify it was passed back ,NA, Donor email should display in the add food page ,Email is displayed ,Pass
 ,,,,,,,
 ,,,,,,,
 ,,,,,,,
