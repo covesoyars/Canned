@@ -64,7 +64,7 @@ public class addFood extends AppCompatActivity {
     }
 
     public void add(View view){
-        if(pickDonor != null) {
+      //  if(pickDonor != null) {
             String n = name.getText().toString().trim();
             String s = size.getText().toString().trim();
             String e = expr.getText().toString().trim();
@@ -112,18 +112,19 @@ public class addFood extends AppCompatActivity {
                             Log.d(TAG, e.toString());
                         }
                     });
-        }
-        else { Toast.makeText(addFood.this, "Donor was not selected, must select one before adding.", Toast.LENGTH_SHORT).show(); }
+        //}
+     //   else { Toast.makeText(addFood.this, "Donor was not selected, must select one before adding.", Toast.LENGTH_SHORT).show(); }
     }
 
     public void selectDonor(View view){
+        add(view);
         Intent sel = new Intent(this, DonorList.class);
         startActivity(sel);
     }
 
     //SEARCG THROUGH DATABASE AND IF SOMETHING HAS THE SAME NAME GET ITS THRESHOLD AND SET CURRENT
     //FOOD OBJECT THRESHOLD TO THE ONES IN THE DATA BASE
-    public void getSimliar() {
+    public void getSimliar(){
             FoodItem none = new FoodItem();
             name = (EditText) findViewById(R.id.editText3);
             String s = name.getText().toString();
