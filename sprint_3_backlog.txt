@@ -1,0 +1,15 @@
+Sprint 3 backlog:
+
+1. A Manager can click a button on his/her hub page to be taken to a page that displays all of the foods that are depleting fast or are in low stock. So that he/she knows what foods are needed. 
+
+2. A manager can click a button on his/her hub page to be taken to a page where he/she can view the threshold levels of foods so he/she can know whether or not to change them.
+
+3. From the threshold level page, a manager can click on an individual food item to be taken to a page with buttons to alter the threshold level of the food, so that the manager has control over the thresholds.
+
+4. A user can upate their information from the edit profile page and these changes are reflected in the database. 
+
+5. Every night at midnight, the app calculates the depletion rate of all the food items in the inventory, so that the number is up to date daily.
+
+6. A volunteer can click a button on their hub page to be taken to an interface to record donations so that they can accept new inventory.
+
+7. A volunteer, from the add food page, can select a donor from a list of existing donors, or enter a new donor's information so that they can keep track of who's donating.
